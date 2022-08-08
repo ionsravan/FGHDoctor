@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Ambitious/My Android Work2020/NewWork/Projects/FGHDoctor/app/src/main/res/drawable/ic_invert.xml" value="0.2703125" />
+        <entry key="..\:/Ambitious/My Android Work2020/NewWork/Projects/FGHDoctor/app/src/main/res/drawable/ic_wallet.xml" value="0.2703125" />
+        <entry key="..\:/Ambitious/My Android Work2020/NewWork/Projects/FGHDoctor/app/src/main/res/layout/activity_bank_login.xml" value="0.25416666666666665" />
+        <entry key="..\:/Ambitious/My Android Work2020/NewWork/Projects/FGHDoctor/app/src/main/res/layout/activity_blood_bank_profile.xml" value="0.23981481481481481" />
+        <entry key="..\:/Ambitious/My Android Work2020/NewWork/Projects/FGHDoctor/app/src/main/res/layout/activity_blood_list.xml" value="0.1453804347826087" />
+        <entry key="..\:/Ambitious/My Android Work2020/NewWork/Projects/FGHDoctor/app/src/main/res/layout/activity_doctor_profile.xml" value="0.14356884057971014" />
+        <entry key="..\:/Ambitious/My Android Work2020/NewWork/Projects/FGHDoctor/app/src/main/res/layout/activity_home.xml" value="0.1453804347826087" />
+        <entry key="..\:/Ambitious/My Android Work2020/NewWork/Projects/FGHDoctor/app/src/main/res/layout/activity_labs_home.xml" value="0.25416666666666665" />
+        <entry key="..\:/Ambitious/My Android Work2020/NewWork/Projects/FGHDoctor/app/src/main/res/layout/activity_labs_profile.xml" value="0.25416666666666665" />
+        <entry key="..\:/Ambitious/My Android Work2020/NewWork/Projects/FGHDoctor/app/src/main/res/layout/activity_medical_shop.xml" value="0.1453804347826087" />
+        <entry key="..\:/Ambitious/My Android Work2020/NewWork/Projects/FGHDoctor/app/src/main/res/layout/activity_medical_shop_profile.xml" value="0.1453804347826087" />
+        <entry key="..\:/Ambitious/My Android Work2020/NewWork/Projects/FGHDoctor/app/src/main/res/layout/activity_my_wallet.xml" value="0.3436185133239832" />
+        <entry key="..\:/Ambitious/My Android Work2020/NewWork/Projects/FGHDoctor/app/src/main/res/layout/activity_refer.xml" value="0.1453804347826087" />
+        <entry key="..\:/Ambitious/My Android Work2020/NewWork/Projects/FGHDoctor/app/src/main/res/layout/activity_vehicle_profile.xml" value="0.25416666666666665" />
+        <entry key="..\:/Ambitious/My Android Work2020/NewWork/Projects/FGHDoctor/app/src/main/res/layout/activity_withdrawal.xml" value="0.4" />
+        <entry key="..\:/Ambitious/My Android Work2020/NewWork/Projects/FGHDoctor/app/src/main/res/layout/nav_header.xml" value="0.1453804347826087" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/drawable/bg_box.xml" value="0.1425" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/drawable/bg_box_base.xml" value="0.1425" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/drawable/bg_box_white.xml" value="0.1425" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/drawable/btn_white_round.xml" value="0.1425" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/drawable/ic_add_box.xml" value="0.143" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/drawable/ic_add_box_blue.xml" value="0.143" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/drawable/ic_baseline_arrow_drop_down_24.xml" value="0.1425" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/drawable/ic_file.xml" value="0.1425" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/drawable/rounded_corner_border.xml" value="0.1425" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_ambulance_home.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_ambulance_signup.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_appointment_category_list.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_appointment_detail.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_bank_details.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_blood_bank_home.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_blood_bank_profile.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_blood_bank_signup.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_blood_donor_home.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_blood_donor_profile.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_blood_list.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_doctor_profile.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_donor_signup.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_home.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_lab_list.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_lab_update.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_labs_home.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_labs_profile.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_labs_signup.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_login.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_market_price_home.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_market_prices.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_market_prices_login.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_market_prices_profile.xml" value="0.16145833333333334" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_market_prices_signup.xml" value="0.22" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_medical_home.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_medical_shop.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_medical_shop_login.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_medical_shop_profile.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_medical_shop_signup.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_my_wallet.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_notification_detail.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_paid_success.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_payment_history.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_qr_code.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_r_m_p_doctor_home.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_r_m_p_doctor_profile.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_r_m_p_home.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_r_m_p_signup.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_refer.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_report_list.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_reports.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_vaterinary_home.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_vaterinary_signup.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_vatinary_doctor_home.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_vehicle_home.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_vehicle_profile.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/activity_vehicle_signup.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/app_bar_main.xml" value="0.1" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/city_list.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/customview.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/frag_settings.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/fragment_home.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/fragment_payment_history.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/item_appointment.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/item_appointmentnum.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/item_blood.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/item_blood_grp.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/item_doctor.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/item_market_grp.xml" value="0.4223057644110276" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/item_market_prices.xml" value="0.22" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/item_medicalshop.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/item_payment_history.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/item_product.xml" value="0.17552083333333332" />
+        <entry key="..\:/Android projects/FGHDoctor/FGHDoctor/app/src/main/res/layout/nav_header.xml" value="0.17552083333333332" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

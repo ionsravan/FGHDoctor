@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.ambitious.fghdoctor">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission
+        android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
+    <uses-permission
+        android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+
+    <queries>
+        <package android:name="com.whatsapp" />
+        <package android:name="com.facebook.orca" />
+        <package android:name="com.facebook.katana" />
+        <package android:name="com.google.android.apps.nbu.paisa.user" />
+        <package android:name="com.phonepe.app" />
+
+        <intent>
+            <action android:name="android.intent.action.SEND" />
+        </intent>
+    </queries>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/launcher"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@drawable/launcher"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:targetApi="n">
+        <activity
+            android:name=".Activities.QrCodeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.PaidSuccessActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.PaymentHistoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.MarketPriceHomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.BankDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.MarketPricesProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.MarketPricesSignupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.MarketPricesLoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.MarketPricesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DeliveryBoyHomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DeliveryBoySignupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DeliveryBoyProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DeloveryBoyLoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DeliveryBoyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.VehicleSignupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.VehicleHomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.VehicleLoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.VehicleProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.VehiclesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.FoodBankSignupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.FoodBankHomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.FoodBankLoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.FoodBankProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.FoodBankActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.SanitizationProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.SanitizationHomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.SanitizationSignupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.SanitizationLoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.SanitizationServiceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.HelpingSoldierSignupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.HelpingSoldierHomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.HelpingSoldierLoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.HelpingSoldierProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.HelpingSoldierActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.OxygenBankSignupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.OxygenBankHomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.OxygenBankLoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.OxygenBankProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.OxygenBankListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.VideoViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.CovidWinnersActivity"
+            android:exported="true">
+            <intent-filter
+                android:autoVerify="true"
+                android:label="@string/app_name">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- https://fghdoctors.com/fitnessvideo/ -->
+                <data
+                    android:host="fghdoctors.com"
+                    android:pathPrefix="/fitnessvideo"
+                    android:scheme="https" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activities.CovidServicesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.AddNotificationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.NotificationDetailActivity"
+            android:exported="true">
+            <intent-filter
+                android:autoVerify="true"
+                android:label="@string/app_name">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- http://fghdoctors.com/liveupdates/ -->
+                <data
+                    android:host="fghdoctors.com"
+                    android:pathPrefix="/liveupdates"
+                    android:scheme="https" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activities.NotificationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.WithdrawalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.MyWalletActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ReferActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.NewAppointmentCategoryListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ViewReviewsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.AppointmentDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.WebviewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ReportListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ReportsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.LabUpdateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.LabsProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.LabsSignupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.LabsHomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.LabLoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.LabListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.RepresentativeBookingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.VatinaryDoctorHomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.RMPDoctorHomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.VaterinaryUpdateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.VaterinarySignupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.VaterinaryLoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.VaterinaryDoctorProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.VaterinaryDoctorListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.RMPDoctorProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.RMPUpateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.RMPSignupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.RMPLoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.RMPDoctorListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.PatientDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.AddPatientActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.PatientListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.MedicalHomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.BloodBankHomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.BloodDonorHomeActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".Activities.AmbulanceHomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.UserProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.MedicalShopSignupActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".Activities.MedicalShopLoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.BloodBankSignupActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".Activities.DonorSignupActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".Activities.BloodBankLoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DonorLoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.AmbulanceSignupActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".Activities.AmbulanceLoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.DoctorProfileActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".Activities.DoctorListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.AppointmentCategoryListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.MedicalShopProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.MedicalShopListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.BloodDonorProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.BloodBankProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.BloodListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.AmbulanceDriverProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.AmbulanceDriverListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.AmbulanceListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="portrait"
+            android:stateNotNeeded="true"
+            tools:replace="android:screenOrientation" />
+        <activity
+            android:name=".Activities.SignupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="com.razorpay.ApiKey"
+            android:value="rzp_live_RQHd0NAHrcy1R9" />
+
+        <service
+            android:name=".Services.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".Services.MyFirebaseInstanceIDService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+
+        <receiver
+            android:name=".Services.BroadcastNotiReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

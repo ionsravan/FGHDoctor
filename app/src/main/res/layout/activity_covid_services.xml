@@ -1,0 +1,698 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    tools:context=".Activities.CovidServicesActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:background="@color/colorBase">
+
+        <ImageView
+            android:id="@+id/iv_Bck"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:padding="@dimen/_5sdp"
+            android:src="@drawable/ic_key_bck" />
+
+        <TextView
+            android:id="@+id/tv_Head"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Covid Services"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/_15sdp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/ll_Login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_account" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/signuplogin"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_8sdp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/et_Search"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:background="@drawable/bg_box"
+        android:drawableRight="@drawable/ic_search"
+        android:drawablePadding="@dimen/_5sdp"
+        android:ellipsize="end"
+        android:hint="@string/searchhere"
+        android:maxLines="1"
+        android:paddingLeft="@dimen/_10sdp"
+        android:paddingRight="@dimen/_10sdp"
+        android:singleLine="true" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/rl_Covidwinners"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:background="@drawable/bg_btn"
+                android:backgroundTint="#5E77F7">
+
+                <ImageView
+                    android:id="@+id/iv_Catimg"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:src="@drawable/win"
+                    android:tint="@color/colorWhite"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/tv_Covidwinners"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_toRightOf="@+id/iv_Catimg"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="Covid Winners"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/_15sdp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/iv_Next"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/next" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_Oxygenbank"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/bg_btn"
+                android:backgroundTint="#5E77F7">
+
+                <ImageView
+                    android:id="@+id/iv_oxy"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:src="@drawable/oxygenbank"
+                    android:tint="@color/colorWhite"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/tv_Oxygenbank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_toRightOf="@id/iv_oxy"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="Oxygen Bank"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/_15sdp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/next" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_Helpinghand"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/bg_btn"
+                android:backgroundTint="#5E77F7">
+
+                <ImageView
+                    android:id="@+id/iv_help"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:src="@drawable/helpinghand"
+                    android:tint="@color/colorWhite"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/tv_Helpinghand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_toRightOf="@+id/iv_help"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="Helping Soldiers"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/_15sdp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/next" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_Sanitizationservice"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/bg_btn"
+                android:backgroundTint="#5E77F7">
+
+                <ImageView
+                    android:id="@+id/iv_Sanitizationservice"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:src="@drawable/sanatization"
+                    android:tint="@color/colorWhite"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/tv_Sanitizationservice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_toRightOf="@+id/iv_Sanitizationservice"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="Sanitization Service"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/_15sdp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/next" />
+
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rl_Foodbank"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/bg_btn"
+                android:backgroundTint="#5E77F7">
+
+                <ImageView
+                    android:id="@+id/iv_foodbank"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:src="@drawable/foodbank"
+                    android:tint="@color/colorWhite"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/tv_Foodbank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_toRightOf="@+id/iv_foodbank"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="Food Bank"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/_15sdp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/next" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_Vehicles"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/bg_btn"
+                android:backgroundTint="#5E77F7">
+
+                <ImageView
+                    android:id="@+id/iv_Vehicles"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:src="@drawable/car"
+                    android:tint="@color/colorWhite"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/tv_Vehicles"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_toRightOf="@+id/iv_Vehicles"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="Vehicles"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/_15sdp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/next" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_Deliveryboys"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/bg_btn"
+                android:backgroundTint="#5E77F7">
+
+                <ImageView
+                    android:id="@+id/iv_Delivery"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:src="@drawable/deliveryboy"
+                    android:tint="@color/colorWhite"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/tv_Deliveryboys"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_toRightOf="@+id/iv_Delivery"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="Delivery Boys"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/_15sdp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/next" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_Epass"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/bg_btn"
+                android:backgroundTint="#5E77F7">
+
+                <ImageView
+                    android:id="@+id/iv_Epass"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:src="@drawable/epass"
+                    android:tint="@color/colorWhite"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/tv_Epass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_toRightOf="@+id/iv_Epass"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="E-pass"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/_15sdp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/next" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_Vaccine"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/bg_btn"
+                android:backgroundTint="#5E77F7">
+
+                <ImageView
+                    android:id="@+id/iv_Vaccine"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:src="@drawable/injection"
+                    android:tint="@color/colorWhite"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/tv_Vaccine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_toRightOf="@+id/iv_Vaccine"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@string/vaccineregistration"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/_15sdp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/next" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_Telemedicine"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/bg_btn"
+                android:backgroundTint="#5E77F7">
+
+                <ImageView
+                    android:id="@+id/iv_telemedi"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:src="@drawable/telemedi"
+                    android:tint="@color/colorWhite"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/tv_Telemedicine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_toRightOf="@+id/iv_telemedi"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@string/telemedicine"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/_15sdp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/next" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_Isolationkit"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/bg_btn"
+                android:backgroundTint="#5E77F7">
+
+                <ImageView
+                    android:id="@+id/iv_isokit"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:src="@drawable/isokit"
+                    android:tint="@color/colorWhite"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/tv_Isolationkit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/iv_isokit"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="Government Isolation Kit"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/_15sdp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/next" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_Quarantinecenter"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/bg_btn"
+                android:backgroundTint="#5E77F7">
+
+                <ImageView
+                    android:id="@+id/iv_Quarantinecenter"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:src="@drawable/quarantinecenter"
+                    android:tint="@color/colorWhite"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/tv_Quarantinecenter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/iv_Quarantinecenter"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="Quarantine Centers"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/_15sdp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/next" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_Beds"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/bg_btn"
+                android:backgroundTint="#5E77F7">
+
+                <ImageView
+                    android:id="@+id/iv_Beds"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:src="@drawable/beds"
+                    android:tint="@color/colorWhite"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/tv_Beds"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/iv_Beds"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="Beds"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/_15sdp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/next" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_Vaccinetoken"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:background="@drawable/bg_btn"
+                android:backgroundTint="#5E77F7">
+
+                <ImageView
+                    android:id="@+id/iv_Vaccinetoken"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:src="@drawable/token"
+                    android:tint="@color/colorWhite"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/tv_Vaccinetoken"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/iv_Vaccinetoken"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="Vaccine Tokens"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/_15sdp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/next" />
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

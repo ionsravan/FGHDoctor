@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorBase"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/_25sdp"
+    android:paddingTop="@dimen/_10sdp"
+    android:paddingRight="@dimen/_25sdp"
+    android:paddingBottom="@dimen/_10sdp">
+
+    <com.ambitious.fghdoctor.Utils.CircleImageView
+        android:id="@+id/civ_User"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginLeft="@dimen/_30sdp"
+        android:layout_marginRight="@dimen/_30sdp"
+        android:src="@drawable/profileuser" />
+
+    <TextView
+        android:id="@+id/tv_Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_30sdp"
+        android:text="Cristiana Johnson"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/_14sdp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_City"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:text="NewYork,USA"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="bold"
+        android:paddingStart="15dp"
+        android:gravity="center"
+        tools:ignore="RtlSymmetry" />
+
+    <LinearLayout
+        android:id="@+id/ll_Add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:src="@drawable/ic_add_box"
+            android:tint="#87CAED" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:minWidth="@dimen/_150sdp"
+            android:paddingLeft="@dimen/_15sdp"
+            android:text="Create Post"
+            android:textColor="#87CAED"
+            android:textSize="@dimen/_16sdp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</LinearLayout>

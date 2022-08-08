@@ -1,0 +1,2 @@
+rootProject.name='FGHDoctor'
+include ':app'

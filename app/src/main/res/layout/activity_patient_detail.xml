@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    tools:context=".Activities.AddPatientActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@color/colorBase">
+
+            <ImageView
+                android:id="@+id/iv_Bck"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:padding="@dimen/_5sdp"
+                android:src="@drawable/ic_key_bck" />
+
+            <TextView
+                android:id="@+id/tv_Head"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Patient Name"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_15sdp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/bg_box_base"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="Patient Name"
+                    android:textColor="@color/colorBase" />
+
+                <TextView
+                    android:id="@+id/et_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/et_bg"
+                    android:gravity="center_vertical"
+                    android:hint="@string/entrptname"
+                    android:inputType="textCapSentences"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:textSize="@dimen/_12sdp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="Mobile Number"
+                    android:textColor="@color/colorBase" />
+
+                <TextView
+                    android:id="@+id/et_Mobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_toLeftOf="@+id/v1"
+                    android:background="@drawable/et_bg"
+                    android:gravity="center_vertical"
+                    android:hint="@string/mobile"
+                    android:inputType="number"
+                    android:maxLength="13"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:paddingRight="@dimen/_5sdp"
+                    android:text="9874563210"
+                    android:textSize="@dimen/_12sdp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="Purpose of visit"
+                    android:textColor="@color/colorBase" />
+
+                <TextView
+                    android:id="@+id/et_Purposevisit"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_80sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/et_bg"
+                    android:gravity="top"
+                    android:hint="Purpose of visit"
+                    android:inputType="textCapSentences"
+                    android:padding="@dimen/_5sdp"
+                    android:text="Due to Genral body checkup."
+                    android:textSize="@dimen/_12sdp"
+                    android:visibility="visible" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginRight="@dimen/_2sdp"
+                        android:layout_toLeftOf="@+id/v2"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Fees"
+                            android:textColor="@color/colorBase" />
+
+                        <TextView
+                            android:id="@+id/et_Fees"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_35sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:background="@drawable/et_bg"
+                            android:gravity="center_vertical"
+                            android:hint="@string/fees"
+                            android:inputType="number"
+                            android:maxLength="3"
+                            android:paddingLeft="@dimen/_5sdp"
+                            android:paddingRight="@dimen/_5sdp"
+                            android:text="100"
+                            android:textSize="@dimen/_12sdp" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/v2"
+                        android:layout_width="@dimen/_5sdp"
+                        android:layout_height="5dp"
+                        android:layout_centerInParent="true" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginRight="@dimen/_2sdp"
+                        android:layout_toRightOf="@+id/v2"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/arialsafees"
+                            android:textColor="@color/colorBase" />
+
+                        <TextView
+                            android:id="@+id/et_Arialfees"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_35sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:background="@drawable/et_bg"
+                            android:gravity="center_vertical"
+                            android:hint="@string/arialsafees"
+                            android:inputType="number"
+                            android:maxLength="3"
+                            android:paddingLeft="@dimen/_5sdp"
+                            android:paddingRight="@dimen/_5sdp"
+                            android:text="0"
+                            android:textSize="@dimen/_12sdp" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <Button
+                    android:id="@+id/btn_Add"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:background="@drawable/bg_btn"
+                    android:text="@string/add"
+                    android:textColor="@color/colorWhite"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</RelativeLayout>

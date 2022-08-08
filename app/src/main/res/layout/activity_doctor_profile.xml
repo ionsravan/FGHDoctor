@@ -1,0 +1,1123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    tools:context=".Activities.DoctorProfileActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@color/colorBase">
+
+            <ImageView
+                android:id="@+id/iv_Bck"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:padding="@dimen/_5sdp"
+                android:src="@drawable/ic_key_bck" />
+
+            <TextView
+                android:id="@+id/tv_Head"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Doctor's Profile"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_15sdp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@color/colorWhite"
+            android:elevation="@dimen/_5sdp"
+            app:cardCornerRadius="@dimen/_5sdp">
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+
+                    <RelativeLayout
+                        android:id="@+id/rl_Top"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_160sdp"
+                        android:background="@drawable/box">
+
+                        <ImageView
+                            android:id="@+id/iv_Doctor"
+                            android:layout_width="@dimen/_60sdp"
+                            android:layout_height="@dimen/_60sdp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_margin="@dimen/_5sdp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/profile_new" />
+
+                        <TextView
+                            android:id="@+id/tv_Name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_Doctor"
+                            android:layout_centerHorizontal="true"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:maxLines="2"
+                            android:text="Rakesh Pande"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/_14sdp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_Clinicname"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_Name"
+                            android:layout_centerHorizontal="true"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:maxLines="2"
+                            android:text="FGH Hospitals"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/_12sdp" />
+
+                        <TextView
+                            android:id="@+id/tv_Education"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_Clinicname"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:ellipsize="end"
+                            android:maxLength="25"
+                            android:maxLines="1"
+                            android:text="BDS,MDS - Oral &amp; Sugery"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/_12sdp" />
+
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/iv_Cat"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/dentist" />
+
+
+                        <TextView
+                            android:id="@+id/tv_Category"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:drawableTint="@color/colorBase"
+                            android:gravity="center_vertical"
+                            android:text="Dentist"
+                            android:textColor="#5E77F7"
+                            android:textSize="@dimen/_18sdp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/ll_Rate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rl_Top"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:orientation="horizontal">
+
+                        <RatingBar
+                            android:id="@+id/bar_Rating"
+                            style="@style/Widget.AppCompat.RatingBar.Indicator"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:numStars="5"
+                            android:rating="4"
+                            android:stepSize="0.5"
+                            android:theme="@style/RatingBar" />
+
+                        <TextView
+                            android:id="@+id/tv_Rating"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="(17)"
+                            android:textColor="@color/colorGrayDark"
+                            android:textSize="@dimen/_14sdp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_Viewreviews"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:text="@string/view"
+                        android:textColor="@color/colorBase"
+                        android:textSize="@dimen/_10sdp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_Address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ll_Rate"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:drawableLeft="@drawable/ic_location"
+                        android:drawablePadding="@dimen/_15sdp"
+                        android:drawableTint="@color/colorGrayDark"
+                        android:gravity="center"
+                        android:text="56/4 Vijay Nager,Indore India"
+                        android:textColor="@color/colorGrayDark"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_Directions"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_30sdp"
+                            android:background="@drawable/bg_box_base"
+                            android:backgroundTint="@color/colorBase"
+                            android:drawableLeft="@drawable/ic_direction"
+                            android:drawablePadding="@dimen/_10sdp"
+                            android:drawableTint="@color/colorWhite"
+                            android:gravity="center"
+                            android:minWidth="@dimen/_100sdp"
+                            android:paddingLeft="@dimen/_5sdp"
+                            android:paddingRight="@dimen/_5sdp"
+                            android:scrollbarSize="@dimen/_14sdp"
+                            android:text="@string/getdirection"
+                            android:textColor="@color/colorWhite" />
+
+                        <TextView
+                            android:id="@+id/tv_Call"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:background="@drawable/bg_box_base"
+                            android:backgroundTint="@color/colorBase"
+                            android:drawableLeft="@drawable/ic_call"
+                            android:drawableTint="@color/colorWhite"
+                            android:gravity="center"
+                            android:minWidth="@dimen/_110sdp"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:paddingRight="@dimen/_5sdp"
+                            android:scrollbarSize="@dimen/_14sdp"
+                            android:text="Call   "
+                            android:textColor="@color/colorWhite" />
+
+                    </LinearLayout>
+
+                    <HorizontalScrollView
+                        android:id="@+id/hsv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:scrollbars="none"
+                        android:visibility="visible">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/iv_One"
+                                android:layout_width="@dimen/_80sdp"
+                                android:layout_height="@dimen/_80sdp"
+                                android:layout_margin="@dimen/_5sdp"
+                                android:adjustViewBounds="true"
+                                android:background="@drawable/bg_box_base"
+                                android:padding="@dimen/_10sdp"
+                                android:scaleType="centerCrop"
+                                android:visibility="visible" />
+
+
+                            <ImageView
+                                android:id="@+id/iv_Two"
+                                android:layout_width="@dimen/_80sdp"
+                                android:layout_height="@dimen/_80sdp"
+                                android:layout_margin="@dimen/_5sdp"
+                                android:adjustViewBounds="true"
+                                android:background="@drawable/bg_box_base"
+                                android:padding="@dimen/_10sdp"
+                                android:scaleType="centerCrop"
+                                android:visibility="visible" />
+
+                            <ImageView
+                                android:id="@+id/iv_Three"
+                                android:layout_width="@dimen/_80sdp"
+                                android:layout_height="@dimen/_80sdp"
+                                android:layout_margin="@dimen/_5sdp"
+                                android:adjustViewBounds="true"
+                                android:background="@drawable/bg_box_base"
+                                android:padding="@dimen/_10sdp"
+                                android:scaleType="centerCrop"
+                                android:visibility="visible" />
+
+                            <ImageView
+                                android:id="@+id/iv_Four"
+                                android:layout_width="@dimen/_80sdp"
+                                android:layout_height="@dimen/_80sdp"
+                                android:layout_margin="@dimen/_5sdp"
+                                android:adjustViewBounds="true"
+                                android:background="@drawable/bg_box_base"
+                                android:padding="@dimen/_10sdp"
+                                android:scaleType="centerCrop"
+                                android:visibility="visible" />
+
+                            <ImageView
+                                android:id="@+id/iv_Five"
+                                android:layout_width="@dimen/_80sdp"
+                                android:layout_height="@dimen/_80sdp"
+                                android:layout_margin="@dimen/_5sdp"
+                                android:adjustViewBounds="true"
+                                android:background="@drawable/bg_box_base"
+                                android:padding="@dimen/_10sdp"
+                                android:scaleType="centerCrop"
+                                android:visibility="visible" />
+
+                        </LinearLayout>
+
+                    </HorizontalScrollView>
+
+                    <TextView
+                        android:id="@+id/tv_Discriptionhead"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:gravity="center"
+                        android:text="@string/desc"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/_16sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_Desc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:background="@drawable/bg_box_base"
+                        android:backgroundTint="@color/colorBase"
+                        android:gravity="center"
+                        android:padding="@dimen/_5sdp"
+                        android:text="New user - flat20 % off on Geniune Medicines."
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/_5sdp"
+                        android:visibility="gone"
+                        android:weightSum="2">
+
+                        <ImageView
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/ic_access_time"
+                            android:tint="@color/colorBase"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/tv_Morning"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginRight="@dimen/_5sdp"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_box_base"
+                            android:drawableTop="@drawable/ic_access_time"
+                            android:drawableTint="@color/colorBase"
+                            android:gravity="center"
+                            android:padding="@dimen/_5sdp"
+                            android:text="Morning"
+                            android:textColor="@color/colorBlack" />
+
+                        <TextView
+                            android:id="@+id/tv_Evening"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_box_base"
+                            android:drawableTop="@drawable/ic_access_time"
+                            android:drawableTint="@color/colorBase"
+                            android:gravity="center"
+                            android:padding="@dimen/_5sdp"
+                            android:text="Evening"
+                            android:textColor="@color/colorBlack" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_Working"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/bg_box_base"
+                        android:drawableTop="@drawable/ic_day"
+                        android:drawableTint="@color/colorBase"
+                        android:gravity="center"
+                        android:padding="@dimen/_5sdp"
+                        android:text="Working"
+                        android:textColor="@color/colorBlack"
+                        android:visibility="gone" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_marginLeft="@dimen/_25sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_marginRight="@dimen/_25sdp"
+                        android:layout_marginBottom="@dimen/_15sdp"
+                        android:alpha="0.5"
+                        android:background="@color/colorGray" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginRight="@dimen/_5sdp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:text="@string/seldate"
+                                android:textColor="@color/colorGrayDark"
+                                android:textSize="@dimen/_12sdp" />
+
+                            <TextView
+                                android:id="@+id/tv_Date"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:background="@drawable/bg_box"
+                                android:drawableLeft="@drawable/ic_date"
+                                android:drawablePadding="@dimen/_10sdp"
+                                android:drawableTint="@color/colorBase"
+                                android:gravity="center"
+                                android:padding="@dimen/_10sdp"
+                                android:text="27-05-2020"
+                                android:textColor="@color/colorBase"
+                                android:textSize="@dimen/_13sdp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <!--<View
+                            android:id="@+id/lv"
+                            android:layout_width="@dimen/_10sdp"
+                            android:layout_height="@dimen/_10sdp"
+                            android:layout_centerInParent="true" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/lv"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:text="Select Shift"
+                                android:textColor="@color/colorGrayDark"
+                                android:textSize="@dimen/_12sdp" />
+
+                            <TextView
+                                android:id="@+id/tv_Shift"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:background="@drawable/bg_box"
+                                android:drawableLeft="@drawable/ic_shift"
+                                android:drawablePadding="@dimen/_10sdp"
+                                android:drawableTint="@color/colorBase"
+                                android:gravity="center"
+                                android:hint="Select Shift"
+                                android:padding="@dimen/_10sdp"
+                                android:textColor="@color/colorBase"
+                                android:textSize="@dimen/_13sdp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>-->
+
+                        <Spinner
+                            android:id="@+id/sp_Shift"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:spinnerMode="dialog" />
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:background="@drawable/bg_box"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/_5sdp">
+
+                        <ImageView
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/ic_access_time"
+                            android:tint="@color/colorBase" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.5"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Morning Timing"
+                                    android:textColor="@color/colorBase" />
+
+                                <TextView
+                                    android:id="@+id/tv_Morningtime"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_2sdp"
+                                    android:gravity="center"
+                                    android:text="08:00 AM\n11:00 AM"
+                                    android:textSize="@dimen/_13sdp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.5"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Evening Timing"
+                                    android:textColor="@color/colorBase" />
+
+                                <TextView
+                                    android:id="@+id/tv_Eveningtime"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_2sdp"
+                                    android:gravity="center"
+                                    android:text="07:00 PM\n10:00 PM"
+                                    android:textSize="@dimen/_13sdp" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:text="Working Days"
+                        android:textColor="@color/colorBase"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_Workdays"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:background="@drawable/bg_box"
+                        android:gravity="center_vertical"
+                        android:minHeight="@dimen/_30sdp"
+                        android:padding="@dimen/_5sdp"
+                        android:text="Monday,Tuesday,Friday"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_Time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:background="@drawable/bg_box"
+                        android:drawableLeft="@drawable/ic_access_time"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:drawableTint="@color/colorBase"
+                        android:gravity="center"
+                        android:padding="@dimen/_10sdp"
+                        android:text="Timings - "
+                        android:textColor="@color/colorBase"
+                        android:textSize="@dimen/_13sdp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/tv_Workingdays"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:background="@drawable/bg_box"
+                        android:drawableLeft="@drawable/ic_day"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:drawableTint="@color/colorBase"
+                        android:gravity="center"
+                        android:padding="@dimen/_10sdp"
+                        android:text="Working days - "
+                        android:textColor="@color/colorBase"
+                        android:textSize="@dimen/_13sdp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="@string/availableapp"
+                        android:textColor="@color/colorGrayDark"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <RelativeLayout
+                        android:id="@+id/rl_Appoitment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/_10sdp">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_Appointments"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:nestedScrollingEnabled="true"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/tv_Notavailable"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:drawableLeft="@drawable/ic_error"
+                            android:drawablePadding="@dimen/_10sdp"
+                            android:gravity="center_vertical"
+                            android:text="No Appointment Available"
+                            android:visibility="visible" />
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_marginLeft="@dimen/_25sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_marginRight="@dimen/_25sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:alpha="0.5"
+                        android:background="@color/colorGray" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:text="Live OP"
+                            android:textColor="@color/colorBlack"
+                            android:textStyle="bold" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginRight="@dimen/_5sdp">
+
+                            <TextView
+                                android:id="@+id/tv_Liveop"
+                                android:layout_width="@dimen/_100sdp"
+                                android:layout_height="@dimen/_50sdp"
+                                android:background="@drawable/bg_box_base"
+                                android:backgroundTint="@color/colorBase"
+                                android:gravity="center"
+                                android:text="05"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="@dimen/_30sdp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tv_Bookaprepresent"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_50sdp"
+                                android:layout_marginLeft="@dimen/_10sdp"
+                                android:layout_toRightOf="@+id/tv_Liveop"
+                                android:background="@drawable/bg_box_base"
+                                android:backgroundTint="@color/colorBase"
+                                android:gravity="center"
+                                android:text="Medical Rip\nBook Appointment"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="@dimen/_15sdp"
+                                android:textStyle="bold" />
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="@string/personaldetail"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="@string/patient"
+                        android:textColor="#4CAF50"
+                        android:textSize="@dimen/_10sdp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/et_Pname"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_30sdp"
+                            android:background="@drawable/et_bg"
+                            android:hint="@string/entrptname"
+                            android:inputType="textCapSentences"
+                            android:paddingLeft="@dimen/_5sdp" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp">
+
+                            <EditText
+                                android:id="@+id/et_Age"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_marginRight="@dimen/_2sdp"
+                                android:layout_toLeftOf="@+id/v"
+                                android:background="@drawable/et_bg"
+                                android:hint="@string/age"
+                                android:inputType="number"
+                                android:maxLength="3"
+                                android:paddingLeft="@dimen/_5sdp" />
+
+                            <View
+                                android:id="@+id/v"
+                                android:layout_width="@dimen/_5sdp"
+                                android:layout_height="@dimen/_5sdp"
+                                android:layout_centerInParent="true" />
+
+                            <TextView
+                                android:id="@+id/tv_Gender"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_marginLeft="@dimen/_2sdp"
+                                android:layout_toRightOf="@+id/v"
+                                android:background="@drawable/et_bg"
+                                android:drawableRight="@drawable/ic_drop"
+                                android:drawablePadding="@dimen/_2sdp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="@dimen/_5sdp"
+                                android:text="@string/selgender"
+                                android:textColor="@color/colorBlack"
+                                android:textSize="@dimen/_12sdp" />
+
+                            <Spinner
+                                android:id="@+id/sp_Gender"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:spinnerMode="dialog" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp">
+
+                            <TextView
+                                android:id="@+id/tv_Apdate"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_toLeftOf="@+id/v5"
+                                android:background="@drawable/et_bg"
+                                android:gravity="center_vertical"
+                                android:hint="@string/selapdate"
+                                android:paddingLeft="@dimen/_5sdp"
+                                android:textColor="@color/colorBlack"
+                                android:textSize="@dimen/_13sdp" />
+
+                            <View
+                                android:id="@+id/v5"
+                                android:layout_width="@dimen/_10sdp"
+                                android:layout_height="@dimen/_10sdp"
+                                android:layout_centerInParent="true" />
+
+                            <TextView
+                                android:id="@+id/tv_Aptime"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_toRightOf="@+id/v5"
+                                android:background="@drawable/et_bg"
+                                android:ellipsize="end"
+                                android:gravity="center_vertical"
+                                android:hint="@string/selaptime"
+                                android:maxLines="1"
+                                android:paddingLeft="@dimen/_5sdp"
+                                android:textColor="@color/colorBlack"
+                                android:textSize="@dimen/_13sdp" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_marginTop="@dimen/_5sdp">
+
+                            <EditText
+                                android:id="@+id/et_Email"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_marginRight="2dp"
+                                android:layout_toLeftOf="@+id/v1"
+                                android:background="@drawable/et_bg"
+                                android:hint="Email"
+                                android:inputType="textEmailAddress"
+                                android:paddingLeft="@dimen/_5sdp"
+                                android:paddingRight="@dimen/_5sdp" />
+
+                            <View
+                                android:id="@+id/v1"
+                                android:layout_width="@dimen/_5sdp"
+                                android:layout_height="5dp"
+                                android:layout_centerInParent="true" />
+
+                            <EditText
+                                android:id="@+id/et_Aadhar"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_marginLeft="@dimen/_2sdp"
+                                android:layout_toRightOf="@id/v1"
+                                android:background="@drawable/et_bg"
+                                android:hint="Adhar num."
+                                android:inputType="number"
+                                android:maxLength="14"
+                                android:paddingLeft="@dimen/_5sdp"
+                                android:paddingRight="@dimen/_5sdp" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_marginTop="@dimen/_5sdp">
+
+                            <EditText
+                                android:id="@+id/et_Pnum"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_toLeftOf="@+id/v4"
+                                android:background="@drawable/et_bg"
+                                android:hint="@string/entrptnum"
+                                android:inputType="number"
+                                android:maxLength="13"
+                                android:paddingLeft="@dimen/_5sdp"
+                                android:textSize="@dimen/_12sdp" />
+
+                            <View
+                                android:id="@+id/v4"
+                                android:layout_width="@dimen/_5sdp"
+                                android:layout_height="@dimen/_5sdp"
+                                android:layout_centerInParent="true" />
+
+                            <TextView
+                                android:id="@+id/tv_Covidsym"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_marginLeft="@dimen/_2sdp"
+                                android:layout_toRightOf="@id/v4"
+                                android:background="@drawable/et_bg"
+                                android:drawableRight="@drawable/ic_drop"
+                                android:drawablePadding="@dimen/_2sdp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="@dimen/_5sdp"
+                                android:text="@string/covidsym"
+                                android:textColor="@color/colorBlack"
+                                android:textSize="@dimen/_12sdp" />
+
+                            <Spinner
+                                android:id="@+id/sp_Covid"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:spinnerMode="dialog" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:text="@string/referby"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/_12sdp"
+                            android:textStyle="bold" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_marginTop="@dimen/_5sdp">
+
+                            <TextView
+                                android:id="@+id/tv_Refer"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_marginRight="@dimen/_2sdp"
+                                android:background="@drawable/et_bg"
+                                android:drawableRight="@drawable/ic_drop"
+                                android:drawablePadding="@dimen/_5sdp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="@dimen/_5sdp"
+                                android:text="@string/sel"
+                                android:textColor="@color/colorBlack"
+                                android:textSize="@dimen/_13sdp" />
+
+
+                            <Spinner
+                                android:id="@+id/sp_Refer"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:spinnerMode="dialog" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/rl_Refralopt"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_marginTop="@dimen/_5sdp">
+
+                            <EditText
+                                android:id="@+id/et_Refralname"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_toLeftOf="@+id/v7"
+                                android:background="@drawable/et_bg"
+                                android:hint="Enter Referrer Name*"
+                                android:inputType="textCapSentences"
+                                android:paddingLeft="@dimen/_5sdp"
+                                android:textSize="@dimen/_12sdp"
+                                android:visibility="visible" />
+
+                            <View
+                                android:id="@+id/v7"
+                                android:layout_width="@dimen/_5sdp"
+                                android:layout_height="@dimen/_5sdp"
+                                android:layout_centerInParent="true" />
+
+
+                            <EditText
+                                android:id="@+id/et_Refralnum"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_toRightOf="@+id/v7"
+                                android:background="@drawable/et_bg"
+                                android:hint="Enter Referrer Number*"
+                                android:inputType="number"
+                                android:maxLength="13"
+                                android:paddingLeft="@dimen/_5sdp"
+                                android:textSize="@dimen/_12sdp" />
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:text="@string/opamount"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/_12sdp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_Amount"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:background="@drawable/et_bg"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="@dimen/_5sdp"
+                            android:text="25"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/_13sdp" />
+
+                        <EditText
+                            android:id="@+id/et_Msg"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_80sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:background="@drawable/et_bg"
+                            android:gravity="top"
+                            android:hint="Enter Address"
+                            android:inputType="textCapSentences"
+                            android:paddingLeft="@dimen/_5sdp"
+                            android:paddingTop="@dimen/_5sdp" />
+
+                        <CheckBox
+                            android:id="@+id/chk_WalletAmount"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:buttonTint="@color/colorBase"
+                            android:text="Use Wallet Amount"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/tv_Book"
+                            android:layout_width="@dimen/_150sdp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginBottom="@dimen/_10sdp"
+                            android:background="@drawable/bg_btn"
+                            android:gravity="center"
+                            android:text="@string/bookappointment"
+                            android:textColor="@color/colorWhite" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_margin="@dimen/_10sdp"
+                            android:text="OR"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/_12sdp"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginBottom="@dimen/_10sdp"
+                            android:text="Book Appointment as Representative"
+                            android:textColor="@color/colorBase"
+                            android:textSize="@dimen/_12sdp"
+                            android:visibility="gone" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_Loader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:clickable="true"
+        android:visibility="gone">
+
+        <com.github.ybq.android.spinkit.SpinKitView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/spin_kit"
+            style="@style/SpinKitView.Circle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:SpinKit_Color="@color/colorWhite" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

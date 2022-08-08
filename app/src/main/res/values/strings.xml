@@ -1,0 +1,126 @@
+<resources>
+    <string name="app_name">FGH</string>
+    <string name="username">Username*</string>
+    <string name="password">Password</string>
+    <string name="forgot">Forgot Password?</string>
+    <string name="login">Log In</string>
+    <string name="loginwith">Login with</string>
+    <string name="signup">Sign Up</string>
+    <string name="getstarted">Get Satrted</string>
+    <string name="fname">First  Name</string>
+    <string name="lname">Last Name</string>
+    <string name="enteremail">Email Address</string>
+    <string name="enterpass">Enter Password</string>
+    <string name="phonenum">Phone Number</string>
+    <string name="home">Home</string>
+
+    <array name="menuOptions">
+        <item>Home</item>
+        <item>Appointments</item>
+        <item>Payment History</item>
+        <item>Ambulance</item>
+        <item>Medical Shop</item>
+        <item>My Wallet</item>
+        <item>Settings</item>
+        <item>Health Id Card</item>
+        <item>Signup/Login</item>
+        <item>Logout</item>
+        <item>Call Support</item>
+        <!--        <item>My Doctor</item>-->
+        <!--        <item>Medical Records</item>-->
+        <!--        <item>Become a Provider</item>-->
+        <!--        <item>Settings</item>-->
+        <!--        <item>Rate Us</item>-->
+    </array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="bookappointment">Book Appointment</string>
+    <string name="ambulance">Ambulance</string>
+    <string name="blood">Blood</string>
+    <string name="medical">Medical Shop</string>
+    <string name="rmp">RMP</string>
+    <string name="veternary">Veterinary</string>
+    <string name="labs">Labs</string>
+    <string name="call">Call</string>
+    <string name="whatsapp">Whatsapp</string>
+    <string name="donor">DONOR</string>
+    <string name="banks">Banks</string>
+    <string name="available">Available</string>
+    <string name="notavailable">Not Available</string>
+    <string name="bloodgrp">Blood Group</string>
+    <string name="detail">Detail</string>
+    <string name="histry">History</string>
+    <string name="desc">Description</string>
+    <string name="searchhere">Search here...</string>
+    <string name="seldate">Select Date</string>
+    <string name="availableapp">Available Appointment</string>
+    <string name="personaldetail">Personal Details</string>
+    <string name="patient"><u>Patient Details for OP</u></string>
+    <string name="view"><u>View Reviews</u></string>
+    <string name="entrptname">Enter Patient Name*</string>
+    <string name="selgender">Select Gender</string>
+    <string name="age">Age</string>
+    <string name="selapdate">Appointment Date*</string>
+    <string name="email">Email*</string>
+    <string name="adharnum">Enter Adhar num.*</string>
+    <string name="referby">Referred By</string>
+    <string name="sel">Select</string>
+    <string name="covidsym">Covid19 Symptoms</string>
+    <string name="entrptnum">Enter Phone*</string>
+    <string name="opamount">OP Amount (along with Service Tax)</string>
+    <string name="entrmsg">Enter Message</string>
+    <string name="signuplogin">Signup/Login</string>
+    <string name="entrname">Enter Your Name*</string>
+    <string name="mobile">Mobile Number*</string>
+    <string name="vehicleimgs">Vehicle Images</string>
+    <string name="Vehiclenum">Enter Vehicle num.*</string>
+    <string name="villagename">Village name*</string>
+    <string name="cityname">Enter City Name*</string>
+    <string name="districtname">Enter District Name*</string>
+    <string name="repass">Re enter password*</string>
+    <string name="enpass">Enter password*</string>
+    <string name="registernow">Register Now</string>
+    <string name="seltype">Select Type*</string>
+    <string name="selbloodgrp">Select Blood Group</string>
+    <string name="histryimgs">Histry of Donation images.</string>
+    <string name="bankhistry">Bank Histry Images</string>
+    <string name="prcprml">price per 200 ml*</string>
+    <string name="bankpp">Bank Profile Image</string>
+    <string name="selavail">Select Available Blood with thier price per 200 ml*</string>
+    <string name="shopimgs">Shop Images</string>
+    <string name="logout">Logout</string>
+    <string name="logoutmsg">Are you sure you want to Logout?</string>
+    <string name="update">Update</string>
+    <string name="ambulancetyp">Ambulance Type*</string>
+    <string name="driverpp">Driver profile image</string>
+    <string name="cahngeimg">Change Image</string>
+    <string name="removeimg">Remove Image</string>
+    <string name="donorpp">Donor Profile Image*</string>
+    <string name="shoppp">Shop owner profile image*</string>
+    <string name="selaptime">Appointment Time*</string>
+    <string name="getdirection">Get Directions.</string>
+    <string name="fees">Fees</string>
+    <string name="arialsafees">Arial\'s fees</string>
+    <string name="add">Add</string>
+    <string name="reports">Reports</string>
+    <string name="hospital">Hospital Name*</string>
+    <string name="telemedicine">Telemedicine</string>
+    <string name="referern">Refer &amp; Earn</string>
+    <string name="withdraw">Withdraw</string>
+    <string name="referalcode">Refferal Code</string>
+    <string name="vaccineregistration">Vaccine Registration</string>
+    <string name="live">Live Updates</string>
+    <string name="share">Share</string>
+    <string name="notifications">Notifications</string>
+    <string name="covidservice">Covid/nServices</string>
+    <string name="prcprday">Price per day*</string>
+    <string name="fitness">Fitness</string>
+    <string name="vehicles">Vehicles</string>
+    <string name="profile_image">Profile Image</string>
+    <string name="new_user_registration">New User Registration</string>
+    <string name="done">Done</string>
+    <string name="enter_latitude">Enter Latitude</string>
+    <string name="enter_longitude">Enter Longitude</string>
+    <string name="my_qr_code">My QR Code</string>
+</resources>

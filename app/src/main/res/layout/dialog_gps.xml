@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/_10sdp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text="Enable GPS"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/_16sdp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text="GPS is not enabled,Please Enable it while using App."
+        android:textColor="@color/colorBlack" />
+
+    <TextView
+        android:id="@+id/tv_Settings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:gravity="end"
+        android:text="Settings"
+        android:textAllCaps="true"
+        android:textColor="@color/colorBase"
+        android:textSize="@dimen/_14sdp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_Cancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:gravity="end"
+        android:text="Cancel"
+        android:textAllCaps="true"
+        android:textColor="@color/colorBase"
+        android:textSize="@dimen/_14sdp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+</LinearLayout>

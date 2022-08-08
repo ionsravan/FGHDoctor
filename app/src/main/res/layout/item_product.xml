@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:id="@+id/checkbox"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:buttonTint="@color/colorBase"
+                android:textSize="@dimen/_14sdp" />
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_toEndOf="@+id/checkbox"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_add_box_blue" />
+
+
+            <EditText
+                android:id="@+id/etProduct"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_toEndOf="@+id/image"
+                android:layout_toStartOf="@+id/etProductPrice"
+                android:background="@drawable/et_bg"
+                android:hint="Product Name"
+                android:inputType="text"
+                android:paddingLeft="@dimen/_5sdp"
+                android:paddingRight="@dimen/_5sdp"
+                android:textSize="@dimen/_12sdp" />
+
+            <EditText
+                android:id="@+id/etProductPrice"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_toStartOf="@+id/etProductWeight"
+                android:background="@drawable/et_bg"
+                android:hint="Price"
+                android:inputType="numberDecimal"
+                android:paddingLeft="@dimen/_5sdp"
+                android:paddingRight="@dimen/_5sdp"
+                android:textSize="@dimen/_12sdp" />
+
+            <EditText
+                android:id="@+id/etProductWeight"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/et_bg"
+                android:hint="weight"
+                android:inputType="text"
+                android:paddingLeft="@dimen/_5sdp"
+                android:paddingRight="@dimen/_5sdp"
+                android:textSize="@dimen/_12sdp" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+</LinearLayout>

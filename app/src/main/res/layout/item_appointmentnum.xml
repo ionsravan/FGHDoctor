@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_Contain"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="@dimen/_5sdp">
+
+    <TextView
+        android:id="@+id/tv_Count"
+        android:layout_width="@dimen/_35sdp"
+        android:layout_height="@dimen/_35sdp"
+        android:background="@drawable/bg_circle"
+        android:gravity="center"
+        android:padding="@dimen/_5sdp"
+        android:text="01"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_Mytoken"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="Your Token"
+        android:textColor="@color/colorBase"
+        android:textSize="@dimen/_7sdp"
+        android:textStyle="bold" />
+</LinearLayout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/_10sdp"
+    android:layout_marginTop="@dimen/_10sdp"
+    android:layout_marginRight="@dimen/_10sdp"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:background="@drawable/bg_box">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtId"
+        android:textStyle="bold"
+        android:textColor="@color/colorBlack"
+        android:layout_toStartOf="@+id/txtPrice"
+        android:layout_marginEnd="10dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtRemark"
+        android:textColor="@color/colorBlack"
+        android:textSize="12sp"
+        android:layout_below="@+id/txtId"
+        android:layout_toStartOf="@+id/txtPrice"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="5dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtDate"
+        android:textSize="12sp"
+        android:layout_below="@+id/txtRemark"
+        android:layout_toStartOf="@+id/txtPrice"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="5dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtPrice"
+        android:text="120"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorBlack"
+        android:layout_centerInParent="true"
+        android:layout_alignParentEnd="true"/>
+
+</RelativeLayout>

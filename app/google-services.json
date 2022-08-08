@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "59063197948",
+    "firebase_url": "https://fgh-doctor.firebaseio.com",
+    "project_id": "fgh-doctor",
+    "storage_bucket": "fgh-doctor.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:59063197948:android:805d2686baaf5989df7779",
+        "android_client_info": {
+          "package_name": "com.ambitious.fghdoctor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "59063197948-plki49hcrmouoebl5fd01l9t0vr5716c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ambitious.fghdoctor",
+            "certificate_hash": "2197bd3557b360fac9e33b274268a0bba61bdba0"
+          }
+        },
+        {
+          "client_id": "59063197948-gm2ifj0j0bsri7e2ltfd4kagee0vh9dd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlBi2b9wiUQgOSSoDONhfUEMUdziBnwEo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "59063197948-gm2ifj0j0bsri7e2ltfd4kagee0vh9dd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
