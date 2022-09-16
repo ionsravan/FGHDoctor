@@ -1,5 +1,6 @@
 package com.ambitious.fghdoctor.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -50,6 +51,9 @@ import com.ambitious.fghdoctor.Utils.GPSTracker;
 import com.ambitious.fghdoctor.Utils.Utility;
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -100,8 +104,12 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
             cityListDilog();
         });*/
         getCurrentLocation();
+      //  fcmToken();
+
+        Log.d("TAG", "onCreate: "+Utility.getSharedPreferences(this,"regId"));
 
     }
+
 
 
     private void cityListDilog() {
@@ -643,9 +651,9 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
                                         Animatoo.animateCard(HomeActivity.this);
                                     }else if (user_type.equalsIgnoreCase("rmp")){
 
-                                        startActivity(new Intent(HomeActivity.this, RMPDoctorProfileActivity.class)
+                                        startActivity(new Intent(HomeActivity.this, MedicalShopProfileActivity.class)
                                                 .putExtra("wallet", wallet)
-                                                //.putExtra("donated", donated)
+                                                .putExtra("donated", donated)
                                                // .putExtra("head", name)
                                                 .putExtra("obj", "" +result)
                                         );
@@ -661,7 +669,7 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
                                         Animatoo.animateCard(HomeActivity.this);
                                     }else if (user_type.equalsIgnoreCase("vaterinary")){
 
-                                        startActivity(new Intent(HomeActivity.this, VaterinaryDoctorProfileActivity.class)
+                                        startActivity(new Intent(HomeActivity.this, MedicalShopProfileActivity.class)
                                                 .putExtra("wallet", wallet)
                                                 .putExtra("donated", donated)
                                                 // .putExtra("head", name)

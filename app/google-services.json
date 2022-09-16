@@ -42,6 +42,35 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:59063197948:android:fa186d41377ab0a1df7779",
+        "android_client_info": {
+          "package_name": "com.ambitious.fghvendor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "59063197948-gm2ifj0j0bsri7e2ltfd4kagee0vh9dd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlBi2b9wiUQgOSSoDONhfUEMUdziBnwEo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "59063197948-gm2ifj0j0bsri7e2ltfd4kagee0vh9dd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"

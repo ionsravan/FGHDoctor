@@ -98,7 +98,11 @@ public class VehicleProfileActivity extends AppCompatActivity implements View.On
 //                }
 //            }
 
-            if (donated.equalsIgnoreCase("0")) {
+            if (wallet.equalsIgnoreCase("0") || wallet.equalsIgnoreCase("")) {
+                wallet = "0";
+                // chk_Wallet.setVisibility(View.GONE);
+            }
+            else if (donated.equalsIgnoreCase("0")) {
 //                wallet = "0";
                 chk_Wallet.setVisibility(View.GONE);
             } else if (donated.equalsIgnoreCase("1") && wallet.equalsIgnoreCase("")) {

@@ -27,7 +27,6 @@ import com.ambitious.fghdoctor.Utils.CustomSnakbar;
 import com.ambitious.fghdoctor.Utils.Utility;
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.bumptech.glide.Glide;
-import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -237,7 +236,8 @@ public class VehicleSignupActivity extends AppCompatActivity implements View.OnC
         String repass = et_Repassword.getText().toString();
         String user_type = "Vehicle";
         boolean img_sel = false;
-        String register_id = FirebaseInstanceId.getInstance().getToken();
+        // String register_id = FirebaseInstanceId.getInstance().getToken();
+        String register_id = Utility.getSharedPreferences(getApplicationContext(),"regId");
 
         if (!path1.equalsIgnoreCase("")) {
             img_sel = true;

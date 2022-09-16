@@ -111,23 +111,34 @@ public class DoctorProfileActivity extends AppCompatActivity implements View.OnC
             donated = getIntent().getStringExtra("donated");
             wallet = getIntent().getStringExtra("wallet");
 
-            if (donated.equalsIgnoreCase("0")) {
+           /* donated = "1";
+            wallet = "50";*/
+
+            if (wallet.equalsIgnoreCase("0") || wallet.equalsIgnoreCase("")) {
                 wallet = "0";
+                // chk_Wallet.setVisibility(View.GONE);
+            }
+            else if (donated.equalsIgnoreCase("0")) {
+              //  wallet = "0";
+                chk_WalletAmount.setVisibility(View.GONE);
+            }else if (donated.equalsIgnoreCase("") && wallet.equalsIgnoreCase("")) {
+                //  wallet = "0";
                 chk_WalletAmount.setVisibility(View.GONE);
             } else if (donated.equalsIgnoreCase("1") && wallet.equalsIgnoreCase("")) {
-                wallet = "0";
+               // wallet = "0";
                 chk_WalletAmount.setVisibility(View.GONE);
             } else if (donated.equalsIgnoreCase("1") && wallet.equalsIgnoreCase("0")) {
-                wallet = "0";
+                //wallet = "0";
                 chk_WalletAmount.setVisibility(View.GONE);
             } else {
                 if (Utility.getSharedPreferencesBoolean(mContext, "islogin", false)) {
                     chk_WalletAmount.setVisibility(View.VISIBLE);
+                    chk_WalletAmount.setText("Use Wallet Amount(₹" + wallet + ")");
+
                 } else {
                     chk_WalletAmount.setVisibility(View.GONE);
                 }
 //                chk_WalletAmount.setVisibility(View.GONE);
-                chk_WalletAmount.setText("Use Wallet Amount(₹" + wallet + ")");
             }
 
             try {
@@ -1172,11 +1183,11 @@ public class DoctorProfileActivity extends AppCompatActivity implements View.OnC
             if (Integer.parseInt(fee) + Integer.parseInt(service_charge) <= Integer.parseInt(wallet)) {
                 int amt = Integer.parseInt(fee) + Integer.parseInt(service_charge);
                 int remaining = Integer.parseInt(wallet) - amt;
-                tv_Walletamount.setText("-₹" + amt + " (" + remaining + ")");
+                tv_Walletamount.setText("₹" + amt + " (" + remaining + ")");
                 tv_Totalamount.setText("₹" + (Integer.parseInt(fee) + Integer.parseInt(service_charge) - amt));
                 tv_Bookap.setText("Book");
             } else {
-                tv_Walletamount.setText("-₹" + wallet);
+                tv_Walletamount.setText("₹" + wallet);
                 tv_Totalamount.setText("₹" + (Integer.parseInt(fee) + Integer.parseInt(service_charge) - Integer.parseInt(wallet)));
                 tv_Bookap.setText("Pay & Book");
             }
@@ -1193,10 +1204,16 @@ public class DoctorProfileActivity extends AppCompatActivity implements View.OnC
                 cdialog = dialog;
                 String Amnt = "";
                 if (chk_WalletAmount.isChecked()) {
-                    Amnt = "" + (Integer.parseInt(fee) + Integer.parseInt(service_charge) - Integer.parseInt(wallet));
+                    Amnt = "" + (Integer.parseInt(fee) + Integer.parseInt(service_charge));
                     if (Integer.parseInt(fee) + Integer.parseInt(service_charge) <= Integer.parseInt(wallet)) {
                         is_paid = true;
-                        tv_Book.performClick();
+                     //   tv_Book.performClick();
+
+                        String refername = et_Refralname.getText().toString();
+                        String refernum = et_Refralnum.getText().toString();
+
+                        bookAppointment(uid, doc_id, doctor_shift_id, cat_id, apdate, token_no, name, number, email, gender, aptime, age, adharno, referby, refername, refernum, covid, Amnt, wallet, txn_id, service_charge, "Pending", msg, v);
+
                     } else {
                         getOrderId(v, name, Amnt, email, number);
 //                        startPayment("", name, Amnt, email, number);
@@ -1206,6 +1223,8 @@ public class DoctorProfileActivity extends AppCompatActivity implements View.OnC
                     getOrderId(v, name, Amnt, email, number);
 //                    startPayment("", name, Amnt, email, number);
                 }
+
+                dialog.dismiss();
 
                 Log.d(TAG, "onClick: "+Amnt);
 //                bookAppointment(uid, doc_id, doctor_shift_id, cat_id, apdate, token_no, name, number, email, gender, aptime, age, adharno, referby, covid, amount, stts, msg, v);
@@ -1265,7 +1284,8 @@ public class DoctorProfileActivity extends AppCompatActivity implements View.OnC
         }
 
         rl_Loader.setVisibility(View.VISIBLE);
-        Call<ResponseBody> call = AppConfig.loadInterface().book(uid, doc_id, doctor_shift_id, cat_id, apdate, token_no, number, name, email, gender, aptime, age, adharno, referby, refname, refnum, covid, amount, wallet_amnt, txn_id, service_charge, stts, msg);
+        Call<ResponseBody> call = AppConfig.loadInterface().book(uid, doc_id, doctor_shift_id, cat_id, apdate, token_no, number, name, email, gender, aptime, age, adharno, referby, refname, refnum,
+                covid, amount, amount, txn_id, service_charge, stts, msg);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {

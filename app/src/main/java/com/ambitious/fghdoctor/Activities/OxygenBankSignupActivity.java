@@ -31,7 +31,6 @@ import com.ambitious.fghdoctor.Utils.CustomSnakbar;
 import com.ambitious.fghdoctor.Utils.Utility;
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.bumptech.glide.Glide;
-import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -284,7 +283,8 @@ public class OxygenBankSignupActivity extends AppCompatActivity implements View.
         String repass = et_Repassword.getText().toString();
         String bgroup = "";
         String prc = "";
-        String register_id = FirebaseInstanceId.getInstance().getToken();
+        // String register_id = FirebaseInstanceId.getInstance().getToken();
+        String register_id = Utility.getSharedPreferences(getApplicationContext(),"regId");
 
         if (path.equalsIgnoreCase("")) {
             CustomSnakbar.showDarkSnakabar(mContext, v, "Please Select Bank Profile image.");

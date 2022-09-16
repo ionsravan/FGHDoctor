@@ -21,7 +21,6 @@ import com.ambitious.fghdoctor.Utils.AppConfig;
 import com.ambitious.fghdoctor.Utils.CustomSnakbar;
 import com.ambitious.fghdoctor.Utils.Utility;
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
-import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -94,7 +93,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String m_androidId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
         String email = et_Email.getText().toString();
         String pass = et_Password.getText().toString();
-        String register_id = FirebaseInstanceId.getInstance().getToken();
+        // String register_id = FirebaseInstanceId.getInstance().getToken();
+        String register_id = Utility.getSharedPreferences(getApplicationContext(),"regId");
 
         if (email.equalsIgnoreCase("")) {
             et_Email.setError("Can't be Empty");

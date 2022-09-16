@@ -9,10 +9,12 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.Toast;
 
 import com.ambitious.fghdoctor.R;
 import com.ambitious.fghdoctor.Utils.Utility;
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -28,7 +30,31 @@ public class SplashActivity extends AppCompatActivity {
 
         AccessPremissions();
 
+        fcmToken();
     }
+
+    private void fcmToken(){
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(task -> {
+                    if (!task.isSuccessful()) {
+                        System.out.println("Fetching FCM registration token failed");
+                        return;
+                    }
+
+                    // Get new FCM registration token
+                    String token = task.getResult();
+                    Utility.setSharedPreference(getApplicationContext(),"regId",token);
+
+                    // Log and toast
+                    System.out.println(token);
+                   /* Toast.makeText(SplashActivity.this, "Your device registration token is" + token
+                            , Toast.LENGTH_SHORT).show();
+*/
+
+                });
+
+    }
+
 
     private void AccessPremissions() {
 

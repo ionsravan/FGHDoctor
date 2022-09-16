@@ -12,7 +12,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ambitious.fghdoctor.Activities.LabListActivity;
+import com.ambitious.fghdoctor.Activities.MedicalShopProfileActivity;
 import com.ambitious.fghdoctor.Activities.RMPDoctorProfileActivity;
+import com.ambitious.fghdoctor.Activities.VaterinaryDoctorListActivity;
 import com.ambitious.fghdoctor.Activities.VaterinaryDoctorProfileActivity;
 import com.ambitious.fghdoctor.Model.RMP;
 import com.ambitious.fghdoctor.Model.Vaterinary;
@@ -96,7 +99,11 @@ public class VaterinaryDoctorsApdapter extends RecyclerView.Adapter<VaterinaryDo
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    context.startActivity(new Intent(context, VaterinaryDoctorProfileActivity.class)
+                  /*  context.startActivity(new Intent(context, VaterinaryDoctorProfileActivity.class)
+                            .putExtra("obj", "" + vaterinaryArrayList.get(getAdapterPosition()).getObj()));*/
+                    context.startActivity(new Intent(context, MedicalShopProfileActivity.class)
+                            .putExtra("wallet", ((VaterinaryDoctorListActivity) context).wallet)
+                            .putExtra("donated", ((VaterinaryDoctorListActivity) context).donated)
                             .putExtra("obj", "" + vaterinaryArrayList.get(getAdapterPosition()).getObj()));
                     Animatoo.animateCard(context);
                 }

@@ -9,6 +9,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
+
     <uses-permission
         android:name="android.permission.QUERY_ALL_PACKAGES"
         tools:ignore="QueryAllPackagesPermission" />
@@ -400,7 +402,7 @@
             android:name="com.razorpay.ApiKey"
             android:value="rzp_live_RQHd0NAHrcy1R9" />
 
-        <service
+       <!-- <service
             android:name=".Services.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
@@ -413,7 +415,15 @@
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
+        </service>-->
+
+        <service android:name=".Services.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
         </service>
+
 
         <receiver
             android:name=".Services.BroadcastNotiReceiver"

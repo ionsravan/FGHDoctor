@@ -93,7 +93,11 @@ public class BloodBankProfileActivity extends AppCompatActivity implements View.
             wallet = getIntent().getStringExtra("wallet");
             donated = getIntent().getStringExtra("donated");
 
-            if (donated.equalsIgnoreCase("0")) {
+            if (wallet.equalsIgnoreCase("0") || wallet.equalsIgnoreCase("")) {
+                wallet = "0";
+                // chk_Wallet.setVisibility(View.GONE);
+            }
+            else if (donated.equalsIgnoreCase("0")) {
 //                wallet = "0";
                 chk_Wallet.setVisibility(View.GONE);
             } else if (donated.equalsIgnoreCase("1") && wallet.equalsIgnoreCase("")) {

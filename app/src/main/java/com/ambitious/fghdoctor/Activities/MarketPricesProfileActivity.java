@@ -95,14 +95,18 @@ public class MarketPricesProfileActivity extends AppCompatActivity implements Vi
             donated = getIntent().getStringExtra("donated");
             Log.d("TAG", "wallet: "+wallet);
 
-            if (donated.equalsIgnoreCase("0")) {
-//                wallet = "0";
+            if (wallet.equalsIgnoreCase("0") || wallet.equalsIgnoreCase("")) {
+                wallet = "0";
+                // chk_Wallet.setVisibility(View.GONE);
+            }
+            else if (donated.equalsIgnoreCase("0")) {
+               wallet = "0";
                 chk_Wallet.setVisibility(View.GONE);
             } else if (donated.equalsIgnoreCase("1") && wallet.equalsIgnoreCase("")) {
-//                wallet = "0";
+               wallet = "0";
                 chk_Wallet.setVisibility(View.GONE);
             } else if (donated.equalsIgnoreCase("1") && wallet.equalsIgnoreCase("0")) {
-//                wallet = "0";
+                wallet = "0";
                 chk_Wallet.setVisibility(View.GONE);
             } else {
                 if (Utility.getSharedPreferencesBoolean(mContext, "islogin", false)) {

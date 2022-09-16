@@ -72,7 +72,7 @@ public class ReferActivity extends AppCompatActivity implements View.OnClickList
                 break;
 
             case R.id.iv_Fb:
-                String urlToShare = "Please Install FGH DOCTOR\nhttps://play.google.com/store/apps/details?id=com.ambitious.fghdoctor \n& Earn ₹100 Using this Referral Code - " + referel_code;
+                String urlToShare = "Please Install FGH Tech Solutions \nhttps://play.google.com/store/apps/details?id=com.ambitious.fghdoctor \n& Earn ₹100 Using this Referral Code - " + referel_code;
                 Intent fintent = new Intent(Intent.ACTION_SEND);
                 fintent.setType("text/plain");
                 fintent.putExtra(Intent.EXTRA_TEXT, urlToShare);

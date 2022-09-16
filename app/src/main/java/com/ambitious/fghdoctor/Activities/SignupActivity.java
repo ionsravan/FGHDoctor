@@ -30,7 +30,6 @@ import com.ambitious.fghdoctor.Utils.CustomSnakbar;
 import com.ambitious.fghdoctor.Utils.Utility;
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.bumptech.glide.Glide;
-import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -184,7 +183,8 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         String referby = et_Refferral.getText().toString();
         String fullname = fname + " " + lname;
         String type = "user";
-        String register_id = FirebaseInstanceId.getInstance().getToken();
+        // String register_id = FirebaseInstanceId.getInstance().getToken();
+        String register_id = Utility.getSharedPreferences(getApplicationContext(),"regId");
 
         if (path1.equalsIgnoreCase("")) {
             CustomSnakbar.showSnakabar(mContext, v, "Please Select Profile Image!");

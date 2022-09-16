@@ -35,7 +35,6 @@ import com.ambitious.fghdoctor.Utils.CustomSnakbar;
 import com.ambitious.fghdoctor.Utils.Utility;
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.bumptech.glide.Glide;
-import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -197,7 +196,8 @@ public class MarketPricesSignupActivity extends AppCompatActivity implements Vie
         String productPrice = "";
         String productName = "";
         String productWeight = "";
-        String register_id = FirebaseInstanceId.getInstance().getToken();
+        // String register_id = FirebaseInstanceId.getInstance().getToken();
+        String register_id = Utility.getSharedPreferences(getApplicationContext(),"regId");
 
         if (path.equalsIgnoreCase("")) {
             CustomSnakbar.showDarkSnakabar(mContext, v, "Please Select Profile image.");

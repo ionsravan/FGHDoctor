@@ -47,7 +47,7 @@ public class VaterinaryDoctorListActivity extends AppCompatActivity implements V
     private RecyclerView rv_Vaterinarydoctor;
     private LinearLayout ll_Login;
     private EditText et_Search;
-    private String type = "";
+    public String type = "",wallet ="" ,donated="";
     private RelativeLayout rl_Loader;
     private ArrayList<Vaterinary> vaterinaryArrayList;
     private VaterinaryDoctorsApdapter adapter;
@@ -60,6 +60,8 @@ public class VaterinaryDoctorListActivity extends AppCompatActivity implements V
         finds();
 
         tv_Head.setText(getIntent().getStringExtra("head"));
+        wallet = getIntent().getStringExtra("wallet");
+        donated = getIntent().getStringExtra("donated");
 
         type = "vaterinary";
 

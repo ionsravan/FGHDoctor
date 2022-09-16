@@ -45,7 +45,6 @@ import com.ambitious.fghdoctor.Utils.CustomSnakbar;
 import com.ambitious.fghdoctor.Utils.Utility;
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.bumptech.glide.Glide;
-import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -565,7 +564,8 @@ public class MarketPriceHomeActivity extends AppCompatActivity implements View.O
         String repass = et_Repassword.getText().toString();
         String latitude = etLatitude.getText().toString();
         String longitude = etLongitude.getText().toString();
-        String register_id = FirebaseInstanceId.getInstance().getToken();
+        // String register_id = FirebaseInstanceId.getInstance().getToken();
+        String register_id = Utility.getSharedPreferences(getApplicationContext(),"regId");
 
         /*if (path.equalsIgnoreCase("")) {
             CustomSnakbar.showDarkSnakabar(mContext, v, "Please Select Profile image.");

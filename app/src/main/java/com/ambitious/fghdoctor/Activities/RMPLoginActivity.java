@@ -21,7 +21,6 @@ import com.ambitious.fghdoctor.Utils.AppConfig;
 import com.ambitious.fghdoctor.Utils.CustomSnakbar;
 import com.ambitious.fghdoctor.Utils.Utility;
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
-import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -96,7 +95,8 @@ public class RMPLoginActivity extends AppCompatActivity implements View.OnClickL
         String email = et_Email.getText().toString();
         String pass = et_Pass.getText().toString();
         String user_type = "rmp";
-        String register_id = FirebaseInstanceId.getInstance().getToken();
+        // String register_id = FirebaseInstanceId.getInstance().getToken();
+        String register_id = Utility.getSharedPreferences(getApplicationContext(),"regId");
 
         if (email.equalsIgnoreCase("")) {
             et_Email.setError("Can't be Empty");

@@ -7,18 +7,19 @@ import android.util.Log;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.ambitious.fghdoctor.Utils.Utility;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.FirebaseInstanceIdService;
+
 
 
 /**
  * Created by ritesh on 22/9/17.
  */
 
-public class MyFirebaseInstanceIDService  extends FirebaseInstanceIdService {
+public class MyFirebaseInstanceIDService
+       // extends FirebaseInstanceIdService
+{
     private static final String TAG = MyFirebaseInstanceIDService.class.getSimpleName();
 
-    @Override
+  /*  @Override
     public void onTokenRefresh() {
         super.onTokenRefresh();
         System.out.println("-----------------MyFirebaseInstanceIDService-------------");
@@ -48,5 +49,5 @@ public class MyFirebaseInstanceIDService  extends FirebaseInstanceIdService {
 //        editor.commit();
         System.out.println("----------token---------- "+token);
         Utility.setSharedPreference(getApplicationContext(),"regId",token);
-    }
+    }*/
 }

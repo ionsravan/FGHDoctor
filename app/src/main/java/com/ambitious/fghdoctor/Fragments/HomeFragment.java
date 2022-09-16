@@ -39,7 +39,6 @@ import com.ambitious.fghdoctor.Utils.CustomSnakbar;
 import com.ambitious.fghdoctor.Utils.Utility;
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.bumptech.glide.Glide;
-import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -89,7 +88,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             Log.e("city", "" + city);
             Log.e("lat", "" + lat);
             Log.e("lon", "" + lon);
-            String register_id = FirebaseInstanceId.getInstance().getToken();
+            // String register_id = FirebaseInstanceId.getInstance().getToken();
+            String register_id = Utility.getSharedPreferences(requireContext(),"regId");
             updateRegisteId(m_androidId, register_id, city, lat, lon);
         } else {
             AlertConnection.showAlertDialog(getContext(), "No Internet Connection",
@@ -286,13 +286,16 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 startActivity(new Intent(getContext(), RMPDoctorListActivity.class)
                         .putExtra("head", "RMP Doctors")
                         .putExtra("wallet", "" + wallet)
+                        .putExtra("donated", "" + donated)
                 );
                 Animatoo.animateCard(getContext());
                 break;
 
             case R.id.rl_Veternary:
                 startActivity(new Intent(getContext(), VaterinaryDoctorListActivity.class)
-                        .putExtra("head", "Vaterinary Doctors"));
+                        .putExtra("head", "Vaterinary Doctors")
+                        .putExtra("wallet", "" + wallet)
+                        .putExtra("donated", "" + donated));
                 Animatoo.animateCard(getContext());
                 break;
 

@@ -47,7 +47,7 @@ public class RMPDoctorListActivity extends AppCompatActivity implements View.OnC
     private RecyclerView rv_Rmpdoctor;
     private LinearLayout ll_Login;
     private EditText et_Search;
-    public String type = "", wallet = "";
+    public String type = "", wallet = "", donated = "";
     private RelativeLayout rl_Loader;
     private ArrayList<RMP> rmpArrayList;
     private RMPDoctorsApdapter adapter;
@@ -59,6 +59,8 @@ public class RMPDoctorListActivity extends AppCompatActivity implements View.OnC
         finds();
 
         tv_Head.setText(getIntent().getStringExtra("head"));
+        wallet = getIntent().getStringExtra("wallet");
+        donated = getIntent().getStringExtra("donated");
 
         type = "rmp";
 

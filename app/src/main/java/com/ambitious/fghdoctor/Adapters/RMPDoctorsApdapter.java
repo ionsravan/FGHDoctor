@@ -95,8 +95,12 @@ public class RMPDoctorsApdapter extends RecyclerView.Adapter<RMPDoctorsApdapter.
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    context.startActivity(new Intent(context, RMPDoctorProfileActivity.class)
+                  /*  context.startActivity(new Intent(context, RMPDoctorProfileActivity.class)
                             .putExtra("wallet", ((RMPDoctorListActivity) context).wallet)
+                            .putExtra("obj", "" + rmpArrayList.get(getAdapterPosition()).getObj()));*/
+                    context.startActivity(new Intent(context, MedicalShopProfileActivity.class)
+                            .putExtra("wallet", ((RMPDoctorListActivity) context).wallet)
+                            .putExtra("donated", ((RMPDoctorListActivity) context).donated)
                             .putExtra("obj", "" + rmpArrayList.get(getAdapterPosition()).getObj()));
                     Animatoo.animateCard(context);
                 }

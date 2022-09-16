@@ -748,6 +748,7 @@ public class LabsHomeActivity extends AppCompatActivity implements View.OnClickL
             }
             if (!docpath1.equalsIgnoreCase("")) {
                 File file = new File(docpath1);
+                Log.d("TAG", "valiidate: "+file);
                 RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
                 MultipartBody.Part body = MultipartBody.Part.createFormData("file[]", file.getName(), requestFile);
                 parts.add(body);
