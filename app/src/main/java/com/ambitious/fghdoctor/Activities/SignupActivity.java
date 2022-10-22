@@ -1,6 +1,7 @@
 package com.ambitious.fghdoctor.Activities;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -12,6 +13,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -30,6 +32,7 @@ import com.ambitious.fghdoctor.Utils.CustomSnakbar;
 import com.ambitious.fghdoctor.Utils.Utility;
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.bumptech.glide.Glide;
+import com.goodiebag.pinview.Pinview;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -54,7 +57,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
     private ImageView iv_Bck, iv_Camera;
     private TextView tv_Start, tv_DOB, tv_Gender;
     private Spinner sp_Gender;
-    private String path1 = "";
+    private String path1 = "",otp;
     private MultipartBody.Part body;
     private EditText et_Fname, et_Lname, et_Email, et_Password, et_Mobile, et_Refferral;
     private RelativeLayout rl_Loader;
@@ -184,7 +187,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         String fullname = fname + " " + lname;
         String type = "user";
         // String register_id = FirebaseInstanceId.getInstance().getToken();
-        String register_id = Utility.getSharedPreferences(getApplicationContext(),"regId");
+        String register_id = Utility.getSharedPreferences(getApplicationContext(), "regId");
 
         if (path1.equalsIgnoreCase("")) {
             CustomSnakbar.showSnakabar(mContext, v, "Please Select Profile Image!");
@@ -241,7 +244,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                         System.out.println("Login" + object);
 
                         if (status.equalsIgnoreCase("1")) {
-                            CustomSnakbar.showSnakabar(mContext, view, "Registration Successfull.");
+                           // CustomSnakbar.showSnakabar(mContext, view, "Registration Successfull.");
 
                             JSONObject result = object.optJSONObject("result");
                             String user_id = result.optString("user_id");
@@ -252,8 +255,10 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                             String user_type = result.optString("user_type");
                             String mobile = result.optString("mobile");
                             String code = result.optString("code");
+                            otp = result.optString("otp");
+                            Log.d("TAG", "onResponse: "+otp);
 
-                            Utility.setSharedPreference(mContext, "u_id", user_id);
+                           /* Utility.setSharedPreference(mContext, "u_id", user_id);
                             Utility.setSharedPreference(mContext, "u_name", name);
                             Utility.setSharedPreference(mContext, "u_img", user_image);
                             Utility.setSharedPreference(mContext, "u_email", email);
@@ -262,17 +267,20 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                             Utility.setSharedPreference(mContext, "user_type", user_type);
                             Utility.setSharedPreference(mContext, "code", code);
                             Utility.setSharedPreferenceBoolean(mContext, "islogin", true);
-
+*/
 
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
 
-                                    Intent intent = new Intent(mContext, HomeActivity.class);
+                                    /*Intent intent = new Intent(mContext, HomeActivity.class);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                     Animatoo.animateSlideLeft(mContext);
                                     startActivity(intent);
-                                    finish();
+                                    finish();*/
+
+                                    fullScreenDiloge(otp,user_id,name,user_image,email,mobile,address,user_type,code);
+
 
                                 }
                             }, 1500);
@@ -318,4 +326,176 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
             }
         }
     }
+
+
+    private void fullScreenDiloge(String otp, String user_id, String name, String user_image, String email, String mobile, String address, String user_type, String code) {
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(SignupActivity.this, R.style.fullscreen);
+        View view = getLayoutInflater().inflate(R.layout.otpscreen, null);
+
+        TextView txtMessage = view.findViewById(R.id.txtMessage);
+        TextView txtResend = view.findViewById(R.id.txtResend);
+        TextView txtVerify = view.findViewById(R.id.txtVerify);
+        Pinview pinview = view.findViewById(R.id.pinview);
+
+        String phoneNumber = mobile.trim();
+        String strLast2Di = phoneNumber.length() >= 2 ? phoneNumber.substring(phoneNumber.length() - 2): "";
+        txtMessage.setText("Enter the code we sent to the phone number ending in +91xxxxxxxx"+strLast2Di);
+
+        txtResend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+             resendOTP(mobile,v);
+            }
+        });
+
+        txtVerify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Log.d("TAG", "onClick: " + pinview.getValue().toString());
+
+                if (pinview.getValue().equalsIgnoreCase("")) {
+                    Toast.makeText(SignupActivity.this, "Enter OTP", Toast.LENGTH_SHORT).show();
+                    return;
+                } else if (!otp.equalsIgnoreCase(pinview.getValue())) {
+                    Toast.makeText(SignupActivity.this, "Enter Valid OTP", Toast.LENGTH_SHORT).show();
+                    return;
+                } else {
+
+                    verifyOTP(mobile,otp,v,user_id,name,user_image,email,address,user_type,code);
+
+
+                    finish();
+                }
+
+            }
+        });
+
+        mBuilder.setView(view);
+        AlertDialog dialog = mBuilder.create();
+        dialog.show();
+    }
+
+    private void resendOTP( String mobile, View view)
+    {
+
+        rl_Loader.setVisibility(View.VISIBLE);
+        Call<ResponseBody> call = AppConfig.loadInterface().resend_otp(mobile);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
+                rl_Loader.setVisibility(View.GONE);
+                try {
+
+
+                    if (response.isSuccessful()) {
+                        String responseData = response.body().string();
+                        JSONObject object = new JSONObject(responseData);
+                        String status = object.getString("status");
+                        String message = object.getString("message");
+                        String resultmessage = object.getString("result");
+                        System.out.println("UpdateWallet=>" + object);
+
+                        if (status.equalsIgnoreCase("1")) {
+
+                            JSONObject result = object.optJSONObject("result");
+                            String user_id = result.optString("user_id");
+                            String name = result.optString("name");
+                            String user_image = result.optString("user_image");
+                            String email = result.optString("email");
+                            String address = result.optString("address");
+                            String user_type = result.optString("user_type");
+                            String mobile = result.optString("mobile");
+                            String code = result.optString("code");
+                            otp = result.optString("otp");
+                            Log.d("TAG", "onResponse: "+otp);
+
+                            Toast.makeText(SignupActivity.this, "OTP sent Successfully", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(SignupActivity.this, ""+resultmessage, Toast.LENGTH_SHORT).show();
+                          //  CustomSnakbar.showDarkSnakabar(mContext, view, "" + resultmessage);
+                        }
+
+
+                    } else ;
+
+                } catch (IOException | JSONException e) {
+                    e.printStackTrace();
+                    CustomSnakbar.showDarkSnakabar(mContext, view,  e.getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                t.printStackTrace();
+                rl_Loader.setVisibility(View.GONE);
+                Toast.makeText(mContext, "Failed server or network connection, please try again", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+
+    private void verifyOTP( String mobile,String otp, View view,String user_id, String name, String user_image, String email, String address, String user_type, String code)
+    {
+
+        rl_Loader.setVisibility(View.VISIBLE);
+        Call<ResponseBody> call = AppConfig.loadInterface().verifyotp(mobile,otp);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
+                rl_Loader.setVisibility(View.GONE);
+                try {
+                    if (response.isSuccessful()) {
+                        String responseData = response.body().string();
+                        JSONObject object = new JSONObject(responseData);
+                        String status = object.getString("status");
+                        String message = object.getString("message");
+                        String resultmessage = object.getString("result");
+                        System.out.println("UpdateWallet=>" + object);
+
+                        if (status.equalsIgnoreCase("1")) {
+
+                            Utility.setSharedPreference(mContext, "u_id", user_id);
+                            Utility.setSharedPreference(mContext, "u_name", name);
+                            Utility.setSharedPreference(mContext, "u_img", user_image);
+                            Utility.setSharedPreference(mContext, "u_email", email);
+                            Utility.setSharedPreference(mContext, "u_mobile", mobile);
+                            Utility.setSharedPreference(mContext, "location", address);
+                            Utility.setSharedPreference(mContext, "user_type", user_type);
+                            Utility.setSharedPreference(mContext, "code", code);
+                            Utility.setSharedPreferenceBoolean(mContext, "islogin", true);
+
+
+                            Intent intent = new Intent(mContext, HomeActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            Animatoo.animateSlideLeft(mContext);
+                            startActivity(intent);
+
+                            Toast.makeText(SignupActivity.this, "Registration Successfully", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(SignupActivity.this, ""+resultmessage, Toast.LENGTH_SHORT).show();
+                            //  CustomSnakbar.showDarkSnakabar(mContext, view, "" + resultmessage);
+                        }
+
+
+                    } else ;
+
+                } catch (IOException | JSONException e) {
+                    e.printStackTrace();
+                    CustomSnakbar.showDarkSnakabar(mContext, view,  e.getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                t.printStackTrace();
+                rl_Loader.setVisibility(View.GONE);
+                Toast.makeText(mContext, "Failed server or network connection, please try again", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+
 }

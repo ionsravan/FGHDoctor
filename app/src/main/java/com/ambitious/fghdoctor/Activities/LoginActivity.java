@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -123,6 +124,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         String status = object.getString("status");
                         String message = object.getString("message");
                         String resultmessage = object.getString("result");
+                        String total_count = object.getString("total_count");
+                        Log.d("TAG", "onResponse: "+total_count);
+
                         System.out.println("Login" + object);
 
                         if (status.equalsIgnoreCase("1")) {
@@ -138,6 +142,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             String mobile = result.optString("mobile");
                             String code = result.optString("code");
 
+
                             Utility.setSharedPreference(mContext, "u_id", user_id);
                             Utility.setSharedPreference(mContext, "u_name", name);
                             Utility.setSharedPreference(mContext, "u_img", user_image);
@@ -146,6 +151,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             Utility.setSharedPreference(mContext, "location", address);
                             Utility.setSharedPreference(mContext, "user_type", user_type);
                             Utility.setSharedPreference(mContext, "code", code);
+                            Utility.setSharedPreference(mContext, "referralCount", total_count);
                             Utility.setSharedPreferenceBoolean(mContext, "islogin", true);
 
 

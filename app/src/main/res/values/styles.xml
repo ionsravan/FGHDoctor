@@ -42,4 +42,17 @@
         <!--<item name="fab_size">mini</item>-->
     </style>
 
+    <style name="fullscreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:layout_width" >match_parent</item>
+        <item name="android:layout_height" >match_parent</item>
+        <item name="android:gravity" >center</item>
+        <item name="android:layout_gravity" >center</item>
+        <item name="android:windowFullscreen" >true</item>
+        <item name="android:background" >#ffffff</item>
+        <item name="android:windowBackground" >#ffffff</item>
+        <item name="android:windowNoTitle" >true</item>
+        <item name="android:windowIsFloating" >false</item>
+
+    </style>
+
 </resources>

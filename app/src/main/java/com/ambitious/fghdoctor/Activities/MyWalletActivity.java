@@ -44,7 +44,7 @@ public class MyWalletActivity extends AppCompatActivity implements View.OnClickL
 
     private Context mContext = this;
     private ImageView iv_Bck, iv_Play;
-    private TextView tv_Withdraw, tv_Balance, tv_Pay, tv_Membershipmsg;
+    private TextView tv_Withdraw, tv_Balance, tv_Pay, tv_Membershipmsg, txtReferralCount;
     private RelativeLayout rl_Loader;
     private String name = "", email = "", mobile = "", donated = "", wallet = "", account_first_name = "", account_last_name = "", account_no = "", ifsc_code = "", upi_id = "", payment_mobile = "", activation_date = "", expiry_date = "", txn_id = "";
     private boolean is_paid = false;
@@ -57,6 +57,12 @@ public class MyWalletActivity extends AppCompatActivity implements View.OnClickL
 
         if (Utility.isNetworkConnected(mContext)) {
             String uid = Utility.getSharedPreferences(mContext, "u_id");
+            String referralCount = Utility.getSharedPreferences(mContext, "referralCount");
+            if (!referralCount.equalsIgnoreCase("")) {
+                txtReferralCount.setText("Your referral Count : " + referralCount);
+            } else {
+                txtReferralCount.setText("Your referral Count : 0");
+            }
             getProfile(uid, iv_Bck);
         } else {
             AlertConnection.showAlertDialog(mContext, "No Internet Connection",
@@ -72,6 +78,7 @@ public class MyWalletActivity extends AppCompatActivity implements View.OnClickL
         tv_Withdraw = findViewById(R.id.tv_Withdraw);
         tv_Balance = findViewById(R.id.tv_Balance);
         tv_Pay = findViewById(R.id.tv_Pay);
+        txtReferralCount = findViewById(R.id.txtReferralCount);
         tv_Membershipmsg = findViewById(R.id.tv_Membershipmsg);
         rl_Loader = findViewById(R.id.rl_Loader);
 

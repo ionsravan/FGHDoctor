@@ -64,6 +64,18 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/txtReferralCount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:gravity="center"
+                android:text="Your referral Count  : ₹0"
+                android:textColor="@color/colorGray"
+                android:textSize="@dimen/_15sdp"
+                android:textStyle="bold" />
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"

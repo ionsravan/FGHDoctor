@@ -1208,7 +1208,7 @@ public class DoctorProfileActivity extends AppCompatActivity implements View.OnC
                     if (Integer.parseInt(fee) + Integer.parseInt(service_charge) <= Integer.parseInt(wallet)) {
                         is_paid = true;
                      //   tv_Book.performClick();
-
+                        wallet = Amnt;
                         String refername = et_Refralname.getText().toString();
                         String refernum = et_Refralnum.getText().toString();
 
@@ -1285,7 +1285,7 @@ public class DoctorProfileActivity extends AppCompatActivity implements View.OnC
 
         rl_Loader.setVisibility(View.VISIBLE);
         Call<ResponseBody> call = AppConfig.loadInterface().book(uid, doc_id, doctor_shift_id, cat_id, apdate, token_no, number, name, email, gender, aptime, age, adharno, referby, refname, refnum,
-                covid, amount, amount, txn_id, service_charge, stts, msg);
+                covid, amount, wallet_amnt, txn_id, service_charge, stts, msg);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {

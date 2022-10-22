@@ -1038,4 +1038,17 @@ public interface LoadInterface {
 
     @GET("wallet_txn")
     Call<ResponseBody> walletTxn(@Query("user_id") String user_id);
+
+    @POST("resend_otp")
+    Call<ResponseBody> resend_otp(
+           // @Query("user_type") String user_type,
+            @Query("mobile") String mobile
+    );
+
+    @POST("verifyotp")
+    Call<ResponseBody> verifyotp(
+            // @Query("user_type") String user_type,
+            @Query("mobile") String mobile,
+            @Query("otp") String otp
+    );
 }

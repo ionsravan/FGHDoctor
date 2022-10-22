@@ -123,4 +123,8 @@
     <string name="enter_latitude">Enter Latitude</string>
     <string name="enter_longitude">Enter Longitude</string>
     <string name="my_qr_code">My QR Code</string>
+    <string name="verify_your_identity">Verify your identity</string>
+    <string name="enter_the_code_we_sent_to_the_phone_number_ending_in">Enter the code we sent to the phone number ending in</string>
+    <string name="verify">Verify</string>
+    <string name="resend_code">Resend Code</string>
 </resources>
