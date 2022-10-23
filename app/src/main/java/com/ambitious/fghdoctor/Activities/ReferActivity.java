@@ -93,7 +93,7 @@ public class ReferActivity extends AppCompatActivity implements View.OnClickList
                 break;
 
             case R.id.iv_Fbmess:
-                String textt = "Please Install FGH DOCTOR\nhttps://play.google.com/store/apps/details?id=com.ambitious.fghdoctor \n& Earn ₹100 Using this Referral Code -  " + referel_code;
+                String textt = "Please Install FGH Tech Solutions \nhttps://play.google.com/store/apps/details?id=com.ambitious.fghdoctor \n& Earn ₹100 Using this Referral Code -  " + referel_code;
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_SEND);
                 intent.putExtra(Intent.EXTRA_TEXT, textt);
@@ -112,7 +112,7 @@ public class ReferActivity extends AppCompatActivity implements View.OnClickList
 
                     Intent waIntent = new Intent(Intent.ACTION_SEND);
                     waIntent.setType("text/plain");
-                    String text = "Please Install FGH DOCTOR\nhttps://play.google.com/store/apps/details?id=com.ambitious.fghdoctor \n& Earn ₹100 Using this Referral Code - " + referel_code;
+                    String text = "Please Install FGH Tech Solutions \nhttps://play.google.com/store/apps/details?id=com.ambitious.fghdoctor \n& Earn ₹100 Using this Referral Code - " + referel_code;
 
                     PackageInfo info = pm.getPackageInfo("com.whatsapp", PackageManager.GET_META_DATA);
                     //Check if package exists or not. If not then code
@@ -128,7 +128,7 @@ public class ReferActivity extends AppCompatActivity implements View.OnClickList
                 break;
 
             case R.id.iv_More:
-                String txts = "Please Install FGH DOCTOR\nhttps://play.google.com/store/apps/details?id=com.ambitious.fghdoctor \n& Earn ₹100 Using this Referral Code - " + referel_code;
+                String txts = "Please Install FGH Tech Solutions \nhttps://play.google.com/store/apps/details?id=com.ambitious.fghdoctor \n& Earn ₹100 Using this Referral Code - " + referel_code;
                 Intent sendIntents = new Intent();
                 sendIntents.setAction(Intent.ACTION_SEND);
                 sendIntents.putExtra(Intent.EXTRA_TEXT, txts);

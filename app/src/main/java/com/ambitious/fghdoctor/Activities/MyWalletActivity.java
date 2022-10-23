@@ -57,12 +57,6 @@ public class MyWalletActivity extends AppCompatActivity implements View.OnClickL
 
         if (Utility.isNetworkConnected(mContext)) {
             String uid = Utility.getSharedPreferences(mContext, "u_id");
-            String referralCount = Utility.getSharedPreferences(mContext, "referralCount");
-            if (!referralCount.equalsIgnoreCase("")) {
-                txtReferralCount.setText("Your referral Count : " + referralCount);
-            } else {
-                txtReferralCount.setText("Your referral Count : 0");
-            }
             getProfile(uid, iv_Bck);
         } else {
             AlertConnection.showAlertDialog(mContext, "No Internet Connection",
@@ -166,6 +160,7 @@ public class MyWalletActivity extends AppCompatActivity implements View.OnClickL
                             String user_type = result.optString("user_type");
                             donated = result.optString("donated");
                             wallet = result.optString("wallet");
+                            String total_count = result.optString("total_count");
                             account_first_name = result.optString("account_first_name");
                             account_last_name = result.optString("account_last_name");
                             account_no = result.optString("account_no");
@@ -174,6 +169,14 @@ public class MyWalletActivity extends AppCompatActivity implements View.OnClickL
                             payment_mobile = result.optString("payment_mobile");
                             activation_date = result.optString("activation_date");
                             expiry_date = result.optString("expiry_date");
+
+
+                            if (!total_count.equalsIgnoreCase("")) {
+                                txtReferralCount.setText("Your referral Count : " + total_count);
+                            } else {
+                                txtReferralCount.setText("Your referral Count : 0");
+                            }
+
 
                             if (wallet.equalsIgnoreCase("")) {
                                 tv_Balance.setText("Amount : ₹0");
