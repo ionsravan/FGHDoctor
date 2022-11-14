@@ -92,6 +92,6 @@ public class AmbulanceListActivity extends AppCompatActivity implements View.OnC
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Animatoo.animateCard(mContext);
+      //  Animatoo.animateCard(mContext);
     }
 }

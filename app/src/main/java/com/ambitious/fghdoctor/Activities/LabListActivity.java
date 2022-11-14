@@ -251,7 +251,7 @@ public class LabListActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Animatoo.animateCard(mContext);
+       // Animatoo.animateCard(mContext);
     }
 
     @Override

@@ -296,7 +296,7 @@ public class MarketPricesActivity extends AppCompatActivity implements View.OnCl
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Animatoo.animateCard(mContext);
+      //  Animatoo.animateCard(mContext);
     }
 
     @Override

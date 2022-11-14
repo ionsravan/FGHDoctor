@@ -363,6 +363,6 @@ public class BloodListActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Animatoo.animateCard(mContext);
+      //  Animatoo.animateCard(mContext);
     }
 }

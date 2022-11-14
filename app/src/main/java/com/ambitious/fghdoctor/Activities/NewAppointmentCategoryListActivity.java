@@ -126,6 +126,6 @@ public class NewAppointmentCategoryListActivity extends AppCompatActivity implem
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Animatoo.animateCard(mContext);
+      //  Animatoo.animateCard(mContext);
     }
 }

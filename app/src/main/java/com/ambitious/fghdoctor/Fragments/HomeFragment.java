@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
 import android.provider.Settings;
@@ -12,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -31,6 +35,8 @@ import com.ambitious.fghdoctor.Activities.ReferActivity;
 import com.ambitious.fghdoctor.Activities.ReportsActivity;
 import com.ambitious.fghdoctor.Activities.VaterinaryDoctorListActivity;
 import com.ambitious.fghdoctor.Activities.VehiclesActivity;
+import com.ambitious.fghdoctor.Adapters.RecyclerViewAdapter;
+import com.ambitious.fghdoctor.Model.RecyclerData;
 import com.ambitious.fghdoctor.R;
 import com.ambitious.fghdoctor.Utils.AViewFlipper;
 import com.ambitious.fghdoctor.Utils.AlertConnection;
@@ -49,6 +55,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -62,6 +69,9 @@ import retrofit2.Callback;
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private View mView;
+    RecyclerView recyclerList;
+    private ArrayList<RecyclerData> recyclerDataArrayList;
+    NestedScrollView scrollView;
     private RelativeLayout rl_Ambulance, rl_Blood, rl_Medical, rl_Rmp, rl_Veternary, rl_Labs, rl_Reports, rl_Telemedicine, rl_Vaccine, rl_Covidservice, rl_MarketPrices, rl_Refer, rl_Fitness, rl_Vehicles, rl_Loader;
     private TextView tv_Bookappoinment;
     private AViewFlipper vf;
@@ -82,6 +92,126 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_home, container, false);
         finds();
+
+        // created new array list..
+        recyclerDataArrayList = new ArrayList<>();
+
+        // added data to array list
+        recyclerDataArrayList.add(new RecyclerData("Covid Services", R.drawable.covidservice));
+        recyclerDataArrayList.add(new RecyclerData("Market Prices", R.drawable.markert_prices));
+        recyclerDataArrayList.add(new RecyclerData("Ambulance", R.drawable.ambulancehome));
+        recyclerDataArrayList.add(new RecyclerData("Blood", R.drawable.bloodhome));
+        recyclerDataArrayList.add(new RecyclerData("Medical Shop", R.drawable.medicalhome));
+        recyclerDataArrayList.add(new RecyclerData("RMP", R.drawable.rmp));
+        recyclerDataArrayList.add(new RecyclerData("Veterinary", R.drawable.vetreneri));
+        recyclerDataArrayList.add(new RecyclerData("Labs", R.drawable.lab));
+        recyclerDataArrayList.add(new RecyclerData("Reports", R.drawable.hospital));
+        recyclerDataArrayList.add(new RecyclerData("Fitness", R.drawable.fitness));
+        recyclerDataArrayList.add(new RecyclerData("Vehicles", R.drawable.carblue));
+        recyclerDataArrayList.add(new RecyclerData("Refer & Earn", R.drawable.sharing));
+
+        // added data from arraylist to adapter class.
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(recyclerDataArrayList, requireContext());
+
+        // setting grid layout manager to implement grid view.
+        // in this method '2' represents number of columns to be displayed in grid view.
+        GridLayoutManager layoutManager = new GridLayoutManager(requireContext(), 3);
+
+        // at last set adapter to recycler view.
+        recyclerList.setLayoutManager(layoutManager);
+        recyclerList.setAdapter(adapter);
+        adapter.setOnItemClickListener((position, v) -> {
+            Log.d("TAG", "onItemClick position: " + position);
+
+            if (position == 0) {
+                startActivity(new Intent(getContext(), CovidServicesActivity.class)
+                        .putExtra("city", "" + city)
+                        .putExtra("lat", "" + lat)
+                        .putExtra("wallet", "" + wallet)
+                        .putExtra("donated", "" + donated)
+                        .putExtra("lon", "" + lon));
+                Animatoo.animateCard(getContext());
+            } else if (position == 1) {
+                startActivity(new Intent(getContext(), MarketPricesActivity.class)
+                        .putExtra("head", "Market Prices")
+                        .putExtra("donated", "" + donated)
+                        .putExtra("wallet", "" + wallet)
+                );
+            } else if (position == 2) {
+                startActivity(new Intent(getContext(), AmbulanceListActivity.class)
+                        .putExtra("head", "Ambulance"));
+                Animatoo.animateCard(getContext());
+            } else if (position == 3) {
+                startActivity(new Intent(getContext(), BloodListActivity.class)
+                        .putExtra("head", "Blood")
+                        .putExtra("wallet", "" + wallet)
+                        .putExtra("donated", "" + donated)
+                );
+                Animatoo.animateCard(getContext());
+            } else if (position == 4) {
+                startActivity(new Intent(getContext(), MedicalShopListActivity.class)
+                        .putExtra("head", "Medical Shop")
+                        .putExtra("donated", "" + donated)
+                        .putExtra("wallet", "" + wallet)
+                );
+                Animatoo.animateCard(getContext());
+            } else if (position == 5) {
+                startActivity(new Intent(getContext(), RMPDoctorListActivity.class)
+                        .putExtra("head", "RMP Doctors")
+                        .putExtra("wallet", "" + wallet)
+                        .putExtra("donated", "" + donated)
+                );
+                Animatoo.animateCard(getContext());
+            } else if (position == 6) {
+                startActivity(new Intent(getContext(), VaterinaryDoctorListActivity.class)
+                        .putExtra("head", "Vaterinary Doctors")
+                        .putExtra("wallet", "" + wallet)
+                        .putExtra("donated", "" + donated));
+                Animatoo.animateCard(getContext());
+            } else if (position == 7) {
+                startActivity(new Intent(getContext(), LabListActivity.class)
+                        .putExtra("head", "Labs")
+                        .putExtra("wallet", "" + wallet)
+                        .putExtra("donated", "" + donated)
+                );
+                Animatoo.animateCard(getContext());
+            } else if (position == 8) {
+                startActivity(new Intent(getContext(), ReportsActivity.class)
+                        .putExtra("head", "Reports"));
+                Animatoo.animateCard(getContext());
+            } else if (position == 9) {
+                startActivity(new Intent(getContext(), CovidWinnersActivity.class));
+                Animatoo.animateCard(getContext());
+            } else if (position == 10) {
+                startActivity(new Intent(getContext(), VehiclesActivity.class)
+                        .putExtra("city", "" + city)
+                        .putExtra("lat", "" + lat)
+                        .putExtra("wallet", "" + wallet)
+                        .putExtra("donated", "" + donated)
+                        .putExtra("lon", "" + lon));
+                Animatoo.animateCard(getContext());
+            }
+            else if (position == 11) {
+                if (Utility.getSharedPreferencesBoolean(getContext(), "islogin", false)) {
+                    startActivity(new Intent(getContext(), ReferActivity.class)
+                            .putExtra("head", "Refer & Earn")
+                            .putExtra("code", "" + code));
+                    //  Animatoo.animateCard(getContext());
+                } else {
+                    CustomSnakbar.showDarkSnakabar(getContext(), v, "Please Login/Register Before Refer & Earn!");
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            startActivity(new Intent(getContext(), LoginActivity.class)
+                                    .putExtra("head", "Blood"));
+                            //  Animatoo.animateCard(getContext());
+                        }
+                    }, 1500);
+                }
+            }
+
+        });
+
         if (Utility.isNetworkConnected(getContext())) {
             String m_androidId = Settings.Secure.getString(getContext().getContentResolver(), Settings.Secure.ANDROID_ID);
             Log.e("m_androidId", "" + m_androidId);
@@ -89,7 +219,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             Log.e("lat", "" + lat);
             Log.e("lon", "" + lon);
             // String register_id = FirebaseInstanceId.getInstance().getToken();
-            String register_id = Utility.getSharedPreferences(requireContext(),"regId");
+            String register_id = Utility.getSharedPreferences(requireContext(), "regId");
             updateRegisteId(m_androidId, register_id, city, lat, lon);
         } else {
             AlertConnection.showAlertDialog(getContext(), "No Internet Connection",
@@ -101,12 +231,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private void getBanner(String uid, final View view) {
 
-        rl_Loader.setVisibility(View.VISIBLE);
+        // rl_Loader.setVisibility(View.VISIBLE);
         Call<ResponseBody> call = AppConfig.loadInterface().getBanner();
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
-                rl_Loader.setVisibility(View.GONE);
+                // rl_Loader.setVisibility(View.GONE);
                 try {
                     if (response.isSuccessful()) {
                         String responseData = response.body().string();
@@ -149,7 +279,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 t.printStackTrace();
-                rl_Loader.setVisibility(View.GONE);
+                //  rl_Loader.setVisibility(View.GONE);
                 Toast.makeText(getContext(), "Failed server or network connection, please try again", Toast.LENGTH_SHORT).show();
             }
         });
@@ -162,7 +292,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
-                rl_Loader.setVisibility(View.GONE);
+                //  rl_Loader.setVisibility(View.GONE);
                 try {
                     if (response.isSuccessful()) {
                         String responseData = response.body().string();
@@ -205,8 +335,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     }
 
     private void finds() {
-
-        rl_Ambulance = mView.findViewById(R.id.rl_Ambulance);
+       /* rl_Ambulance = mView.findViewById(R.id.rl_Ambulance);
         rl_Blood = mView.findViewById(R.id.rl_Blood);
         rl_Medical = mView.findViewById(R.id.rl_Medical);
         rl_Rmp = mView.findViewById(R.id.rl_Rmp);
@@ -219,13 +348,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         rl_MarketPrices = mView.findViewById(R.id.rl_MarketPrices);
         rl_Refer = mView.findViewById(R.id.rl_Refer);
         rl_Fitness = mView.findViewById(R.id.rl_Fitness);
-        rl_Vehicles = mView.findViewById(R.id.rl_Vehicles);
-        rl_Loader = mView.findViewById(R.id.rl_Loader);
+        rl_Vehicles = mView.findViewById(R.id.rl_Vehicles);*/
+        //   rl_Loader = mView.findViewById(R.id.rl_Loader);
+        recyclerList = mView.findViewById(R.id.recyclerList);
         tv_Bookappoinment = mView.findViewById(R.id.tv_Bookappoinment);
         vf = mView.findViewById(R.id.view_flipper);
 
 
-        rl_Ambulance.setOnClickListener(this);
+
+/*        rl_Ambulance.setOnClickListener(this);
         rl_Blood.setOnClickListener(this);
         rl_Medical.setOnClickListener(this);
         rl_Rmp.setOnClickListener(this);
@@ -238,7 +369,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         rl_MarketPrices.setOnClickListener(this);
         rl_Refer.setOnClickListener(this);
         rl_Fitness.setOnClickListener(this);
-        rl_Vehicles.setOnClickListener(this);
+        rl_Vehicles.setOnClickListener(this);*/
         tv_Bookappoinment.setOnClickListener(this);
 
     }
@@ -248,10 +379,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         switch (v.getId()) {
 
-            case R.id.rl_Ambulance:
+           /* case R.id.rl_Ambulance:
                 startActivity(new Intent(getContext(), AmbulanceListActivity.class)
                         .putExtra("head", "Ambulance"));
-                Animatoo.animateCard(getContext());
+               // Animatoo.animateCard(getContext());
                 break;
 
             case R.id.rl_Blood:
@@ -260,7 +391,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         .putExtra("wallet", "" + wallet)
                         .putExtra("donated", "" + donated)
                 );
-                Animatoo.animateCard(getContext());
+               // Animatoo.animateCard(getContext());
                 break;
 
             case R.id.rl_Medical:
@@ -269,8 +400,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         .putExtra("donated", ""+donated)
                         .putExtra("wallet", "" + wallet)
                 );
-                Animatoo.animateCard(getContext());
-                break;
+              //  Animatoo.animateCard(getContext());
+                break;*/
 
             case R.id.tv_Bookappoinment:
 //                startActivity(new Intent(getContext(), AppointmentCategoryListActivity.class)
@@ -279,16 +410,16 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         .putExtra("wallet", "" + wallet)
                         .putExtra("donated", "" + donated)
                 );
-                Animatoo.animateCard(getContext());
+                // Animatoo.animateCard(getContext());
                 break;
 
-            case R.id.rl_Rmp:
+           /* case R.id.rl_Rmp:
                 startActivity(new Intent(getContext(), RMPDoctorListActivity.class)
                         .putExtra("head", "RMP Doctors")
                         .putExtra("wallet", "" + wallet)
                         .putExtra("donated", "" + donated)
                 );
-                Animatoo.animateCard(getContext());
+               // Animatoo.animateCard(getContext());
                 break;
 
             case R.id.rl_Veternary:
@@ -296,13 +427,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         .putExtra("head", "Vaterinary Doctors")
                         .putExtra("wallet", "" + wallet)
                         .putExtra("donated", "" + donated));
-                Animatoo.animateCard(getContext());
+               // Animatoo.animateCard(getContext());
                 break;
 
             case R.id.rl_Reports:
                 startActivity(new Intent(getContext(), ReportsActivity.class)
                         .putExtra("head", "Reports"));
-                Animatoo.animateCard(getContext());
+               // Animatoo.animateCard(getContext());
                 break;
 
             case R.id.rl_Telemedicine:
@@ -317,7 +448,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         .putExtra("wallet", "" + wallet)
                         .putExtra("donated", "" + donated)
                         .putExtra("lon", "" + lon));
-                Animatoo.animateCard(getContext());
+               // Animatoo.animateCard(getContext());
                 break;
 
             case R.id.rl_MarketPrices:
@@ -333,7 +464,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     startActivity(new Intent(getContext(), ReferActivity.class)
                             .putExtra("head", "Refer & Earn")
                             .putExtra("code", "" + code));
-                    Animatoo.animateCard(getContext());
+                  //  Animatoo.animateCard(getContext());
                 } else {
                     CustomSnakbar.showDarkSnakabar(getContext(), v, "Please Login/Register Before Refer & Earn!");
                     new Handler().postDelayed(new Runnable() {
@@ -341,7 +472,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         public void run() {
                             startActivity(new Intent(getContext(), LoginActivity.class)
                                     .putExtra("head", "Blood"));
-                            Animatoo.animateCard(getContext());
+                          //  Animatoo.animateCard(getContext());
                         }
                     }, 1500);
                 }
@@ -353,12 +484,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         .putExtra("wallet", "" + wallet)
                         .putExtra("donated", "" + donated)
                 );
-                Animatoo.animateCard(getContext());
+               // Animatoo.animateCard(getContext());
                 break;
 
             case R.id.rl_Fitness:
                 startActivity(new Intent(getContext(), CovidWinnersActivity.class));
-                Animatoo.animateCard(getContext());
+               // Animatoo.animateCard(getContext());
                 break;
 
             case R.id.rl_Vehicles:
@@ -368,8 +499,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         .putExtra("wallet", "" + wallet)
                         .putExtra("donated", "" + donated)
                         .putExtra("lon", "" + lon));
-                Animatoo.animateCard(getContext());
-                break;
+               // Animatoo.animateCard(getContext());
+                break;*/
 
         }
 

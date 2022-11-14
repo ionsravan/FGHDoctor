@@ -363,7 +363,8 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
                 } else {
                     startActivity(new Intent(mContext, MedicalShopListActivity.class)
                             .putExtra("donated", "" + donated)
-                            .putExtra("head", "Medical Shop"));
+                            .putExtra("head", "Medical Shop")
+                            .putExtra("wallet", "" + wallet));
                     Animatoo.animateCard(mContext);
                 }
                 break;
@@ -790,7 +791,7 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
                         String status = object.getString("status");
                         String message = object.getString("message");
                         String resultmessage = object.getString("result");
-                        System.out.println("UserProfile=>" + object);
+                        System.out.println("UserProfile=> 1 " + object);
 
                         if (status.equalsIgnoreCase("1")) {
 
@@ -811,7 +812,7 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
                             if (active_status.equalsIgnoreCase("0")) {
 
                                 Toast.makeText(mContext, "Your Account is Deactivated by FGH Team.", Toast.LENGTH_SHORT).show();
-                                rl_Loader.setVisibility(View.VISIBLE);
+                               // rl_Loader.setVisibility(View.VISIBLE);
                                 Utility.setSharedPreference(mContext, "u_id", "");
                                 Utility.setSharedPreference(mContext, "u_name", "");
                                 Utility.setSharedPreference(mContext, "u_img", "");
@@ -822,14 +823,14 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
                                 new Handler().postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        rl_Loader.setVisibility(View.GONE);
+                                       // rl_Loader.setVisibility(View.GONE);
                                         Intent intent = new Intent(mContext, LoginActivity.class);
                                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                         Animatoo.animateSlideLeft(mContext);
                                         startActivity(intent);
                                         finish();
                                     }
-                                }, 3000);
+                                }, 2000);
 
                             } else {
 
@@ -909,7 +910,7 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
                             }
 
                         } else {
-                            Log.e("UserProfile=>", "" + resultmessage);
+                            Log.e("UserProfile=> 2", "" + resultmessage);
 //                            CustomSnakbar.showSnakabar(mContext, view, "" + resultmessage);
                             mTitles = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.menuOptions)));
                             mIcons = new ArrayList<>();

@@ -212,6 +212,9 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         } else if (number.equalsIgnoreCase("")) {
             et_Mobile.setError("Can't be Empty");
             et_Mobile.requestFocus();
+        }else if (number.length() < 9) {
+            et_Mobile.setError("Number should be Enter 10 digits");
+            et_Mobile.requestFocus();
         } else {
 
             if (!path1.equalsIgnoreCase("")) {

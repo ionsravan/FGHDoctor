@@ -259,6 +259,6 @@ public class VehiclesActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Animatoo.animateCard(mContext);
+       // Animatoo.animateCard(mContext);
     }
 }

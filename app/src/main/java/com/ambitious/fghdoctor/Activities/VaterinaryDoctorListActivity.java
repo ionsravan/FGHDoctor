@@ -256,7 +256,7 @@ public class VaterinaryDoctorListActivity extends AppCompatActivity implements V
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Animatoo.animateCard(mContext);
+      //  Animatoo.animateCard(mContext);
     }
 
     @Override
