@@ -86,7 +86,7 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
     private LinearLayout ll_Notification, ll_Add;
     private ArrayList<String> mTitles = new ArrayList<>();
     private ArrayList<Drawable> mIcons = new ArrayList<>();
-    public String user_id = "", code = "", donated = "", wallet = "", city = "";
+    public String user_id = "", code = "", donated = "", wallet = "", city = "",account_no="",ifsc_code="";
     public boolean isAgain = false;
     public double latitude = 0.0, longitude = 0.0;
 
@@ -351,6 +351,7 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
                 break;
 
             case 3:
+
                 if (Utility.getSharedPreferencesBoolean(mContext, "islogin", false)) {
                     if (Utility.getSharedPreferences(mContext, "user_type").equalsIgnoreCase("user")) {
                         startActivity(new Intent(mContext, AmbulanceListActivity.class)
@@ -361,9 +362,10 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
 
                     }
                 } else {
-                    startActivity(new Intent(mContext, MedicalShopListActivity.class)
+                    startActivity(new Intent(mContext, WithDrawActivity.class)
                             .putExtra("donated", "" + donated)
-                            .putExtra("head", "Medical Shop")
+                            .putExtra("account_no", account_no)
+                            .putExtra("ifsc_code", ifsc_code)
                             .putExtra("wallet", "" + wallet));
                     Animatoo.animateCard(mContext);
                 }
@@ -372,9 +374,12 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
             case 4:
                 if (Utility.getSharedPreferencesBoolean(mContext, "islogin", false)) {
                     if (Utility.getSharedPreferences(mContext, "user_type").equalsIgnoreCase("user")) {
-                        startActivity(new Intent(mContext, MedicalShopListActivity.class)
+                        startActivity(new Intent(mContext, WithDrawActivity.class)
                                 .putExtra("donated", "" + donated)
-                                .putExtra("head", "Medical Shop"));
+                                .putExtra("wallet", wallet)
+                                .putExtra("account_no", account_no)
+                                .putExtra("ifsc_code", ifsc_code)
+                                .putExtra("FROM", "activity"));
                         Animatoo.animateCard(mContext);
                     } else {
 
@@ -805,9 +810,12 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
                             String mobile = result.optString("mobile");
                             String user_type = result.optString("user_type");
                             String active_status = result.optString("status");
+                            account_no = result.optString("account_no");
+                            ifsc_code = result.optString("ifsc_code");
                             code = result.optString("code");
                             donated = result.optString("donated");
                             wallet = result.optString("wallet");
+
 
                             if (active_status.equalsIgnoreCase("0")) {
 
@@ -832,7 +840,8 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
                                     }
                                 }, 2000);
 
-                            } else {
+                            }
+                            else {
 
                                 Utility.setSharedPreference(mContext, "code", code);
 
@@ -842,7 +851,7 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
                                 mIcons.add(1, getResources().getDrawable(R.drawable.ic_date));
                                 mIcons.add(2, getResources().getDrawable(R.drawable.ic_payment));
                                 mIcons.add(3, getResources().getDrawable(R.drawable.ic_ambulance));
-                                mIcons.add(4, getResources().getDrawable(R.drawable.ic_cart));
+                                mIcons.add(4, getResources().getDrawable(R.drawable.withdrawal));
 //                            mIcons.add(4, getResources().getDrawable(R.drawable.ic_invert));
                                 mIcons.add(5, getResources().getDrawable(R.drawable.ic_wallet));
 //        mIcons.add(5, getResources().getDrawable(R.drawable.ic_person));
@@ -918,7 +927,7 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
                             mIcons.add(1, getResources().getDrawable(R.drawable.ic_date));
                             mIcons.add(2, getResources().getDrawable(R.drawable.ic_payment));
                             mIcons.add(3, getResources().getDrawable(R.drawable.ic_ambulance));
-                            mIcons.add(4, getResources().getDrawable(R.drawable.ic_cart));
+                            mIcons.add(4, getResources().getDrawable(R.drawable.withdrawal));
 //                            mIcons.add(4, getResources().getDrawable(R.drawable.ic_invert));
                             mIcons.add(5, getResources().getDrawable(R.drawable.ic_wallet));
 //        mIcons.add(5, getResources().getDrawable(R.drawable.ic_person));

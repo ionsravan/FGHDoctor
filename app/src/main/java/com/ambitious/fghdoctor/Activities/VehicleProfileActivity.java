@@ -66,7 +66,7 @@ public class VehicleProfileActivity extends AppCompatActivity implements View.On
     private String contact = "", wallet = "", user_id = "", n_Wallet = "", Amnt = "", donated = "";
     private ArrayList<String> imagesStringsProfile;
     private ArrayList<String> imagesStrings;
-
+    private int percentage =0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -338,7 +338,7 @@ public class VehicleProfileActivity extends AppCompatActivity implements View.On
                     if (chk_Wallet.isChecked()) {
                         if (Integer.parseInt(fee) <= Integer.parseInt(wallet)) {
                            // Amnt = "" + (Integer.parseInt(fee));
-                            int percentage = ((amountOfPercentage * Integer.parseInt(fee)) / 100);
+                             percentage = ((amountOfPercentage * Integer.parseInt(fee)) / 100);
                             int finalAmount = Integer.parseInt(fee) +percentage;
                             Amnt = String.valueOf(finalAmount);
 
@@ -391,7 +391,12 @@ public class VehicleProfileActivity extends AppCompatActivity implements View.On
 
         btnContinue.setOnClickListener(v1 -> {
             alertDialog.dismiss();
-            makePayment(uid, user_id, Amnt, n_Wallet, "wallet", v);
+            // pay to vendor
+            int vendorAmount = Integer.parseInt(Amnt) - percentage;
+
+            Log.d("TAG", "confirmationDialog: "+vendorAmount);
+            makePayment(uid, user_id, String.valueOf(vendorAmount), n_Wallet, "wallet", v);
+
         });
 
         btnCancel.setOnClickListener(v1 -> {

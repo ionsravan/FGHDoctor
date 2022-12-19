@@ -18,7 +18,7 @@ public interface LoadInterface {
 
     //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SignUp %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 //    http://webuddys.in/FGH/index.php/api/register?user_type=user&name=test&mobile=1234567890&email=email@gmail.com
-    @Multipart
+  //  @Multipart
     @POST("signup")
     Call<ResponseBody> signup(@Query("device_id") String Device_id,
                               @Query("name") String name,
@@ -29,8 +29,9 @@ public interface LoadInterface {
                               @Query("dob") String dob,
                               @Query("sex") String sex,
                               @Query("referby") String referby,
-                              @Query("register_id") String register_id,
-                              @Part MultipartBody.Part file);
+                              @Query("register_id") String register_id
+                           //   @Part MultipartBody.Part file
+    );
 
     //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Login %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -69,6 +70,11 @@ public interface LoadInterface {
                                           @Query("email") String email,
                                           @Query("password") String password,
                                           @Query("mobile") String mobile,
+                                          @Query("account_no") String account_no,
+                                          @Query("ifsc_code") String ifsc_code,
+                                          @Query("account_first_name") String account_first_name,
+                                          @Query("account_last_name") String account_last_name,
+                                          @Query("payment_mobile") String payment_mobile,
                                           @Query("user_type") String user_type,
                                           @Part MultipartBody.Part file);
 
@@ -81,6 +87,11 @@ public interface LoadInterface {
                                      @Query("email") String email,
                                      @Query("password") String password,
                                      @Query("mobile") String mobile,
+                                     @Query("account_no") String account_no,
+                                     @Query("ifsc_code") String ifsc_code,
+                                     @Query("account_first_name") String account_first_name,
+                                     @Query("account_last_name") String account_last_name,
+                                     @Query("payment_mobile") String payment_mobile,
                                      @Query("user_type") String user_type);
 
     //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SignUp Ambulance%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

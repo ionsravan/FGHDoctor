@@ -9,15 +9,14 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
-
     <uses-permission
         android:name="android.permission.QUERY_ALL_PACKAGES"
         tools:ignore="QueryAllPackagesPermission" />
-    <!--<uses-permission
+    <!--
+<uses-permission
         android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
-        tools:ignore="ScopedStorage" />-->
-
+        tools:ignore="ScopedStorage" />
+    -->
     <queries>
         <package android:name="com.whatsapp" />
         <package android:name="com.facebook.orca" />
@@ -38,9 +37,17 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@drawable/launcher"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
         tools:targetApi="n">
+        <activity
+            android:name=".Activities.RechargeActivity"
+            android:exported="false"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
+        <activity
+            android:name=".Activities.WithDrawActivity"
+            android:exported="false"
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".Activities.QrCodeActivity"
             android:exported="false" />
@@ -402,8 +409,8 @@
         <meta-data
             android:name="com.razorpay.ApiKey"
             android:value="rzp_live_RQHd0NAHrcy1R9" />
-
-       <!-- <service
+        <!--
+ <service
             android:name=".Services.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
@@ -416,15 +423,15 @@
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
-        </service>-->
-
-        <service android:name=".Services.MyFirebaseMessagingService"
+        </service>
+        -->
+        <service
+            android:name=".Services.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
 
         <receiver
             android:name=".Services.BroadcastNotiReceiver"
@@ -436,19 +443,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
-
-       <!-- <provider
-            android:name="androidx.core.content.FileProvider"
-            android:authorities="${applicationId}.provider"
-            android:exported="false"
-            android:grantUriPermissions="true"
-            tools:replace="android:authorities">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/picker_provider_paths"
-                tools:replace="android:resource" />
-        </provider>-->
-
     </application>
 
 </manifest>

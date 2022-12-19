@@ -50,7 +50,7 @@ public class FoodBankProfileActivity extends AppCompatActivity implements View.O
     private String contact = "";
     private ArrayList<String> imagesStringsProfile;
     private ArrayList<String> imagesStrings;
-
+    private int percentage =0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,6 +1,7 @@
 package com.ambitious.fghdoctor.Adapters;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ambitious.fghdoctor.Model.RecyclerData;
@@ -39,6 +41,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         RecyclerData recyclerData = courseDataArrayList.get(position);
         holder.txtTitle.setText(recyclerData.getTitle());
         holder.imgView.setImageResource(recyclerData.getImgid());
+
     }
 
     @Override
@@ -52,7 +55,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     // View Holder Class to handle Recycler View.
-    public class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView txtTitle;
         private ImageView imgView;

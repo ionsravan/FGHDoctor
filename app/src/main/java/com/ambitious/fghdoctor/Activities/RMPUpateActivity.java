@@ -63,7 +63,7 @@ public class RMPUpateActivity extends AppCompatActivity implements View.OnClickL
     private String str_pp = "", str_1 = "", str_2 = "", str_3 = "";
     private MultipartBody.Part body;
 
-
+    private int percentage =0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

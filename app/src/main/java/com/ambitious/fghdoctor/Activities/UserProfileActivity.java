@@ -46,7 +46,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
     private TextView tv_Start;
     private String path1 = "";
     private MultipartBody.Part body;
-    private EditText et_Fname, et_Lname, et_Email, et_Password, et_Mobile;
+    private EditText et_Fname, et_Lname, et_Email, et_Password, et_Mobile,etAccount,etIfscCode,et_accountFname,et_accountLname,et_paymentMobile;
     private RelativeLayout rl_Loader;
 
     @Override
@@ -74,6 +74,11 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         et_Email = findViewById(R.id.et_Email);
         et_Password = findViewById(R.id.et_Password);
         et_Mobile = findViewById(R.id.et_Mobile);
+        etAccount = findViewById(R.id.et_Accno);
+        etIfscCode = findViewById(R.id.et_IfscCode);
+        et_accountFname = findViewById(R.id.et_accountFname);
+        et_accountLname = findViewById(R.id.et_accountLname);
+        et_paymentMobile = findViewById(R.id.et_paymentMobile);
 
         iv_Bck.setOnClickListener(this);
         tv_Start.setOnClickListener(this);
@@ -117,6 +122,11 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         String email = et_Email.getText().toString();
         String pass = et_Password.getText().toString();
         String number = et_Mobile.getText().toString();
+        String accountNo = etAccount.getText().toString();
+        String ifscCode = etIfscCode.getText().toString();
+        String accountFName = et_accountFname.getText().toString();
+        String accountLName = et_accountLname.getText().toString();
+        String paymentMobile = et_paymentMobile.getText().toString();
         String fullname = fname + " " + lname;
         String type = "user";
         String uid = Utility.getSharedPreferences(mContext, "u_id");
@@ -136,6 +146,21 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         } else if (number.equalsIgnoreCase("")) {
             et_Mobile.setError("Can't be Empty");
             et_Mobile.requestFocus();
+        } else if (accountNo.equalsIgnoreCase("")) {
+            etAccount.setError("Can't be Empty");
+            etAccount.requestFocus();
+        } else if (ifscCode.equalsIgnoreCase("")) {
+            etIfscCode.setError("Can't be Empty");
+            etIfscCode.requestFocus();
+        } else if (accountFName.equalsIgnoreCase("")) {
+            et_accountFname.setError("Can't be Empty");
+            et_accountFname.requestFocus();
+        } else if (accountLName.equalsIgnoreCase("")) {
+            et_accountLname.setError("Can't be Empty");
+            et_accountLname.requestFocus();
+        } else if (paymentMobile.equalsIgnoreCase("")) {
+            et_paymentMobile.setError("Can't be Empty");
+            et_paymentMobile.requestFocus();
         } else {
 
             if (!path1.equalsIgnoreCase("")) {
@@ -144,7 +169,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
                 body = MultipartBody.Part.createFormData("user_image", file.getName(), requestFile);
             }
 
-            requestToUpdate(uid, fullname, email, pass, number, type, body, v);
+            requestToUpdate(uid, fullname, email, pass, number,accountNo,ifscCode, accountFName,accountLName,paymentMobile, type, body, v);
 
         }
 
@@ -177,6 +202,12 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
                             String address = result.optString("address");
                             String password = result.optString("password");
                             String mobile = result.optString("mobile");
+                            String account_no = result.optString("account_no");
+                            String ifsc_code = result.optString("ifsc_code");
+                            String account_first_name = result.optString("account_first_name");
+                            String account_last_name = result.optString("account_last_name");
+                            String payment_mobile = result.optString("payment_mobile");
+
                             String user_type = result.optString("user_type");
 
                             Glide.with(mContext).load(user_image).into(iv_Camera);
@@ -186,7 +217,11 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
                             et_Email.setText(email);
                             et_Password.setText(password);
                             et_Mobile.setText(mobile);
-
+                            etAccount.setText(account_no);
+                            etIfscCode.setText(ifsc_code);
+                            et_accountFname.setText(account_first_name);
+                            et_accountLname.setText(account_last_name);
+                            et_paymentMobile.setText(payment_mobile);
 
                         } else {
                             CustomSnakbar.showSnakabar(mContext, view, "" + resultmessage);
@@ -211,14 +246,14 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
 
     }
 
-    private void requestToUpdate(String uid, String fullname, String email, String pass, String number, String type, MultipartBody.Part body, final View view) {
+    private void requestToUpdate(String uid, String fullname, String email, String pass, String number, String accountNo,String ifscCode,String accountFName,String accountLName,String paymentMobile,String type, MultipartBody.Part body, final View view) {
 
         rl_Loader.setVisibility(View.VISIBLE);
         Call<ResponseBody> call;
         if (path1.equalsIgnoreCase("")) {
-            call = AppConfig.loadInterface().updateProfile(uid, fullname, email, pass, number, type);
+            call = AppConfig.loadInterface().updateProfile(uid, fullname, email, pass, number,accountNo,ifscCode,accountFName,accountLName,paymentMobile, type);
         } else {
-            call = AppConfig.loadInterface().updateProfileImage(uid, fullname, email, pass, number, type, body);
+            call = AppConfig.loadInterface().updateProfileImage(uid, fullname, email, pass, number,accountNo,ifscCode, accountFName,accountLName,paymentMobile,type, body);
         }
         call.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -244,7 +279,13 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
                             String address = result.optString("address");
                             String password = result.optString("password");
                             String mobile = result.optString("mobile");
+                            String account_no = result.optString("account_no");
+                            String ifsc_code = result.optString("ifsc_code");
                             String user_type = result.optString("user_type");
+                            String account_first_name = result.optString("account_first_name");
+                            String account_last_name = result.optString("account_last_name");
+                            String payment_mobile = result.optString("payment_mobile");
+
 
                             Utility.setSharedPreference(mContext, "u_id", user_id);
                             Utility.setSharedPreference(mContext, "u_name", name);
@@ -261,6 +302,16 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
                             et_Email.setText(email);
                             et_Password.setText(password);
                             et_Mobile.setText(mobile);
+                            etAccount.setText(account_no);
+                            etIfscCode.setText(ifsc_code);
+                            et_accountFname.setText(account_first_name);
+                            et_accountLname.setText(account_last_name);
+                            et_paymentMobile.setText(payment_mobile);
+
+                            Intent intent = new Intent(UserProfileActivity.this,HomeActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                            finish();
 
 
                         } else {

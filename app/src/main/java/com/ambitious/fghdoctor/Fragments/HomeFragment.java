@@ -13,6 +13,7 @@ import android.os.Handler;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -25,16 +26,20 @@ import com.ambitious.fghdoctor.Activities.AmbulanceListActivity;
 import com.ambitious.fghdoctor.Activities.BloodListActivity;
 import com.ambitious.fghdoctor.Activities.CovidServicesActivity;
 import com.ambitious.fghdoctor.Activities.CovidWinnersActivity;
+import com.ambitious.fghdoctor.Activities.DeliveryBoyActivity;
 import com.ambitious.fghdoctor.Activities.LabListActivity;
 import com.ambitious.fghdoctor.Activities.LoginActivity;
 import com.ambitious.fghdoctor.Activities.MarketPricesActivity;
 import com.ambitious.fghdoctor.Activities.MedicalShopListActivity;
 import com.ambitious.fghdoctor.Activities.NewAppointmentCategoryListActivity;
+import com.ambitious.fghdoctor.Activities.NotificationActivity;
 import com.ambitious.fghdoctor.Activities.RMPDoctorListActivity;
+import com.ambitious.fghdoctor.Activities.RechargeActivity;
 import com.ambitious.fghdoctor.Activities.ReferActivity;
 import com.ambitious.fghdoctor.Activities.ReportsActivity;
 import com.ambitious.fghdoctor.Activities.VaterinaryDoctorListActivity;
 import com.ambitious.fghdoctor.Activities.VehiclesActivity;
+import com.ambitious.fghdoctor.Activities.WithDrawActivity;
 import com.ambitious.fghdoctor.Adapters.RecyclerViewAdapter;
 import com.ambitious.fghdoctor.Model.RecyclerData;
 import com.ambitious.fghdoctor.R;
@@ -58,6 +63,7 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -97,18 +103,27 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         recyclerDataArrayList = new ArrayList<>();
 
         // added data to array list
-        recyclerDataArrayList.add(new RecyclerData("Covid Services", R.drawable.covidservice));
+        recyclerDataArrayList.add(new RecyclerData("Recharges", R.drawable.recharge_icon));
         recyclerDataArrayList.add(new RecyclerData("Market Prices", R.drawable.markert_prices));
-        recyclerDataArrayList.add(new RecyclerData("Ambulance", R.drawable.ambulancehome));
+        recyclerDataArrayList.add(new RecyclerData("Delivery Boys", R.drawable.delivery_boys_icon));
+
+        recyclerDataArrayList.add(new RecyclerData("Short News", R.drawable.short_news));
+        recyclerDataArrayList.add(new RecyclerData("Vehicles", R.drawable.carblue));
         recyclerDataArrayList.add(new RecyclerData("Blood", R.drawable.bloodhome));
+
         recyclerDataArrayList.add(new RecyclerData("Medical Shop", R.drawable.medicalhome));
         recyclerDataArrayList.add(new RecyclerData("RMP", R.drawable.rmp));
         recyclerDataArrayList.add(new RecyclerData("Veterinary", R.drawable.vetreneri));
+
         recyclerDataArrayList.add(new RecyclerData("Labs", R.drawable.lab));
+        recyclerDataArrayList.add(new RecyclerData("Covid Services", R.drawable.covidservice));
+        recyclerDataArrayList.add(new RecyclerData("Refer & Earn", R.drawable.sharing));
+
+
+      /*  recyclerDataArrayList.add(new RecyclerData("Ambulance", R.drawable.ambulancehome));
         recyclerDataArrayList.add(new RecyclerData("Reports", R.drawable.hospital));
         recyclerDataArrayList.add(new RecyclerData("Fitness", R.drawable.fitness));
-        recyclerDataArrayList.add(new RecyclerData("Vehicles", R.drawable.carblue));
-        recyclerDataArrayList.add(new RecyclerData("Refer & Earn", R.drawable.sharing));
+*/
 
         // added data from arraylist to adapter class.
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(recyclerDataArrayList, requireContext());
@@ -121,77 +136,105 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         recyclerList.setLayoutManager(layoutManager);
         recyclerList.setAdapter(adapter);
         adapter.setOnItemClickListener((position, v) -> {
-            Log.d("TAG", "onItemClick position: " + position);
+            Log.d("TAG", "onItemClick position: " + recyclerDataArrayList.get(position).getTitle());
 
-            if (position == 0) {
+            if (recyclerDataArrayList.get(position).getTitle().equalsIgnoreCase("Recharges")){
+               /* if (Utility.getSharedPreferencesBoolean(Objects.requireNonNull(getContext()), "islogin", false)) {
+                    if (Utility.getSharedPreferences(getContext(), "user_type").equalsIgnoreCase("user")) {
+                        startActivity(new Intent(getContext(), RechargeActivity.class)
+                                .putExtra("donated", "" + donated)
+                                .putExtra("wallet", wallet)
+                                .putExtra("FROM", "fragment"));
+                    }
+                }*/
+
+                CustomSnakbar.showSnakabar(Objects.requireNonNull(getContext()), v, "Coming Soon...");
+
+            }
+
+            else if (recyclerDataArrayList.get(position).getTitle().equalsIgnoreCase("Short News")){
+                startActivity(new Intent(getContext(), NotificationActivity.class)
+                        .putExtra("city", "" + city)
+                        .putExtra("lat", "" + lat)
+                        .putExtra("lon", "" + lon));
+
+            }
+            else if (recyclerDataArrayList.get(position).getTitle().equalsIgnoreCase("Covid Services")) {
                 startActivity(new Intent(getContext(), CovidServicesActivity.class)
                         .putExtra("city", "" + city)
                         .putExtra("lat", "" + lat)
                         .putExtra("wallet", "" + wallet)
                         .putExtra("donated", "" + donated)
                         .putExtra("lon", "" + lon));
-                Animatoo.animateCard(getContext());
-            } else if (position == 1) {
+               // Animatoo.animateCard(getContext());
+            } else if (recyclerDataArrayList.get(position).getTitle().equalsIgnoreCase("Market Prices")) {
+
                 startActivity(new Intent(getContext(), MarketPricesActivity.class)
                         .putExtra("head", "Market Prices")
                         .putExtra("donated", "" + donated)
                         .putExtra("wallet", "" + wallet)
                 );
-            } else if (position == 2) {
+            } else if (recyclerDataArrayList.get(position).getTitle().equalsIgnoreCase("Ambulance")) {
                 startActivity(new Intent(getContext(), AmbulanceListActivity.class)
                         .putExtra("head", "Ambulance"));
-                Animatoo.animateCard(getContext());
-            } else if (position == 3) {
+               // Animatoo.animateCard(getContext());
+            } else if (recyclerDataArrayList.get(position).getTitle().equalsIgnoreCase("Blood")) {
                 startActivity(new Intent(getContext(), BloodListActivity.class)
                         .putExtra("head", "Blood")
                         .putExtra("wallet", "" + wallet)
                         .putExtra("donated", "" + donated)
                 );
-                Animatoo.animateCard(getContext());
-            } else if (position == 4) {
+              //  Animatoo.animateCard(getContext());
+            } else if (recyclerDataArrayList.get(position).getTitle().equalsIgnoreCase("Medical Shop")) {
                 startActivity(new Intent(getContext(), MedicalShopListActivity.class)
                         .putExtra("head", "Medical Shop")
                         .putExtra("donated", "" + donated)
                         .putExtra("wallet", "" + wallet)
                 );
-                Animatoo.animateCard(getContext());
-            } else if (position == 5) {
+               // Animatoo.animateCard(getContext());
+            } else if (recyclerDataArrayList.get(position).getTitle().equalsIgnoreCase("RMP")) {
                 startActivity(new Intent(getContext(), RMPDoctorListActivity.class)
                         .putExtra("head", "RMP Doctors")
                         .putExtra("wallet", "" + wallet)
                         .putExtra("donated", "" + donated)
                 );
-                Animatoo.animateCard(getContext());
-            } else if (position == 6) {
+               // Animatoo.animateCard(getContext());
+            } else if (recyclerDataArrayList.get(position).getTitle().equalsIgnoreCase("Veterinary")) {
                 startActivity(new Intent(getContext(), VaterinaryDoctorListActivity.class)
                         .putExtra("head", "Vaterinary Doctors")
                         .putExtra("wallet", "" + wallet)
                         .putExtra("donated", "" + donated));
-                Animatoo.animateCard(getContext());
-            } else if (position == 7) {
+               // Animatoo.animateCard(getContext());
+            } else if (recyclerDataArrayList.get(position).getTitle().equalsIgnoreCase("Labs")) {
                 startActivity(new Intent(getContext(), LabListActivity.class)
                         .putExtra("head", "Labs")
                         .putExtra("wallet", "" + wallet)
                         .putExtra("donated", "" + donated)
                 );
-                Animatoo.animateCard(getContext());
-            } else if (position == 8) {
+               // Animatoo.animateCard(getContext());
+            } else if (recyclerDataArrayList.get(position).getTitle().equalsIgnoreCase("Reports")) {
                 startActivity(new Intent(getContext(), ReportsActivity.class)
                         .putExtra("head", "Reports"));
-                Animatoo.animateCard(getContext());
-            } else if (position == 9) {
+              //  Animatoo.animateCard(getContext());
+            } else if (recyclerDataArrayList.get(position).getTitle().equalsIgnoreCase("Fitness")) {
                 startActivity(new Intent(getContext(), CovidWinnersActivity.class));
-                Animatoo.animateCard(getContext());
-            } else if (position == 10) {
+              //  Animatoo.animateCard(getContext());
+            } else if (recyclerDataArrayList.get(position).getTitle().equalsIgnoreCase("Vehicles")) {
                 startActivity(new Intent(getContext(), VehiclesActivity.class)
                         .putExtra("city", "" + city)
                         .putExtra("lat", "" + lat)
                         .putExtra("wallet", "" + wallet)
                         .putExtra("donated", "" + donated)
                         .putExtra("lon", "" + lon));
-                Animatoo.animateCard(getContext());
+              //  Animatoo.animateCard(getContext());
+            }else if (recyclerDataArrayList.get(position).getTitle().equalsIgnoreCase("Delivery Boys")){
+                startActivity(new Intent(getContext(), DeliveryBoyActivity.class)
+                        .putExtra("city", "" + city)
+                        .putExtra("lat", "" + lat)
+                        .putExtra("lon", "" + lon));
+               // Animatoo.animateCard(mContext);
             }
-            else if (position == 11) {
+            else if (recyclerDataArrayList.get(position).getTitle().equalsIgnoreCase("Refer & Earn")) {
                 if (Utility.getSharedPreferencesBoolean(getContext(), "islogin", false)) {
                     startActivity(new Intent(getContext(), ReferActivity.class)
                             .putExtra("head", "Refer & Earn")
@@ -228,6 +271,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         return mView;
     }
+
+
+
 
     private void getBanner(String uid, final View view) {
 

@@ -3,6 +3,7 @@ package com.ambitious.fghdoctor.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.ambitious.fghdoctor.Adapters.BloodListAdpter;
 import com.ambitious.fghdoctor.Adapters.NotificationAdapter;
+import com.ambitious.fghdoctor.Adapters.ViewPager2Adapter;
 import com.ambitious.fghdoctor.Model.BloodDonor;
 import com.ambitious.fghdoctor.Model.Noti;
 import com.ambitious.fghdoctor.R;
@@ -44,6 +46,8 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
     private RecyclerView rv_Notifications;
     private ArrayList<Noti> notis;
     private NotificationAdapter adapter;
+    // Create object of ViewPager2
+    private ViewPager2 viewPager2;
     private String city = "", lat = "", lon = "";
 
     @Override
@@ -60,6 +64,9 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
 
             if (Utility.isNetworkConnected(mContext)) {
                 String uid = Utility.getSharedPreferences(mContext, "noti_u_id");
+
+
+
                 getNotifications(uid, city, lat, lon, iv_Bck);
             } else {
                 AlertConnection.showAlertDialog(mContext, "No Internet Connection",
@@ -110,11 +117,39 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
                             }
 
 
-                            adapter = new NotificationAdapter(mContext, notis);
+                           /* adapter = new NotificationAdapter(mContext, notis);
                             LinearLayoutManager manager = new LinearLayoutManager(mContext);
                             manager.setOrientation(RecyclerView.VERTICAL);
                             rv_Notifications.setLayoutManager(manager);
-                            rv_Notifications.setAdapter(adapter);
+                            rv_Notifications.setAdapter(adapter);*/
+
+                            ViewPager2Adapter viewPager2Adapter = new ViewPager2Adapter(mContext,notis);
+
+                            // adding the adapter to viewPager2
+                            // to show the views in recyclerview
+                            viewPager2.setAdapter(viewPager2Adapter);
+
+                            // To get swipe event of viewpager2
+                            viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+                                @Override
+                                // This method is triggered when there is any scrolling activity for the current page
+                                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                                    super.onPageScrolled(position, positionOffset, positionOffsetPixels);
+                                }
+
+                                // triggered when you select a new page
+                                @Override
+                                public void onPageSelected(int position) {
+                                    super.onPageSelected(position);
+                                }
+
+                                // triggered when there is
+                                // scroll state will be changed
+                                @Override
+                                public void onPageScrollStateChanged(int state) {
+                                    super.onPageScrollStateChanged(state);
+                                }
+                            });
 
 
                         } else {
@@ -146,7 +181,8 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
         iv_Bck = findViewById(R.id.iv_Bck);
         tv_Notavailable = findViewById(R.id.tv_Notavailable);
         rl_Loader = findViewById(R.id.rl_Loader);
-        rv_Notifications = findViewById(R.id.rv_Notifications);
+        //rv_Notifications = findViewById(R.id.rv_Notifications);
+        viewPager2 = findViewById(R.id.viewpager);
 
         iv_Bck.setOnClickListener(this);
 

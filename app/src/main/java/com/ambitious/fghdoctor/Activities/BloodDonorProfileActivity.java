@@ -52,6 +52,7 @@ public class BloodDonorProfileActivity extends AppCompatActivity implements View
     private String contact = "";
     private ArrayList<String> imagesStringsProfile;
     private ArrayList<String> imagesStrings;
+    private int percentage =0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

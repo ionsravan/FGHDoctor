@@ -51,7 +51,7 @@ public class DeliveryBoyProfileActivity extends AppCompatActivity implements Vie
     private String contact = "";
     private ArrayList<String> imagesStringsProfile;
     private ArrayList<String> imagesStrings;
-
+    private int percentage =0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

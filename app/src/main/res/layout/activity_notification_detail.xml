@@ -69,7 +69,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_10sdp"
                 android:orientation="vertical">
 
                 <ImageView
@@ -86,9 +85,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:text="Title"
+                    android:textSize="16sp"
                     android:textColor="@color/colorBlack"
                     android:textStyle="bold"
-                    android:visibility="gone" />
+                    android:visibility="gone"
+                    android:layout_margin="8dp"
+                    />
 
                 <TextView
                     android:id="@+id/tv_Msg"
@@ -97,8 +99,11 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_20sdp"
                     android:text="Message"
+                    android:textSize="16sp"
                     android:textColor="@color/colorGrayDark"
-                    android:visibility="gone" />
+                    android:visibility="gone"
+                    android:layout_margin="8dp"
+                    />
 
             </LinearLayout>
 

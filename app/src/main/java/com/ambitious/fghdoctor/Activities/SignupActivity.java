@@ -189,9 +189,9 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         // String register_id = FirebaseInstanceId.getInstance().getToken();
         String register_id = Utility.getSharedPreferences(getApplicationContext(), "regId");
 
-        if (path1.equalsIgnoreCase("")) {
+       /* if (path1.equalsIgnoreCase("")) {
             CustomSnakbar.showSnakabar(mContext, v, "Please Select Profile Image!");
-        } else if (fname.equalsIgnoreCase("")) {
+        } else*/ if (fname.equalsIgnoreCase("")) {
             et_Fname.setError("Can't be Empty");
             et_Fname.requestFocus();
         } else if (lname.equalsIgnoreCase("")) {
@@ -232,7 +232,8 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
     private void requestToRegister(String did, String fullname, String email, String pass, String num, String type, String dob, String sex, String referby, String reg_id, MultipartBody.Part body, final View view) {
 
         rl_Loader.setVisibility(View.VISIBLE);
-        Call<ResponseBody> call = AppConfig.loadInterface().signup(did, fullname, email, pass, num, type, dob, sex, referby, reg_id, body);
+       // Call<ResponseBody> call = AppConfig.loadInterface().signup(did, fullname, email, pass, num, type, dob, sex, referby, reg_id, body);
+        Call<ResponseBody> call = AppConfig.loadInterface().signup(did, fullname, email, pass, num, type, dob, sex, referby, reg_id);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {

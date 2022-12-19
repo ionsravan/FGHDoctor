@@ -96,7 +96,7 @@ public class DoctorProfileActivity extends AppCompatActivity implements View.OnC
     private boolean is_paid = false;
     private Dialog cdialog = null;
 
-
+    private int percentage =0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

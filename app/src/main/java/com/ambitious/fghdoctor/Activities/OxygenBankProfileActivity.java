@@ -47,7 +47,7 @@ public class OxygenBankProfileActivity extends AppCompatActivity implements View
     private LinearLayout ll_Oxcy, ll_Oxcon;
     private String contact = "";
     private ArrayList<String> imagesStringsProfile;
-
+    private int percentage =0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

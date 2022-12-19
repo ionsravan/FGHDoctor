@@ -14,7 +14,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
-            android:background="@color/colorBase">
+            android:background="@color/colorBase"
+            android:visibility="gone">
 
             <ImageView
                 android:id="@+id/iv_Bck"
@@ -65,11 +66,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.recyclerview.widget.RecyclerView
+            <!--<androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_Notifications"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scrollbars="none" />
+                android:scrollbars="none" />-->
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" />
 
             <TextView
                 android:id="@+id/tv_Notavailable"

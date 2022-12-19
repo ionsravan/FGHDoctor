@@ -73,7 +73,7 @@ public class MarketPricesProfileActivity extends AppCompatActivity implements Vi
     LinearLayout bankLayout;
     private String contact = "", wallet = "", donated = "", user_id = "", n_Wallet = "", Amnt = "";
     private ArrayList<String> imagesStringsProfile;
-
+    private int percentage =0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -295,7 +295,7 @@ public class MarketPricesProfileActivity extends AppCompatActivity implements Vi
                             // Amnt = "" + (Integer.parseInt(fee));
 
                             // percentage deduction from wallet
-                            int percentage = ((amountOfPercentage * Integer.parseInt(fee)) / 100);
+                            percentage = ((amountOfPercentage * Integer.parseInt(fee)) / 100);
                             int finalAmount = Integer.parseInt(fee) + percentage;
                             Amnt = String.valueOf(finalAmount);
 
@@ -351,7 +351,12 @@ public class MarketPricesProfileActivity extends AppCompatActivity implements Vi
 
         btnContinue.setOnClickListener(v1 -> {
             alertDialog.dismiss();
-            makePayment(uid, user_id, Amnt, n_Wallet, "wallet", v);
+
+            // pay to vendor
+            int vendorAmount = Integer.parseInt(Amnt) - percentage;
+
+            Log.d("TAG", "confirmationDialog: "+vendorAmount);
+            makePayment(uid, user_id, String.valueOf(vendorAmount), n_Wallet, "wallet", v);
         });
 
         btnCancel.setOnClickListener(v1 -> {

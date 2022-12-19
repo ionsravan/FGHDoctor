@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    tools:context=".Activities.MedicalShopProfileActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@color/colorBase">
+
+            <ImageView
+                android:id="@+id/iv_Bck"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:padding="@dimen/_5sdp"
+                android:src="@drawable/ic_key_bck" />
+
+            <TextView
+                android:id="@+id/tv_Head"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Withdrawal"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_15sdp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@color/colorWhite"
+            android:elevation="@dimen/_5sdp"
+            app:cardCornerRadius="@dimen/_5sdp">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="bottom"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/bankLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:layout_marginTop="10dp"
+                        >
+
+                        <TextView
+                            android:id="@+id/txtAccountNo"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40sdp"
+                            android:text="XXXXX123456"
+                            android:textStyle="bold"
+                            android:textSize="18sp"
+                            android:textColor="@color/colorWhite"
+                            android:background="@drawable/bg_btn"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            android:layout_marginEnd="3dp"
+                            android:layout_weight="1"
+
+                            />
+
+                        <TextView
+                            android:id="@+id/txtIfscCode"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40sdp"
+                            android:text="XXXXX123456"
+                            android:textStyle="bold"
+                            android:textSize="18sp"
+                            android:textColor="@color/colorWhite"
+                            android:background="@drawable/bg_btn"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            android:layout_marginStart="3dp"
+                            android:layout_weight="1"
+
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/et_Pname"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_30sdp"
+                            android:background="@drawable/et_bg"
+                            android:hint="Enter your Name*"
+                            android:inputType="textCapSentences"
+                            android:paddingLeft="@dimen/_5sdp" />
+
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_marginTop="@dimen/_5sdp">
+
+                            <EditText
+                                android:id="@+id/et_Email"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_marginRight="2dp"
+                                android:layout_toLeftOf="@+id/v1"
+                                android:background="@drawable/et_bg"
+                                android:hint="Email"
+                                android:inputType="textEmailAddress"
+                                android:paddingLeft="@dimen/_5sdp"
+                                android:paddingRight="@dimen/_5sdp" />
+
+                            <View
+                                android:id="@+id/v1"
+                                android:layout_width="@dimen/_5sdp"
+                                android:layout_height="5dp"
+                                android:layout_centerInParent="true" />
+
+                            <EditText
+                                android:id="@+id/et_Pnum"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_toRightOf="@+id/v1"
+                                android:background="@drawable/et_bg"
+                                android:hint="@string/entrptnum"
+                                android:inputType="number"
+                                android:maxLength="13"
+                                android:paddingLeft="@dimen/_5sdp"
+                                android:textSize="@dimen/_12sdp" />
+
+                        </RelativeLayout>
+
+                        <EditText
+                            android:id="@+id/et_Amount"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:background="@drawable/et_bg"
+                            android:hint="Enter Amount*"
+                            android:inputType="number"
+                            android:paddingLeft="@dimen/_5sdp" />
+
+                        <CheckBox
+                            android:id="@+id/chk_Wallet"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableTint="@color/colorBase"
+                            android:text="Use Wallet Amount" />
+
+                        <TextView
+                            android:id="@+id/tv_Pay"
+                            android:layout_width="@dimen/_100sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_margin="@dimen/_10sdp"
+                            android:background="@drawable/bg_box"
+                            android:backgroundTint="@color/colorBase"
+                            android:gravity="center"
+                            android:text="Withdraw Now"
+                            android:textAllCaps="true"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/_10sdp"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </ScrollView>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_Loader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:clickable="true"
+        android:visibility="gone">
+
+        <com.github.ybq.android.spinkit.SpinKitView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/spin_kit"
+            style="@style/SpinKitView.Circle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:SpinKit_Color="@color/colorWhite" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

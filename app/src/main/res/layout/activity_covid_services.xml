@@ -361,8 +361,8 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:src="@drawable/deliveryboy"
-                    android:tint="@color/colorWhite"
-                    android:visibility="visible" />
+                    android:visibility="visible"
+                    app:tint="@color/colorWhite" />
 
                 <TextView
                     android:id="@+id/tv_Deliveryboys"

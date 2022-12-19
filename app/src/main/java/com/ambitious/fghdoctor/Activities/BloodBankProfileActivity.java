@@ -72,6 +72,7 @@ public class BloodBankProfileActivity extends AppCompatActivity implements View.
     private String contact = "", wallet = "", donated = "", user_id = "", n_Wallet = "", Amnt = "";
     private ArrayList<String> imagesStringsProfile;
     LinearLayout bankLayout;
+    private int percentage =0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -281,7 +282,7 @@ public class BloodBankProfileActivity extends AppCompatActivity implements View.
                     if (chk_Wallet.isChecked()) {
                         if (Integer.parseInt(fee) <= Integer.parseInt(wallet)) {
                             //Amnt = "" + (Integer.parseInt(fee));
-                            int percentage = ((amountOfPercentage * Integer.parseInt(fee)) / 100);
+                            percentage = ((amountOfPercentage * Integer.parseInt(fee)) / 100);
                             int finalAmount = Integer.parseInt(fee) +percentage;
                             Amnt = String.valueOf(finalAmount);
 
@@ -336,7 +337,11 @@ public class BloodBankProfileActivity extends AppCompatActivity implements View.
 
         btnContinue.setOnClickListener(v1 -> {
             alertDialog.dismiss();
-            makePayment(uid, user_id, Amnt, n_Wallet, "wallet", v);
+            int vendorAmount = Integer.parseInt(Amnt) - percentage;
+
+            Log.d("TAG", "confirmationDialog: "+vendorAmount);
+            makePayment(uid, user_id, String.valueOf(vendorAmount), n_Wallet, "wallet", v);
+
         });
 
         btnCancel.setOnClickListener(v1 -> {
