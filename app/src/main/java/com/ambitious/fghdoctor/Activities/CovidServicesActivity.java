@@ -265,11 +265,18 @@ public class CovidServicesActivity extends AppCompatActivity implements View.OnC
                 break;
 
             case R.id.rl_Deliveryboys:
-                startActivity(new Intent(mContext, DeliveryBoyActivity.class)
+                /*startActivity(new Intent(mContext, DeliveryBoyActivity.class)
                         .putExtra("city", "" + city)
                         .putExtra("lat", "" + lat)
                         .putExtra("lon", "" + lon));
-                Animatoo.animateCard(mContext);
+                Animatoo.animateCard(mContext);*/
+
+                startActivity(new Intent(mContext, DeliveryBoyActivity.class)
+                        .putExtra("city", "" + city)
+                        .putExtra("lat", "" + lat)
+                        .putExtra("lon", "" + lon)
+                        .putExtra("wallet", "" + wallet)
+                        .putExtra("donated", "" + donated));
                 break;
 
             case R.id.rl_Vaccine:

@@ -134,6 +134,7 @@ public class WithDrawActivity extends AppCompatActivity implements View.OnClickL
 
         } else {
             startActivity(new Intent(mContext, LoginActivity.class));
+            finish();
             Animatoo.animateCard(mContext);
         }
 

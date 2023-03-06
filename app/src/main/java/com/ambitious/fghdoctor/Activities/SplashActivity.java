@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,6 +16,8 @@ import com.ambitious.fghdoctor.R;
 import com.ambitious.fghdoctor.Utils.Utility;
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.google.firebase.messaging.FirebaseMessaging;
+
+import java.util.concurrent.TimeUnit;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -31,6 +34,8 @@ public class SplashActivity extends AppCompatActivity {
         AccessPremissions();
 
         fcmToken();
+
+        //isDialog();
     }
 
     private void fcmToken(){
@@ -239,5 +244,15 @@ public class SplashActivity extends AppCompatActivity {
                 ProceedAfterPermisson();
             }
         }
+    }
+
+
+    private void isDialog(){
+        // Storing data into SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("isDialog",MODE_PRIVATE);
+        SharedPreferences.Editor myEdit = sharedPreferences.edit();
+      //  myEdit.putBoolean("isDialog",true);
+        myEdit.putLong("duration",System.currentTimeMillis()- TimeUnit.DAYS.toMillis(11));
+        myEdit.apply();
     }
 }

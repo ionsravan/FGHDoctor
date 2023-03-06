@@ -48,7 +48,7 @@
                 android:layout_height="180dp"
                 android:background="@drawable/bg_one"
                 android:padding="@dimen/_5sdp"
-                android:visibility="gone">
+                android:visibility="visible">
 
 
                 <ImageView
@@ -56,7 +56,15 @@
                     android:layout_width="@dimen/_90sdp"
                     android:layout_height="@dimen/_90sdp"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/camera" />
+                    android:src="@drawable/camera"
+                    android:visibility="gone"/>
+
+                <ImageView
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="@dimen/_90sdp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/logo" />
+
 
             </RelativeLayout>
 
@@ -234,7 +242,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:padding="10dp"
-                    android:text="You haven't any referral code ? use this - FG175955"/>
+                    android:text="You haven't any referral code ? use this - FG370392"/>
 
                 <View
                     android:layout_width="match_parent"

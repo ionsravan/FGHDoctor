@@ -12,8 +12,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ambitious.fghdoctor.Activities.DeliveryBoyActivity;
 import com.ambitious.fghdoctor.Activities.DeliveryBoyProfileActivity;
 import com.ambitious.fghdoctor.Activities.HelpingSoldierProfileActivity;
+import com.ambitious.fghdoctor.Activities.MedicalShopProfileActivity;
+import com.ambitious.fghdoctor.Activities.RMPDoctorListActivity;
 import com.ambitious.fghdoctor.Model.Delivery;
 import com.ambitious.fghdoctor.Model.Helping;
 import com.ambitious.fghdoctor.R;
@@ -93,9 +96,16 @@ public class DeliveryListAdpter extends RecyclerView.Adapter<DeliveryListAdpter.
                 @Override
                 public void onClick(View v) {
 
-                    context.startActivity(new Intent(context, DeliveryBoyProfileActivity.class)
+                   /* context.startActivity(new Intent(context, DeliveryBoyProfileActivity.class)
                             .putExtra("head", tv_Name.getText().toString())
                             .putExtra("obj", deliveries.get(getAdapterPosition()).getObj()));
+                    Animatoo.animateCard(context);*/
+
+                    context.startActivity(new Intent(context, MedicalShopProfileActivity.class)
+                            .putExtra("head", tv_Name.getText().toString())
+                            .putExtra("wallet", ((DeliveryBoyActivity) context).wallet)
+                            .putExtra("donated", ((DeliveryBoyActivity) context).donated)
+                            .putExtra("obj", "" + deliveries.get(getAdapterPosition()).getObj()));
                     Animatoo.animateCard(context);
                 }
             });

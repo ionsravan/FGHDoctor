@@ -27,6 +27,13 @@ public class ReferActivity extends AppCompatActivity implements View.OnClickList
     private LinearLayout ll_Wallet;
     private RelativeLayout rl_Watsapp;
     private String referel_code = "";
+    private String referral_content ="\n\nOur Services :\n" +
+            "\n" +
+            "Health Releted Services , Nearby shops Grocery Products & Prices With Delivery Boy Services , Short News , All Vehicles Rental Services , Share & Earning Money Every month\n" +
+            "\n" +
+            "(Coming Soon ) UPI & Recharges , Entertainment , Courses With Jobs , Agriculture Releted Services , Education Releted Services  , Lot , Affiliate Earn money , Videos, Photos Posts on earning money, Manufacturer Services And more....\n" +
+            "\n" +
+            "FGH యాప్ సర్వీసులను వినియోగించుకోండి షేర్ చేయండి  ప్రతీనెల సంపాదించండి";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +79,7 @@ public class ReferActivity extends AppCompatActivity implements View.OnClickList
                 break;
 
             case R.id.iv_Fb:
-                String urlToShare = "Please Install FGH Tech Solutions \nhttps://play.google.com/store/apps/details?id=com.ambitious.fghdoctor \n& Earn Above ₹10000 every month Using this Referral Code - " + referel_code;
+                String urlToShare = "Please Install FGH Tech Solutions \nhttps://play.google.com/store/apps/details?id=com.ambitious.fghdoctor \n& Earn Above ₹10000 every month Using this Referral Code - " + referel_code +referral_content;
                 Intent fintent = new Intent(Intent.ACTION_SEND);
                 fintent.setType("text/plain");
                 fintent.putExtra(Intent.EXTRA_TEXT, urlToShare);
@@ -93,7 +100,7 @@ public class ReferActivity extends AppCompatActivity implements View.OnClickList
                 break;
 
             case R.id.iv_Fbmess:
-                String textt = "Please Install FGH Tech Solutions \nhttps://play.google.com/store/apps/details?id=com.ambitious.fghdoctor \n& Earn Above ₹10000 every month Using this Referral Code -  " + referel_code;
+                String textt = "Please Install FGH Tech Solutions \nhttps://play.google.com/store/apps/details?id=com.ambitious.fghdoctor \n& Earn Above ₹10000 every month Using this Referral Code -  " + referel_code+referral_content;
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_SEND);
                 intent.putExtra(Intent.EXTRA_TEXT, textt);
@@ -112,7 +119,7 @@ public class ReferActivity extends AppCompatActivity implements View.OnClickList
 
                     Intent waIntent = new Intent(Intent.ACTION_SEND);
                     waIntent.setType("text/plain");
-                    String text = "Please Install FGH Tech Solutions \nhttps://play.google.com/store/apps/details?id=com.ambitious.fghdoctor \n& Earn Above ₹10000 every month Using this Referral Code - " + referel_code;
+                    String text = "Please Install FGH Tech Solutions \nhttps://play.google.com/store/apps/details?id=com.ambitious.fghdoctor \n& Earn Above ₹10000 every month Using this Referral Code - " + referel_code+referral_content;
 
                     PackageInfo info = pm.getPackageInfo("com.whatsapp", PackageManager.GET_META_DATA);
                     //Check if package exists or not. If not then code
@@ -128,7 +135,7 @@ public class ReferActivity extends AppCompatActivity implements View.OnClickList
                 break;
 
             case R.id.iv_More:
-                String txts = "Please Install FGH Tech Solutions \nhttps://play.google.com/store/apps/details?id=com.ambitious.fghdoctor \n& Earn Above ₹10000 every month Using this Referral Code - " + referel_code;
+                String txts = "Please Install FGH Tech Solutions \nhttps://play.google.com/store/apps/details?id=com.ambitious.fghdoctor \n& Earn Above ₹10000 every month Using this Referral Code - " + referel_code+referral_content;
                 Intent sendIntents = new Intent();
                 sendIntents.setAction(Intent.ACTION_SEND);
                 sendIntents.putExtra(Intent.EXTRA_TEXT, txts);

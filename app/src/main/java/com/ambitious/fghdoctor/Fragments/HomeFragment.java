@@ -1,9 +1,15 @@
 package com.ambitious.fghdoctor.Fragments;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -12,11 +18,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Handler;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -27,6 +37,7 @@ import com.ambitious.fghdoctor.Activities.BloodListActivity;
 import com.ambitious.fghdoctor.Activities.CovidServicesActivity;
 import com.ambitious.fghdoctor.Activities.CovidWinnersActivity;
 import com.ambitious.fghdoctor.Activities.DeliveryBoyActivity;
+import com.ambitious.fghdoctor.Activities.HomeActivity;
 import com.ambitious.fghdoctor.Activities.LabListActivity;
 import com.ambitious.fghdoctor.Activities.LoginActivity;
 import com.ambitious.fghdoctor.Activities.MarketPricesActivity;
@@ -37,6 +48,7 @@ import com.ambitious.fghdoctor.Activities.RMPDoctorListActivity;
 import com.ambitious.fghdoctor.Activities.RechargeActivity;
 import com.ambitious.fghdoctor.Activities.ReferActivity;
 import com.ambitious.fghdoctor.Activities.ReportsActivity;
+import com.ambitious.fghdoctor.Activities.SignupActivity;
 import com.ambitious.fghdoctor.Activities.VaterinaryDoctorListActivity;
 import com.ambitious.fghdoctor.Activities.VehiclesActivity;
 import com.ambitious.fghdoctor.Activities.WithDrawActivity;
@@ -50,6 +62,7 @@ import com.ambitious.fghdoctor.Utils.CustomSnakbar;
 import com.ambitious.fghdoctor.Utils.Utility;
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.bumptech.glide.Glide;
+import com.goodiebag.pinview.Pinview;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -64,6 +77,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -94,10 +108,26 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //  RateItDialogFragment.show(getContext(), getFragmentManager());
+
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_home, container, false);
         finds();
+        SharedPreferences sharedPreferences = Objects.requireNonNull(getContext()).getSharedPreferences("isDialog", MODE_PRIVATE);
+       // boolean isDialog = sharedPreferences.getBoolean("isDialog", true);
+        Long duration = sharedPreferences.getLong("duration", System.currentTimeMillis()- TimeUnit.DAYS.toMillis(111111111));
+        if (System.currentTimeMillis()-duration > TimeUnit.DAYS.toMillis(100000000)) {
+            // inflateDialog is a function containing the functionality of popping up the dialog
+            fullScreenDialog();
+
+        }
+
 
         // created new array list..
         recyclerDataArrayList = new ArrayList<>();
@@ -115,15 +145,17 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         recyclerDataArrayList.add(new RecyclerData("RMP", R.drawable.rmp));
         recyclerDataArrayList.add(new RecyclerData("Veterinary", R.drawable.vetreneri));
 
+        recyclerDataArrayList.add(new RecyclerData("Ambulance", R.drawable.ambulancehome));
+        recyclerDataArrayList.add(new RecyclerData("Reports", R.drawable.hospital));
+        //  recyclerDataArrayList.add(new RecyclerData("Fitness", R.drawable.fitness));
+
         recyclerDataArrayList.add(new RecyclerData("Labs", R.drawable.lab));
         recyclerDataArrayList.add(new RecyclerData("Covid Services", R.drawable.covidservice));
-        recyclerDataArrayList.add(new RecyclerData("Refer & Earn", R.drawable.sharing));
+        recyclerDataArrayList.add(new RecyclerData("Courses Hub", R.drawable.courses_hub));
+        recyclerDataArrayList.add(new RecyclerData("Jobs", R.drawable.jobs));
 
+        // recyclerDataArrayList.add(new RecyclerData("Refer & Earn", R.drawable.sharing));
 
-      /*  recyclerDataArrayList.add(new RecyclerData("Ambulance", R.drawable.ambulancehome));
-        recyclerDataArrayList.add(new RecyclerData("Reports", R.drawable.hospital));
-        recyclerDataArrayList.add(new RecyclerData("Fitness", R.drawable.fitness));
-*/
 
         // added data from arraylist to adapter class.
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(recyclerDataArrayList, requireContext());
@@ -138,7 +170,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         adapter.setOnItemClickListener((position, v) -> {
             Log.d("TAG", "onItemClick position: " + recyclerDataArrayList.get(position).getTitle());
 
-            if (recyclerDataArrayList.get(position).getTitle().equalsIgnoreCase("Recharges")){
+            if (recyclerDataArrayList.get(position).getTitle().equalsIgnoreCase("Recharges")) {
                /* if (Utility.getSharedPreferencesBoolean(Objects.requireNonNull(getContext()), "islogin", false)) {
                     if (Utility.getSharedPreferences(getContext(), "user_type").equalsIgnoreCase("user")) {
                         startActivity(new Intent(getContext(), RechargeActivity.class)
@@ -150,23 +182,20 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
                 CustomSnakbar.showSnakabar(Objects.requireNonNull(getContext()), v, "Coming Soon...");
 
-            }
-
-            else if (recyclerDataArrayList.get(position).getTitle().equalsIgnoreCase("Short News")){
+            } else if (recyclerDataArrayList.get(position).getTitle().equalsIgnoreCase("Short News")) {
                 startActivity(new Intent(getContext(), NotificationActivity.class)
                         .putExtra("city", "" + city)
                         .putExtra("lat", "" + lat)
                         .putExtra("lon", "" + lon));
 
-            }
-            else if (recyclerDataArrayList.get(position).getTitle().equalsIgnoreCase("Covid Services")) {
+            } else if (recyclerDataArrayList.get(position).getTitle().equalsIgnoreCase("Covid Services")) {
                 startActivity(new Intent(getContext(), CovidServicesActivity.class)
                         .putExtra("city", "" + city)
                         .putExtra("lat", "" + lat)
                         .putExtra("wallet", "" + wallet)
                         .putExtra("donated", "" + donated)
                         .putExtra("lon", "" + lon));
-               // Animatoo.animateCard(getContext());
+                // Animatoo.animateCard(getContext());
             } else if (recyclerDataArrayList.get(position).getTitle().equalsIgnoreCase("Market Prices")) {
 
                 startActivity(new Intent(getContext(), MarketPricesActivity.class)
@@ -177,48 +206,48 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             } else if (recyclerDataArrayList.get(position).getTitle().equalsIgnoreCase("Ambulance")) {
                 startActivity(new Intent(getContext(), AmbulanceListActivity.class)
                         .putExtra("head", "Ambulance"));
-               // Animatoo.animateCard(getContext());
+                // Animatoo.animateCard(getContext());
             } else if (recyclerDataArrayList.get(position).getTitle().equalsIgnoreCase("Blood")) {
                 startActivity(new Intent(getContext(), BloodListActivity.class)
                         .putExtra("head", "Blood")
                         .putExtra("wallet", "" + wallet)
                         .putExtra("donated", "" + donated)
                 );
-              //  Animatoo.animateCard(getContext());
+                //  Animatoo.animateCard(getContext());
             } else if (recyclerDataArrayList.get(position).getTitle().equalsIgnoreCase("Medical Shop")) {
                 startActivity(new Intent(getContext(), MedicalShopListActivity.class)
                         .putExtra("head", "Medical Shop")
                         .putExtra("donated", "" + donated)
                         .putExtra("wallet", "" + wallet)
                 );
-               // Animatoo.animateCard(getContext());
+                // Animatoo.animateCard(getContext());
             } else if (recyclerDataArrayList.get(position).getTitle().equalsIgnoreCase("RMP")) {
                 startActivity(new Intent(getContext(), RMPDoctorListActivity.class)
                         .putExtra("head", "RMP Doctors")
                         .putExtra("wallet", "" + wallet)
                         .putExtra("donated", "" + donated)
                 );
-               // Animatoo.animateCard(getContext());
+                // Animatoo.animateCard(getContext());
             } else if (recyclerDataArrayList.get(position).getTitle().equalsIgnoreCase("Veterinary")) {
                 startActivity(new Intent(getContext(), VaterinaryDoctorListActivity.class)
                         .putExtra("head", "Vaterinary Doctors")
                         .putExtra("wallet", "" + wallet)
                         .putExtra("donated", "" + donated));
-               // Animatoo.animateCard(getContext());
+                // Animatoo.animateCard(getContext());
             } else if (recyclerDataArrayList.get(position).getTitle().equalsIgnoreCase("Labs")) {
                 startActivity(new Intent(getContext(), LabListActivity.class)
                         .putExtra("head", "Labs")
                         .putExtra("wallet", "" + wallet)
                         .putExtra("donated", "" + donated)
                 );
-               // Animatoo.animateCard(getContext());
+                // Animatoo.animateCard(getContext());
             } else if (recyclerDataArrayList.get(position).getTitle().equalsIgnoreCase("Reports")) {
                 startActivity(new Intent(getContext(), ReportsActivity.class)
                         .putExtra("head", "Reports"));
-              //  Animatoo.animateCard(getContext());
+                //  Animatoo.animateCard(getContext());
             } else if (recyclerDataArrayList.get(position).getTitle().equalsIgnoreCase("Fitness")) {
                 startActivity(new Intent(getContext(), CovidWinnersActivity.class));
-              //  Animatoo.animateCard(getContext());
+                //  Animatoo.animateCard(getContext());
             } else if (recyclerDataArrayList.get(position).getTitle().equalsIgnoreCase("Vehicles")) {
                 startActivity(new Intent(getContext(), VehiclesActivity.class)
                         .putExtra("city", "" + city)
@@ -226,15 +255,20 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         .putExtra("wallet", "" + wallet)
                         .putExtra("donated", "" + donated)
                         .putExtra("lon", "" + lon));
-              //  Animatoo.animateCard(getContext());
-            }else if (recyclerDataArrayList.get(position).getTitle().equalsIgnoreCase("Delivery Boys")){
+                //  Animatoo.animateCard(getContext());
+            } else if (recyclerDataArrayList.get(position).getTitle().equalsIgnoreCase("Delivery Boys")) {
                 startActivity(new Intent(getContext(), DeliveryBoyActivity.class)
                         .putExtra("city", "" + city)
                         .putExtra("lat", "" + lat)
-                        .putExtra("lon", "" + lon));
-               // Animatoo.animateCard(mContext);
-            }
-            else if (recyclerDataArrayList.get(position).getTitle().equalsIgnoreCase("Refer & Earn")) {
+                        .putExtra("lon", "" + lon)
+                        .putExtra("wallet", "" + wallet)
+                        .putExtra("donated", "" + donated));
+                // Animatoo.animateCard(mContext);
+            } else if (recyclerDataArrayList.get(position).getTitle().equalsIgnoreCase("Courses Hub")) {
+                Toast.makeText(getContext(), "Coming Soon...", Toast.LENGTH_SHORT).show();
+            } else if (recyclerDataArrayList.get(position).getTitle().equalsIgnoreCase("Jobs")) {
+                Toast.makeText(getContext(), "Coming Soon...", Toast.LENGTH_SHORT).show();
+            } else if (recyclerDataArrayList.get(position).getTitle().equalsIgnoreCase("Refer & Earn")) {
                 if (Utility.getSharedPreferencesBoolean(getContext(), "islogin", false)) {
                     startActivity(new Intent(getContext(), ReferActivity.class)
                             .putExtra("head", "Refer & Earn")
@@ -273,6 +307,33 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     }
 
 
+    private void fullScreenDialog() {
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(requireContext(), android.R.style.Theme_Translucent_NoTitleBar);
+        View view = getLayoutInflater().inflate(R.layout.image_alert, null);
+
+        mBuilder.setView(view);
+        AlertDialog dialog = mBuilder.create();
+        dialog.show();
+
+        ImageView btnClose = view.findViewById(R.id.btnClose);
+        btnClose.setOnClickListener(v -> {
+            dialog.dismiss();
+
+            isDialog();
+        });
+
+    }
+
+    private void isDialog() {
+        // Storing data into SharedPreferences
+
+
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("isDialog", MODE_PRIVATE);
+        SharedPreferences.Editor myEdit = sharedPreferences.edit();
+       // myEdit.putBoolean("isDialog", false);
+        myEdit.putLong("duration", System.currentTimeMillis());
+        myEdit.apply();
+    }
 
 
     private void getBanner(String uid, final View view) {
@@ -306,8 +367,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                                 image.setScaleType(ImageView.ScaleType.FIT_XY);
                                 Glide.with(getContext()).load(banner_image).into(image);
                                 vf.addView(image);
+                                vf.setFlipInterval(4000);
+                                vf.setAutoStart(true);
+                               /* vf.setInAnimation(requireContext(), android.R.anim.slide_in_left);
+                                vf.setOutAnimation(requireContext(), android.R.anim.slide_out_right);*/
 
                             }
+
 
                         } else {
                             CustomSnakbar.showDarkSnakabar(getContext(), view, "" + resultmessage);

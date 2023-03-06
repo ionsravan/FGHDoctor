@@ -10,15 +10,15 @@ android {
             keyPassword 'fgh@123'
         }
     }
-    compileSdkVersion 30
+    compileSdkVersion 31
     buildToolsVersion "29.0.3"
 
     defaultConfig {
         applicationId "com.ambitious.fghdoctor"
         minSdkVersion 24
-        targetSdkVersion 30
-        versionCode 24
-        versionName "3.6"
+        targetSdkVersion 31
+        versionCode 26
+        versionName "3.8"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -64,5 +64,6 @@ dependencies {
     implementation 'com.github.GoodieBag:Pinview:v1.4'
 
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
+    implementation 'com.vorlonsoft:androidrate:1.0.8'
 
 }

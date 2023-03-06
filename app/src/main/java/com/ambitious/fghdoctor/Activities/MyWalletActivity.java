@@ -189,6 +189,7 @@ public class MyWalletActivity extends AppCompatActivity implements View.OnClickL
                                 tv_Withdraw.setVisibility(View.GONE);
                             }
 
+                            Log.d("TAG", "onResponse: "+donated);
                             if (donated.equalsIgnoreCase("1")) {
                                 tv_Membershipmsg.setVisibility(View.GONE);
                                 tv_Pay.setVisibility(View.GONE);

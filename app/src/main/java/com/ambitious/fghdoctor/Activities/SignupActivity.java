@@ -10,7 +10,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.provider.Settings;
 import android.util.Log;
@@ -70,6 +72,8 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         finds();
+
+
 
         sp_Gender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -215,7 +219,10 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         }else if (number.length() < 9) {
             et_Mobile.setError("Number should be Enter 10 digits");
             et_Mobile.requestFocus();
-        } else {
+        }else if (referby.equalsIgnoreCase("")){
+            et_Refferral.setError("Please Enter Referral code");
+            et_Refferral.requestFocus();
+        }else {
 
             if (!path1.equalsIgnoreCase("")) {
                 File file = new File(path1);
@@ -339,6 +346,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         TextView txtMessage = view.findViewById(R.id.txtMessage);
         TextView txtResend = view.findViewById(R.id.txtResend);
         TextView txtVerify = view.findViewById(R.id.txtVerify);
+        TextView txtResendTimer = view.findViewById(R.id.txtResendTimer);
         Pinview pinview = view.findViewById(R.id.pinview);
 
         String phoneNumber = mobile.trim();
@@ -375,9 +383,40 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
             }
         });
 
+        otpTimer(txtResend,txtResendTimer);
+
         mBuilder.setView(view);
         AlertDialog dialog = mBuilder.create();
         dialog.show();
+    }
+
+    private void otpTimer(TextView txtResend, TextView txtResendTimer){
+        txtResend.setEnabled(false);
+        txtResend.setClickable(false);
+        txtResend.setTextColor(Color.LTGRAY);
+        txtResendTimer.setVisibility(View.VISIBLE);
+        new CountDownTimer(1000 * 120, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+
+                int minutes = (int) ((millisUntilFinished / (1000 * 60)) % 60);
+                int seconds = (int) (millisUntilFinished / 1000) % 60;
+
+                txtResendTimer.setText("Resend OTP in "+minutes + ":" + " " + seconds + " " + "left");
+
+            }
+
+            public void onFinish() {
+
+                txtResend.setEnabled(true);
+                txtResend.setClickable(true);
+                txtResend.setTextColor(Color.BLACK);
+                txtResendTimer.setVisibility(View.GONE);
+
+
+            }
+
+        }.start();
     }
 
     private void resendOTP( String mobile, View view)

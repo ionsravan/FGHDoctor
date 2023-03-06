@@ -114,20 +114,20 @@ public class DoctorProfileActivity extends AppCompatActivity implements View.OnC
            /* donated = "1";
             wallet = "50";*/
 
-            if (wallet.equalsIgnoreCase("0") || wallet.equalsIgnoreCase("")) {
+            if (wallet.equalsIgnoreCase("0") || wallet.equalsIgnoreCase("")|| Integer.parseInt(wallet) <= 0) {
                 wallet = "0";
                 // chk_Wallet.setVisibility(View.GONE);
             }
-            else if (donated.equalsIgnoreCase("0")) {
+            else if (donated.equalsIgnoreCase("0")|| Integer.parseInt(wallet) <= 0) {
               //  wallet = "0";
                 chk_WalletAmount.setVisibility(View.GONE);
-            }else if (donated.equalsIgnoreCase("") && wallet.equalsIgnoreCase("")) {
+            }else if (donated.equalsIgnoreCase("") && wallet.equalsIgnoreCase("")|| Integer.parseInt(wallet) <= 0) {
                 //  wallet = "0";
                 chk_WalletAmount.setVisibility(View.GONE);
-            } else if (donated.equalsIgnoreCase("1") && wallet.equalsIgnoreCase("")) {
+            } else if (donated.equalsIgnoreCase("1") && wallet.equalsIgnoreCase("")|| Integer.parseInt(wallet) <= 0) {
                // wallet = "0";
                 chk_WalletAmount.setVisibility(View.GONE);
-            } else if (donated.equalsIgnoreCase("1") && wallet.equalsIgnoreCase("0")) {
+            } else if (donated.equalsIgnoreCase("1") && wallet.equalsIgnoreCase("0")|| Integer.parseInt(wallet) <= 0) {
                 //wallet = "0";
                 chk_WalletAmount.setVisibility(View.GONE);
             } else {

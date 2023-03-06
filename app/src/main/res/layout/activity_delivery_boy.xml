@@ -29,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="Food Delivery Boys"
+                android:text="Delivery Boys"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/_15sdp"
                 android:textStyle="bold" />

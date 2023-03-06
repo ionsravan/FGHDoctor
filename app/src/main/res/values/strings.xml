@@ -22,7 +22,7 @@
         <item>Withdrawal</item>
         <item>My Wallet</item>
         <item>Settings</item>
-        <item>Health Id Card</item>
+        <item>Subscription Id</item>
         <item>Signup/Login</item>
         <item>Logout</item>
         <item>Call Support</item>
@@ -127,4 +127,13 @@
     <string name="enter_the_code_we_sent_to_the_phone_number_ending_in">Enter the code we sent to the phone number ending in</string>
     <string name="verify">Verify</string>
     <string name="resend_code">Resend Code</string>
+    <string name="subscribe">Subscribe</string>
+    <string name="fghspprt_gmail_com">fghspprt@gmail.com</string>
+    <string name="fgh_support">FGH support</string>
+    <string name="rate_remind_later">remind me later</string>
+    <string name="rate_positive">yes</string>
+    <string name="rate_never" >Never</string>
+    <string name="rate_title">Rate it</string>
+    <string name="rate_message">please rate the app at playstore</string>
+    <string name="including_all_charges">Including All Charges</string>
 </resources>

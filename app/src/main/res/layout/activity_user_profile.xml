@@ -49,7 +49,7 @@
                 android:layout_height="180dp"
                 android:background="@drawable/bg_one"
                 android:padding="@dimen/_5sdp"
-                android:visibility="gone">
+                android:visibility="visible">
 
 
                 <ImageView
@@ -57,7 +57,15 @@
                     android:layout_width="@dimen/_90sdp"
                     android:layout_height="@dimen/_90sdp"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/camera" />
+                    android:src="@drawable/camera"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="@dimen/_90sdp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/logo" />
+
 
             </RelativeLayout>
 
@@ -165,6 +173,8 @@
                         android:layout_height="@dimen/_50sdp"
                         android:background="@null"
                         android:hint="@string/phonenum"
+                        android:focusable="false"
+                        android:clickable="false"
                         android:inputType="number"
                         android:maxLength="10"
                         android:paddingLeft="@dimen/_5sdp" />
@@ -239,9 +249,9 @@
                     android:layout_height="@dimen/_50sdp"
                     android:background="@null"
                     android:hint="Enter Account No"
-                    android:singleLine="true"
                     android:maxLines="1"
-                    android:paddingLeft="@dimen/_15sdp" />
+                    android:paddingLeft="@dimen/_15sdp"
+                    android:singleLine="true" />
 
                 <View
                     android:layout_width="match_parent"
@@ -256,8 +266,8 @@
                     android:background="@null"
                     android:hint="Enter IFSC Code"
                     android:maxLines="1"
-                    android:singleLine="true"
-                    android:paddingLeft="@dimen/_15sdp" />
+                    android:paddingLeft="@dimen/_15sdp"
+                    android:singleLine="true" />
 
                 <View
                     android:layout_width="match_parent"

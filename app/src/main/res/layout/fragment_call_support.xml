@@ -62,7 +62,7 @@
                             android:layout_centerVertical="true"
                             android:padding="@dimen/_7sdp"
                             android:src="@drawable/ic_call"
-                            android:tint="@color/colorBlack" />
+                            app:tint="@color/colorBlack" />
 
                     </RelativeLayout>
 
@@ -100,7 +100,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:scrollbarSize="@dimen/_16sdp"
-                            android:text="Laxman P"
+                            android:text="@string/fgh_support"
                             android:textColor="@color/colorBase"
                             android:textStyle="bold" />
 
@@ -110,7 +110,7 @@
                             android:layout_below="@+id/tv_Nametwo"
                             android:layout_marginTop="@dimen/_2sdp"
                             android:scrollbarSize="@dimen/_16sdp"
-                            android:text="fghdoctors@gmail.com"
+                            android:text="@string/fghspprt_gmail_com"
                             android:textColor="@color/colorGrayDark" />
 
                         <ImageView
@@ -121,7 +121,7 @@
                             android:layout_centerVertical="true"
                             android:padding="@dimen/_7sdp"
                             android:src="@drawable/ic_call"
-                            android:tint="@color/colorBlack" />
+                            app:tint="@color/colorBlack" />
 
                     </RelativeLayout>
 
@@ -129,7 +129,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:adjustViewBounds="true"
-                        android:src="@drawable/img_laxman" />
+                        android:src="@drawable/support_image" />
 
                 </LinearLayout>
 

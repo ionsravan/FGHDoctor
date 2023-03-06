@@ -94,18 +94,18 @@ public class BloodBankProfileActivity extends AppCompatActivity implements View.
             wallet = getIntent().getStringExtra("wallet");
             donated = getIntent().getStringExtra("donated");
 
-            if (wallet.equalsIgnoreCase("0") || wallet.equalsIgnoreCase("")) {
+            if (wallet.equalsIgnoreCase("0") || wallet.equalsIgnoreCase("") || Integer.parseInt(wallet) <= 0) {
                 wallet = "0";
                 // chk_Wallet.setVisibility(View.GONE);
             }
-            else if (donated.equalsIgnoreCase("0")) {
-//                wallet = "0";
+            else if (donated.equalsIgnoreCase("0") || Integer.parseInt(wallet) <= 0) {
+                wallet = "0";
                 chk_Wallet.setVisibility(View.GONE);
-            } else if (donated.equalsIgnoreCase("1") && wallet.equalsIgnoreCase("")) {
-//                wallet = "0";
+            } else if (donated.equalsIgnoreCase("1") && (wallet.equalsIgnoreCase("") || Integer.parseInt(wallet) <= 0)) {
+                wallet = "0";
                 chk_Wallet.setVisibility(View.GONE);
-            } else if (donated.equalsIgnoreCase("1") && wallet.equalsIgnoreCase("0")) {
-//                wallet = "0";
+            } else if (donated.equalsIgnoreCase("1") && (wallet.equalsIgnoreCase("0")|| Integer.parseInt(wallet) <= 0)) {
+                wallet = "0";
                 chk_Wallet.setVisibility(View.GONE);
             } else {
                 if (Utility.getSharedPreferencesBoolean(mContext, "islogin", false)) {
@@ -303,13 +303,21 @@ public class BloodBankProfileActivity extends AppCompatActivity implements View.
 
                         }
                     } else {
-                        Amnt = "" + (Integer.parseInt(fee));
-                        n_Wallet = "";
+
+                        if (Integer.parseInt(wallet) <= 0) {
+                            n_Wallet = "0";
+                            // getOrderId(v, name, Amnt, email, number);
+                            CustomSnakbar.showDarkSnakabar(mContext, v, "Your wallet haven't sufficient amount");
+
+                        } else {
+
+                            Amnt = "" + (Integer.parseInt(fee));
+                            n_Wallet = "";
+                            // getOrderId(v, name, Amnt, email, number);
+                            CustomSnakbar.showDarkSnakabar(mContext, v, "Please use Wallet Amount");
+
 //                        startPayment(name, Amnt, email, number);
-                      //  getOrderId(v, name, Amnt, email, number);
-
-                        CustomSnakbar.showDarkSnakabar(mContext, v, "Please use Wallet Amount");
-
+                        }
                     }
 //                    Toast.makeText(mContext, "Amnt=>" + Amnt + "\nWallet=>" + n_Wallet, Toast.LENGTH_SHORT).show();
                 }
@@ -331,6 +339,9 @@ public class BloodBankProfileActivity extends AppCompatActivity implements View.
         TextView txtPrice = dialogView.findViewById(R.id.txtPrice);
         Button btnContinue = dialogView.findViewById(R.id.btnContinue);
         Button btnCancel = dialogView.findViewById(R.id.btnCancel);
+
+        // add 1Rupee to total amount
+        Amnt = String.valueOf(Integer.parseInt(Amnt) + 1);
 
         txtTitle.setText(tv_Head.getText().toString());
         txtPrice.setText("\u20b9 "+Amnt);

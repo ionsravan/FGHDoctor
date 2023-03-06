@@ -50,7 +50,7 @@ public class DeliveryBoyActivity extends AppCompatActivity implements View.OnCli
     private RelativeLayout rl_Loader;
     private ArrayList<Delivery> deliveries;
     private DeliveryListAdpter adpter;
-    private String city = "", lat = "", lon = "";
+    public String city = "", lat = "", lon = "", wallet = "", donated = "";;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +61,8 @@ public class DeliveryBoyActivity extends AppCompatActivity implements View.OnCli
         city = getIntent().getStringExtra("city");
         lat = getIntent().getStringExtra("lat");
         lon = getIntent().getStringExtra("lon");
+        wallet = getIntent().getStringExtra("wallet");
+        donated = getIntent().getStringExtra("donated");
 
         if (Utility.isNetworkConnected(mContext)) {
             String uid = Utility.getSharedPreferences(mContext, "u_id");
@@ -126,7 +128,8 @@ public class DeliveryBoyActivity extends AppCompatActivity implements View.OnCli
     private void getUsers(String uid, String type, ImageView view, String latitude, String longitude) {
 
         rl_Loader.setVisibility(View.VISIBLE);
-        Call<ResponseBody> call = AppConfig.loadInterface().getUsers(type,latitude,longitude);
+       // Call<ResponseBody> call = AppConfig.loadInterface().getUsers(type,latitude,longitude);
+        Call<ResponseBody> call = AppConfig.loadInterface().getUsers(type,"","");
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {

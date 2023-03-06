@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.provider.Settings;
 import android.util.Log;
@@ -180,6 +182,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
                         } else {
+                            Log.d("TAG", "onResponse: FGH"+resultmessage);
                             CustomSnakbar.showSnakabar(mContext, view, "" + resultmessage);
                         }
 
@@ -208,6 +211,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         TextView txtMessage = view.findViewById(R.id.txtMessage);
         TextView txtResend = view.findViewById(R.id.txtResend);
+        TextView txtResendTimer = view.findViewById(R.id.txtResendTimer);
         TextView txtVerify = view.findViewById(R.id.txtVerify);
         Pinview pinview = view.findViewById(R.id.pinview);
 
@@ -245,10 +249,42 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         });
 
+        otpTimer(txtResend,txtResendTimer);
+
         mBuilder.setView(view);
         AlertDialog dialog = mBuilder.create();
         dialog.show();
     }
+
+    private void otpTimer(TextView txtResend, TextView txtResendTimer){
+        txtResend.setEnabled(false);
+        txtResend.setClickable(false);
+        txtResend.setTextColor(Color.LTGRAY);
+        txtResendTimer.setVisibility(View.VISIBLE);
+        new CountDownTimer(1000 * 120, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+
+                int minutes = (int) ((millisUntilFinished / (1000 * 60)) % 60);
+                int seconds = (int) (millisUntilFinished / 1000) % 60;
+
+                txtResendTimer.setText("Resend OTP in "+minutes + ":" + " " + seconds + " " + "left");
+
+            }
+
+            public void onFinish() {
+
+                txtResend.setEnabled(true);
+                txtResend.setClickable(true);
+                txtResend.setTextColor(Color.BLACK);
+                txtResendTimer.setVisibility(View.GONE);
+
+
+            }
+
+        }.start();
+    }
+
 
     private void resendOTP( String mobile, View view)
     {

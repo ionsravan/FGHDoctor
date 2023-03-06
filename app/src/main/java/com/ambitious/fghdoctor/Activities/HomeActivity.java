@@ -15,6 +15,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
@@ -26,6 +28,8 @@ import android.os.Handler;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -41,6 +45,7 @@ import com.ambitious.fghdoctor.Fragments.CallSupportFragment;
 import com.ambitious.fghdoctor.Fragments.HomeFragment;
 import com.ambitious.fghdoctor.Fragments.MembershipFragment;
 import com.ambitious.fghdoctor.Fragments.MyAppointmentFragment;
+import com.ambitious.fghdoctor.Fragments.RateItDialogFragment;
 import com.ambitious.fghdoctor.Fragments.SettingsFragment;
 import com.ambitious.fghdoctor.R;
 import com.ambitious.fghdoctor.Utils.AlertConnection;
@@ -51,11 +56,16 @@ import com.ambitious.fghdoctor.Utils.GPSTracker;
 import com.ambitious.fghdoctor.Utils.Utility;
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.bumptech.glide.Glide;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+import com.vorlonsoft.android.rate.AppRate;
+import com.vorlonsoft.android.rate.OnClickButtonListener;
+import com.vorlonsoft.android.rate.StoreType;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -79,17 +89,17 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
     private Context mContext = this;
     private CustomMenuAdapter mMenuAdapter;
     private ViewHolder mViewHolder;
-    private ImageView iv_Menu, iv_Profile, iv_QrCode;
-    private TextView tv_Head, tv_Name, tv_NotiCount, tv_City;
+    private ImageView iv_Menu, iv_Profile, iv_QrCode, ivShare;
+    private TextView tv_Head, tv_Name, tv_NotiCount, tv_City, txtSubScribe;
     private CircleImageView civ_User;
     private RelativeLayout rl_Loader, rl_Notisel;
     private LinearLayout ll_Notification, ll_Add;
     private ArrayList<String> mTitles = new ArrayList<>();
     private ArrayList<Drawable> mIcons = new ArrayList<>();
-    public String user_id = "", code = "", donated = "", wallet = "", city = "",account_no="",ifsc_code="";
+    public String user_id = "", code = "", donated = "", wallet = "", city = "", account_no = "", ifsc_code = "";
     public boolean isAgain = false;
     public double latitude = 0.0, longitude = 0.0;
-
+    Animation anim;
     String[] cities = {"India", "USA", "China", "Japan", "Other"};
 
     @Override
@@ -104,13 +114,74 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
             cityListDilog();
         });*/
         getCurrentLocation();
-      //  fcmToken();
+        //  fcmToken();
 
-        Log.d("TAG", "onCreate: "+Utility.getSharedPreferences(this,"regId"));
+        Log.d("TAG", "onCreate: " + Utility.getSharedPreferences(this, "regId"));
 
+       // showRateDialog(this);
+
+      //  showRate();
     }
 
+   void showRate(){
+        AppRate.with(this)
+                .setStoreType(StoreType.GOOGLEPLAY) //default is GOOGLEPLAY (Google Play), other options are
+                //           AMAZON (Amazon Appstore) and
+                //           SAMSUNG (Samsung Galaxy Apps)
+                .setInstallDays((byte) 0) // default 10, 0 means install day
+                .setLaunchTimes((byte) 3) // default 10
+                .setRemindInterval((byte) 2) // default 1
+                .setRemindLaunchTimes((byte) 2) // default 1 (each launch)
+                .setShowLaterButton(true) // default true
+                .setDebug(false) // default false
+                //Java 8+: .setOnClickButtonListener(which -> Log.d(MainActivity.class.getName(), Byte.toString(which)))
+                .setOnClickButtonListener(new OnClickButtonListener() { // callback listener.
+                    @Override
+                    public void onClickButton(byte which) {
+                        Log.d(HomeActivity.class.getName(), Byte.toString(which));
+                    }
+                })
+                .monitor();
 
+        if (AppRate.with(this).getStoreType() == StoreType.GOOGLEPLAY) {
+            //Check that Google Play is available
+            if (GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(this) != ConnectionResult.SERVICE_MISSING) {
+                // Show a dialog if meets conditions
+                AppRate.showRateDialogIfMeetsConditions(this);
+            }
+        } else {
+            // Show a dialog if meets conditions
+            AppRate.showRateDialogIfMeetsConditions(this);
+        }
+    }
+    public static void showRateDialog(final Context context) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context)
+                .setTitle("Rate application")
+                .setMessage("Please, rate the app at PlayMarket")
+                .setPositiveButton("RATE", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (context != null) {
+                            String link = "market://details?id=";
+                            try {
+                                // play market available
+                                context.getPackageManager()
+                                        .getPackageInfo("com.ambitious.fghdoctor", 0);
+                                // not available
+                            } catch (PackageManager.NameNotFoundException e) {
+                                e.printStackTrace();
+                                // should use browser
+                                link = "https://play.google.com/store/apps/details?id=";
+                            }
+                            // starts external action
+                            context.startActivity(new Intent(Intent.ACTION_VIEW,
+                                    Uri.parse(link + context.getPackageName())));
+                        }
+                    }
+                })
+                .setNegativeButton("CANCEL", null);
+        builder.show();
+    }
 
     private void cityListDilog() {
         Dialog dialog = new Dialog(HomeActivity.this);
@@ -226,6 +297,8 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
         iv_Menu = findViewById(R.id.iv_Menu);
         iv_Profile = findViewById(R.id.iv_Profile);
         iv_QrCode = findViewById(R.id.iv_QrCode);
+        ivShare = findViewById(R.id.ivShare);
+        txtSubScribe = findViewById(R.id.txtSubScribe);
         tv_Head = findViewById(R.id.tv_Head);
         tv_Name = findViewById(R.id.tv_Name);
         tv_NotiCount = findViewById(R.id.tv_NotiCount);
@@ -235,8 +308,17 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
         iv_Menu.setOnClickListener(this);
         iv_Profile.setOnClickListener(this);
         iv_QrCode.setOnClickListener(this);
+        ivShare.setOnClickListener(this);
         rl_Notisel.setOnClickListener(this);
         ll_Add.setOnClickListener(this);
+        txtSubScribe.setOnClickListener(this);
+
+        anim = new AlphaAnimation(0.0f, 1.0f);
+        anim.setDuration(1000); //You can manage the blinking time with this parameter
+        anim.setStartOffset(500);
+        anim.setRepeatMode(Animation.REVERSE);
+        anim.setRepeatCount(Animation.INFINITE);
+        //  txtSubScribe.setAnimation(anim);
     }
 
     private void handleMenu() {
@@ -297,13 +379,24 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
         // Navigate to the right fragment
         switch (position) {
             default:
-                ll_Notification.setVisibility(View.VISIBLE);
+                // ll_Notification.setVisibility(View.VISIBLE);
                 goToFragment(new HomeFragment(code, wallet, donated, city, "" + latitude, "" + longitude), false);
                 break;
 
             case 0:
-                ll_Notification.setVisibility(View.VISIBLE);
-                goToFragment(new HomeFragment(code, wallet, donated, city, "" + latitude, "" + longitude), false);
+                //ll_Notification.setVisibility(View.VISIBLE);
+                if (Utility.getSharedPreferencesBoolean(mContext, "islogin", false)) {
+                    if (Utility.getSharedPreferences(mContext, "user_type").equalsIgnoreCase("user")) {
+                        iv_Profile.setVisibility(View.VISIBLE);
+                        iv_QrCode.setVisibility(View.VISIBLE);
+                        ivShare.setVisibility(View.VISIBLE);
+                        txtSubScribe.setVisibility(View.GONE);
+                        // ll_Notification.setVisibility(View.GONE);
+                        goToFragment(new HomeFragment(code, wallet, donated, city, "" + latitude, "" + longitude), false);
+                    }
+                }else {
+                    goToFragment(new HomeFragment(code, wallet, donated, city, "" + latitude, "" + longitude), false);
+                }
                 break;
 
             case 1:
@@ -311,7 +404,9 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
                     if (Utility.getSharedPreferences(mContext, "user_type").equalsIgnoreCase("user")) {
                         iv_Profile.setVisibility(View.GONE);
                         iv_QrCode.setVisibility(View.GONE);
-                        ll_Notification.setVisibility(View.GONE);
+                        ivShare.setVisibility(View.GONE);
+                        txtSubScribe.setVisibility(View.GONE);
+                        // ll_Notification.setVisibility(View.GONE);
                         goToFragment(new MyAppointmentFragment(), false);
                     } else {
 
@@ -342,7 +437,9 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
                     //Setting Fragment
                     iv_Profile.setVisibility(View.GONE);
                     iv_QrCode.setVisibility(View.GONE);
+                    ivShare.setVisibility(View.GONE);
                     ll_Notification.setVisibility(View.GONE);
+                    // ll_Notification.setVisibility(View.GONE);
                     // goToFragment(new SettingsFragment(), false);
                     startActivity(new Intent(mContext, AmbulanceListActivity.class)
                             .putExtra("head", "Ambulance"));
@@ -368,6 +465,8 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
                             .putExtra("ifsc_code", ifsc_code)
                             .putExtra("wallet", "" + wallet));
                     Animatoo.animateCard(mContext);
+
+                    Log.d("TAG", "onOptionClicked: 3 :"+"withdraw");
                 }
                 break;
 
@@ -381,6 +480,9 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
                                 .putExtra("ifsc_code", ifsc_code)
                                 .putExtra("FROM", "activity"));
                         Animatoo.animateCard(mContext);
+
+                        Log.d("TAG", "onOptionClicked: 4 :"+"withdraw");
+
                     } else {
 
                     }
@@ -413,7 +515,9 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
                     //Setting Fragment
                     iv_Profile.setVisibility(View.GONE);
                     iv_QrCode.setVisibility(View.GONE);
-                    ll_Notification.setVisibility(View.GONE);
+                    ivShare.setVisibility(View.GONE);
+                    txtSubScribe.setVisibility(View.GONE);
+                    // ll_Notification.setVisibility(View.GONE);
                     goToFragment(new SettingsFragment(), false);
                 }
                 break;
@@ -423,6 +527,8 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
                     if (Utility.getSharedPreferences(mContext, "user_type").equalsIgnoreCase("user")) {
                         iv_Profile.setVisibility(View.GONE);
                         iv_QrCode.setVisibility(View.GONE);
+                        ivShare.setVisibility(View.GONE);
+                        txtSubScribe.setVisibility(View.GONE);
                         ll_Notification.setVisibility(View.GONE);
                         goToFragment(new SettingsFragment(), false);
                     } else {
@@ -441,6 +547,8 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
                         if (donated.equalsIgnoreCase("0")) {
                             iv_Profile.setVisibility(View.GONE);
                             iv_QrCode.setVisibility(View.GONE);
+                            ivShare.setVisibility(View.GONE);
+                            txtSubScribe.setVisibility(View.GONE);
                             ll_Notification.setVisibility(View.GONE);
                             logout();
                         } else {
@@ -452,6 +560,8 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
                 } else {
                     iv_Profile.setVisibility(View.GONE);
                     iv_QrCode.setVisibility(View.GONE);
+                    ivShare.setVisibility(View.GONE);
+                    txtSubScribe.setVisibility(View.GONE);
                     ll_Notification.setVisibility(View.GONE);
                     goToFragment(new CallSupportFragment(), false);
                 }
@@ -463,11 +573,15 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
                         if (donated.equalsIgnoreCase("0")) {
                             iv_Profile.setVisibility(View.GONE);
                             iv_QrCode.setVisibility(View.GONE);
+                            ivShare.setVisibility(View.GONE);
+                            txtSubScribe.setVisibility(View.GONE);
                             ll_Notification.setVisibility(View.GONE);
                             goToFragment(new CallSupportFragment(), false);
                         } else {
                             iv_Profile.setVisibility(View.GONE);
                             iv_QrCode.setVisibility(View.GONE);
+                            ivShare.setVisibility(View.GONE);
+                            txtSubScribe.setVisibility(View.GONE);
                             ll_Notification.setVisibility(View.GONE);
                             logout();
                         }
@@ -477,6 +591,8 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
                 } else {
                     iv_Profile.setVisibility(View.GONE);
                     iv_QrCode.setVisibility(View.GONE);
+                    ivShare.setVisibility(View.GONE);
+                    txtSubScribe.setVisibility(View.GONE);
                     ll_Notification.setVisibility(View.GONE);
                     goToFragment(new CallSupportFragment(), false);
                 }
@@ -484,6 +600,8 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
             case 9:
                 iv_Profile.setVisibility(View.GONE);
                 iv_QrCode.setVisibility(View.GONE);
+                ivShare.setVisibility(View.GONE);
+                txtSubScribe.setVisibility(View.GONE);
                 ll_Notification.setVisibility(View.GONE);
                 goToFragment(new CallSupportFragment(), false);
                 break;
@@ -567,6 +685,32 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
 
                 break;
 
+            case R.id.ivShare:
+                if (Utility.getSharedPreferencesBoolean(this, "islogin", false)) {
+                    startActivity(new Intent(this, ReferActivity.class)
+                            .putExtra("head", "Refer & Earn")
+                            .putExtra("code", "" + code));
+                    //  Animatoo.animateCard(getContext());
+                } else {
+                    CustomSnakbar.showDarkSnakabar(this, v, "Please Login/Register Before Refer & Earn!");
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            startActivity(new Intent(HomeActivity.this, LoginActivity.class)
+                                    .putExtra("head", "Blood"));
+                            //  Animatoo.animateCard(getContext());
+                        }
+                    }, 1500);
+                }
+
+                break;
+
+            case R.id.txtSubScribe:
+                startActivity(new Intent(mContext, MyWalletActivity.class));
+                Animatoo.animateCard(mContext);
+
+                break;
+
             case R.id.rl_Notisel:
                 Utility.setSharedPreference(mContext, "noti_count", "");
                 startActivity(new Intent(mContext, NotificationActivity.class)
@@ -636,82 +780,93 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
                                         startActivity(new Intent(HomeActivity.this, MarketPricesProfileActivity.class)
                                                 .putExtra("wallet", wallet)
                                                 .putExtra("donated", donated)
-                                                .putExtra("obj", "" +result)
+                                                .putExtra("obj", "" + result)
                                         );
                                         Animatoo.animateCard(HomeActivity.this);
-                                    }else if (user_type.equalsIgnoreCase("medical")){
+                                    } else if (user_type.equalsIgnoreCase("medical")) {
                                         startActivity(new Intent(HomeActivity.this, MedicalShopProfileActivity.class)
                                                 .putExtra("wallet", wallet)
                                                 .putExtra("donated", donated)
-                                                .putExtra("obj", "" +result)
+                                                .putExtra("obj", "" + result)
                                         );
                                         Animatoo.animateCard(HomeActivity.this);
-                                    }else if (user_type.equalsIgnoreCase("bank")){
+                                    } else if (user_type.equalsIgnoreCase("bank")) {
 
                                         startActivity(new Intent(HomeActivity.this, BloodBankProfileActivity.class)
                                                 .putExtra("wallet", wallet)
                                                 .putExtra("donated", donated)
                                                 .putExtra("head", name)
-                                                .putExtra("obj", "" +result)
+                                                .putExtra("obj", "" + result)
                                         );
                                         Animatoo.animateCard(HomeActivity.this);
-                                    }else if (user_type.equalsIgnoreCase("rmp")){
-
-                                        startActivity(new Intent(HomeActivity.this, MedicalShopProfileActivity.class)
-                                                .putExtra("wallet", wallet)
-                                                .putExtra("donated", donated)
-                                               // .putExtra("head", name)
-                                                .putExtra("obj", "" +result)
-                                        );
-                                        Animatoo.animateCard(HomeActivity.this);
-                                    }else if (user_type.equalsIgnoreCase("labs")){
+                                    } else if (user_type.equalsIgnoreCase("rmp")) {
 
                                         startActivity(new Intent(HomeActivity.this, MedicalShopProfileActivity.class)
                                                 .putExtra("wallet", wallet)
                                                 .putExtra("donated", donated)
                                                 // .putExtra("head", name)
-                                                .putExtra("obj", "" +result)
+                                                .putExtra("obj", "" + result)
                                         );
                                         Animatoo.animateCard(HomeActivity.this);
-                                    }else if (user_type.equalsIgnoreCase("vaterinary")){
+                                    } else if (user_type.equalsIgnoreCase("labs")) {
 
                                         startActivity(new Intent(HomeActivity.this, MedicalShopProfileActivity.class)
                                                 .putExtra("wallet", wallet)
                                                 .putExtra("donated", donated)
                                                 // .putExtra("head", name)
-                                                .putExtra("obj", "" +result)
+                                                .putExtra("obj", "" + result)
                                         );
                                         Animatoo.animateCard(HomeActivity.this);
-                                    }else if (user_type.equalsIgnoreCase("Vehicle")){
+                                    } else if (user_type.equalsIgnoreCase("vaterinary")) {
+
+                                        startActivity(new Intent(HomeActivity.this, MedicalShopProfileActivity.class)
+                                                .putExtra("wallet", wallet)
+                                                .putExtra("donated", donated)
+                                                // .putExtra("head", name)
+                                                .putExtra("obj", "" + result)
+                                        );
+                                        Animatoo.animateCard(HomeActivity.this);
+                                    } else if (user_type.equalsIgnoreCase("Vehicle")) {
 
                                         startActivity(new Intent(HomeActivity.this, VehicleProfileActivity.class)
                                                 .putExtra("wallet", wallet)
                                                 .putExtra("donated", donated)
                                                 // .putExtra("head", name)
-                                                .putExtra("obj", "" +result)
+                                                .putExtra("obj", "" + result)
                                         );
                                         Animatoo.animateCard(HomeActivity.this);
-                                    }else if (
-                                            user_type.equalsIgnoreCase("Book 108")  ||
-                                            user_type.equalsIgnoreCase("Private Ambulance")  ||
-                                            user_type.equalsIgnoreCase("Team Ambulance")
-                                    ){
+                                    } else if (
+                                            user_type.equalsIgnoreCase("Book 108") ||
+                                                    user_type.equalsIgnoreCase("Private Ambulance") ||
+                                                    user_type.equalsIgnoreCase("Team Ambulance")
+                                    ) {
 
                                         startActivity(new Intent(HomeActivity.this, AmbulanceDriverProfileActivity.class)
                                                 .putExtra("wallet", wallet)
                                                 .putExtra("donated", donated)
                                                 // .putExtra("head", name)
-                                                .putExtra("obj", "" +result)
+                                                .putExtra("obj", "" + result)
                                         );
                                         Animatoo.animateCard(HomeActivity.this);
-                                    }else if (user_type.equalsIgnoreCase("donor")){
+                                    } else if (user_type.equalsIgnoreCase("donor")) {
 
                                         startActivity(new Intent(HomeActivity.this, BloodDonorProfileActivity.class)
                                                 .putExtra("wallet", wallet)
                                                 .putExtra("donated", donated)
                                                 // .putExtra("head", name)
-                                                .putExtra("obj", "" +result)
+                                                .putExtra("obj", "" + result)
                                         );
+                                        Animatoo.animateCard(HomeActivity.this);
+                                    }
+                                    else if (user_type.equalsIgnoreCase("Delivery")) {
+
+                                        startActivity(new Intent(HomeActivity.this, MedicalShopProfileActivity.class)
+                                                .putExtra("city", "" + city)
+                                                .putExtra("lat", "" + latitude)
+                                                .putExtra("lon", "" + longitude)
+                                                .putExtra("wallet", "" + wallet)
+                                                .putExtra("donated", "" + donated)
+                                                .putExtra("obj", "" + result));
                                         Animatoo.animateCard(HomeActivity.this);
                                     }
 
@@ -775,8 +930,21 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
                 mMenuAdapter.setViewSelected(0, true);
                 setTitle(mTitles.get(0));
                 tv_Head.setText(mTitles.get(0));
-                ll_Notification.setVisibility(View.VISIBLE);
-                goToFragment(new HomeFragment(code, wallet, donated, city, "" + latitude, "" + longitude), false);
+                //   ll_Notification.setVisibility(View.VISIBLE);
+                //goToFragment(new HomeFragment(code, wallet, donated, city, "" + latitude, "" + longitude), false);
+
+                if (Utility.getSharedPreferencesBoolean(mContext, "islogin", false)) {
+                    if (Utility.getSharedPreferences(mContext, "user_type").equalsIgnoreCase("user")) {
+                        iv_Profile.setVisibility(View.VISIBLE);
+                        iv_QrCode.setVisibility(View.VISIBLE);
+                        ivShare.setVisibility(View.VISIBLE);
+                        txtSubScribe.setVisibility(View.GONE);
+                        // ll_Notification.setVisibility(View.GONE);
+                        goToFragment(new HomeFragment(code, wallet, donated, city, "" + latitude, "" + longitude), false);
+                    }
+                }else {
+                    goToFragment(new HomeFragment(code, wallet, donated, city, "" + latitude, "" + longitude), false);
+                }
             }
         }
     }
@@ -816,11 +984,13 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
                             donated = result.optString("donated");
                             wallet = result.optString("wallet");
 
+                            Log.d("TAG", "onResponse: DONATED " + donated);
 
+                            active_status = "1";
                             if (active_status.equalsIgnoreCase("0")) {
 
                                 Toast.makeText(mContext, "Your Account is Deactivated by FGH Team.", Toast.LENGTH_SHORT).show();
-                               // rl_Loader.setVisibility(View.VISIBLE);
+                                // rl_Loader.setVisibility(View.VISIBLE);
                                 Utility.setSharedPreference(mContext, "u_id", "");
                                 Utility.setSharedPreference(mContext, "u_name", "");
                                 Utility.setSharedPreference(mContext, "u_img", "");
@@ -831,7 +1001,7 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
                                 new Handler().postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                       // rl_Loader.setVisibility(View.GONE);
+                                        // rl_Loader.setVisibility(View.GONE);
                                         Intent intent = new Intent(mContext, LoginActivity.class);
                                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                         Animatoo.animateSlideLeft(mContext);
@@ -864,7 +1034,7 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
                                 mIcons.add(10, getResources().getDrawable(R.drawable.ic_call));
 
                                 if (donated.equalsIgnoreCase("0")) {
-                                    mTitles.remove("Health Id Card");
+                                    mTitles.remove("Subscription Id");
                                     mIcons.remove(6);
                                 }
 //        mIcons.add(9, getResources().getDrawable(R.drawable.ic_stars));
@@ -875,6 +1045,14 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
                                         mIcons.remove(6);
                                         iv_Profile.setVisibility(View.VISIBLE);
                                         iv_QrCode.setVisibility(View.VISIBLE);
+
+                                        Log.d("TAG", "onResponse: PROFILE 1 : " + donated);
+                                        if (donated.equalsIgnoreCase("1")) {
+                                            txtSubScribe.setVisibility(View.GONE);
+                                        } else {
+                                            txtSubScribe.setVisibility(View.VISIBLE);
+                                            txtSubScribe.startAnimation(anim);
+                                        }
                                         civ_User.setVisibility(View.VISIBLE);
                                         tv_Name.setVisibility(View.VISIBLE);
                                         tv_City.setVisibility(View.VISIBLE);
@@ -893,9 +1071,10 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
 //                                ll_Add.setVisibility(View.GONE);
                                     iv_Profile.setVisibility(View.GONE);
                                     iv_QrCode.setVisibility(View.GONE);
+                                    txtSubScribe.setVisibility(View.GONE);
                                     mTitles.remove("Logout");
                                     mTitles.remove("Appointments");
-                                    mTitles.remove("Health Id Card");
+                                    mTitles.remove("Subscription Id");
                                     mIcons.remove(7);
                                     mIcons.remove(1);
                                     mIcons.remove(6);
@@ -911,7 +1090,7 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
                                 handleDrawer();
 
                                 // Show main fragment in container
-                                ll_Notification.setVisibility(View.VISIBLE);
+                                //  ll_Notification.setVisibility(View.VISIBLE);
                                 goToFragment(new HomeFragment(code, wallet, donated, city, "" + latitude, "" + longitude), false);
                                 mMenuAdapter.setViewSelected(0, true);
                                 setTitle(mTitles.get(0));
@@ -947,6 +1126,16 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
                                     mIcons.remove(6);
                                     iv_Profile.setVisibility(View.VISIBLE);
                                     iv_QrCode.setVisibility(View.VISIBLE);
+
+                                    Log.d("TAG", "onResponse: PROFILE " + donated);
+                                    if (donated.equalsIgnoreCase("1")) {
+                                        txtSubScribe.setVisibility(View.GONE);
+                                    } else {
+                                        txtSubScribe.setVisibility(View.VISIBLE);
+                                        txtSubScribe.startAnimation(anim);
+
+                                    }
+
                                     civ_User.setVisibility(View.VISIBLE);
                                     tv_Name.setVisibility(View.VISIBLE);
                                     tv_City.setVisibility(View.VISIBLE);
@@ -963,11 +1152,12 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
                                 tv_Name.setVisibility(View.INVISIBLE);
                                 iv_Profile.setVisibility(View.GONE);
                                 iv_QrCode.setVisibility(View.GONE);
+                                txtSubScribe.setVisibility(View.GONE);
                                 tv_City.setVisibility(View.INVISIBLE);
 //                                ll_Add.setVisibility(View.GONE);
                                 mTitles.remove("Logout");
                                 mTitles.remove("Appointments");
-                                mTitles.remove("Health Id Card");
+                                mTitles.remove("Subscription Id");
                                 mIcons.remove(7);
                                 mIcons.remove(1);
                                 mIcons.remove(6);
@@ -983,7 +1173,7 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
                             handleDrawer();
 
                             // Show main fragment in container
-                            ll_Notification.setVisibility(View.VISIBLE);
+                            // ll_Notification.setVisibility(View.VISIBLE);
                             goToFragment(new HomeFragment(code, wallet, donated, city, "" + latitude, "" + longitude), false);
                             mMenuAdapter.setViewSelected(0, true);
                             setTitle(mTitles.get(0));
@@ -1007,4 +1197,11 @@ public class HomeActivity extends AppCompatActivity implements DuoMenuView.OnMen
         });
 
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+
 }

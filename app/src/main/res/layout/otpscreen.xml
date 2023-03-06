@@ -7,6 +7,13 @@
     android:orientation="vertical"
     android:padding="10dp">
 
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:src="@drawable/launcher"
+        android:layout_margin="20dp"/>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        app:cursorVisible="false"
+        app:cursorVisible="true"
         app:forceKeyboard="true"
         app:hint="0"
         app:inputType="number"
@@ -54,6 +61,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="@string/resend_code"
+        android:gravity="center"
+        android:padding="5dp"
+        android:textSize="14sp"
+        android:textColor="@color/colorBlack"/>
+
+    <TextView
+        android:id="@+id/txtResendTimer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:padding="5dp"
         android:textSize="14sp"

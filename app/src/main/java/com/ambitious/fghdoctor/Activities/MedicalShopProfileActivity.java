@@ -62,7 +62,7 @@ public class MedicalShopProfileActivity extends AppCompatActivity implements Vie
 
     private Context mContext = this;
     private ImageView iv_Bck, iv_Driver, iv_One, iv_Two, iv_Three;
-    private TextView tv_Name, tv_Rating, tv_Address, tv_Desc, tv_Pay,txtIfscCode, txtAccountNo;
+    private TextView tv_Name, tv_Head,tv_Rating, tv_Address, tv_Desc, tv_Pay,txtIfscCode, txtAccountNo;
     private RatingBar bar_Rating;
     private CheckBox chk_Wallet;
     private EditText et_Amount, et_Pname, et_Email, et_Pnum;
@@ -70,7 +70,7 @@ public class MedicalShopProfileActivity extends AppCompatActivity implements Vie
     private RelativeLayout rl_Call, rl_Whatsapp;
     LinearLayout bankLayout;
 
-    private String contact = "", wallet = "", user_id = "", n_Wallet = "", Amnt = "", donated = "";
+    private String head ="",contact = "", wallet = "", user_id = "", n_Wallet = "", Amnt = "", donated = "";
     private ArrayList<String> imagesStringsProfile;
     private ArrayList<String> imagesStrings;
     private int percentage =0;
@@ -95,6 +95,9 @@ public class MedicalShopProfileActivity extends AppCompatActivity implements Vie
             String obj = getIntent().getStringExtra("obj");
             wallet = getIntent().getStringExtra("wallet");
             donated = getIntent().getStringExtra("donated");
+            head = getIntent().getStringExtra("head");
+            tv_Head.setText(head);
+
 //            wallet = "10";
 
 //            if (wallet.equalsIgnoreCase("0")) {
@@ -107,17 +110,17 @@ public class MedicalShopProfileActivity extends AppCompatActivity implements Vie
 //                    chk_Wallet.setVisibility(View.GONE);
 //                }
 //            }
-            if (wallet.equalsIgnoreCase("0") || wallet.equalsIgnoreCase("")) {
+            if (wallet.equalsIgnoreCase("0") || wallet.equalsIgnoreCase("") || Integer.parseInt(wallet) <= 0) {
                 wallet = "0";
               // chk_Wallet.setVisibility(View.GONE);
            }
-            else if (donated.equalsIgnoreCase("0")) {
+            else if (donated.equalsIgnoreCase("0") || Integer.parseInt(wallet) <= 0) {
                wallet = "0";
                 chk_Wallet.setVisibility(View.GONE);
-            } else if (donated.equalsIgnoreCase("1") && wallet.equalsIgnoreCase("")) {
+            } else if (donated.equalsIgnoreCase("1") && (wallet.equalsIgnoreCase("") || Integer.parseInt(wallet) <= 0)) {
                wallet = "0";
                 chk_Wallet.setVisibility(View.GONE);
-            } else if (donated.equalsIgnoreCase("1") && wallet.equalsIgnoreCase("0")) {
+            } else if (donated.equalsIgnoreCase("1") && (wallet.equalsIgnoreCase("0")|| Integer.parseInt(wallet) <= 0)) {
                 wallet = "0";
                 chk_Wallet.setVisibility(View.GONE);
             } else {
@@ -143,6 +146,7 @@ public class MedicalShopProfileActivity extends AppCompatActivity implements Vie
                 String password = object.optString("password");
                 String address = object.optString("address");
                 String department = object.optString("department");
+                String about = object.optString("about");
                 String village = object.optString("village");
                 String city = object.optString("city");
                 String distric = object.optString("distric");
@@ -154,6 +158,8 @@ public class MedicalShopProfileActivity extends AppCompatActivity implements Vie
                 String account_no = object.optString("account_no");
                 String available = object.optString("available");
                 String rating = object.optString("rating");
+
+                Log.d("TAG", "onCreate: "+object);
 
                 if (user_image.contains("png") || user_image.contains("jpg")) {
                     imagesStringsProfile = new ArrayList<>();
@@ -174,10 +180,18 @@ public class MedicalShopProfileActivity extends AppCompatActivity implements Vie
                 }
 
                 tv_Name.setText(name);
+
                 tv_Rating.setText("(" + rating + ")");
                 tv_Address.setText(address);
                 bar_Rating.setRating(Float.parseFloat(rating));
-                tv_Desc.setText(department);
+
+                if (user_type.equalsIgnoreCase("Delivery")){
+                    tv_Desc.setText(about);
+                    tv_Head.setText(name);
+
+                }else {
+                    tv_Desc.setText(department);
+                }
 
                 contact = "+91 " + mobile;
 
@@ -232,6 +246,7 @@ public class MedicalShopProfileActivity extends AppCompatActivity implements Vie
     private void finds() {
 
         iv_Bck = findViewById(R.id.iv_Bck);
+        tv_Head = findViewById(R.id.tv_Head);
         iv_Driver = findViewById(R.id.iv_Driver);
         iv_One = findViewById(R.id.iv_One);
         iv_Two = findViewById(R.id.iv_Two);
@@ -361,12 +376,21 @@ public class MedicalShopProfileActivity extends AppCompatActivity implements Vie
 //                            startPayment(name, Amnt, email, number);
                         }
                     } else {
-                        Amnt = "" + (Integer.parseInt(fee));
-                        n_Wallet = "";
-                       // getOrderId(v, name, Amnt, email, number);
-                        CustomSnakbar.showDarkSnakabar(mContext, v, "Please use Wallet Amount");
+
+                        if (Integer.parseInt(wallet) <= 0) {
+                            n_Wallet = "0";
+                            // getOrderId(v, name, Amnt, email, number);
+                            CustomSnakbar.showDarkSnakabar(mContext, v, "Your wallet haven't sufficient amount");
+
+                        } else {
+
+                            Amnt = "" + (Integer.parseInt(fee));
+                            n_Wallet = "";
+                            // getOrderId(v, name, Amnt, email, number);
+                            CustomSnakbar.showDarkSnakabar(mContext, v, "Please use Wallet Amount");
 
 //                        startPayment(name, Amnt, email, number);
+                        }
                     }
 //                    Toast.makeText(mContext, "Amnt=>" + Amnt + "\nWallet=>" + n_Wallet, Toast.LENGTH_SHORT).show();
                 }
@@ -388,6 +412,9 @@ public class MedicalShopProfileActivity extends AppCompatActivity implements Vie
         TextView txtPrice = dialogView.findViewById(R.id.txtPrice);
         Button btnContinue = dialogView.findViewById(R.id.btnContinue);
         Button btnCancel = dialogView.findViewById(R.id.btnCancel);
+
+        // add 1Rupee to total amount
+        Amnt = String.valueOf(Integer.parseInt(Amnt) + 1);
 
         txtTitle.setText(tv_Name.getText().toString());
         txtPrice.setText("\u20b9 "+Amnt);
