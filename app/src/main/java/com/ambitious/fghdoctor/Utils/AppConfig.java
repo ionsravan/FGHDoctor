@@ -16,6 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AppConfig {
     public static int amountOfPercentage =2;
+    public static int tax =1;
     private static Retrofit retrofit = null;
     private static LoadInterface loadInterface = null;
 

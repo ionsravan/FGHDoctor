@@ -1,6 +1,7 @@
 package com.ambitious.fghdoctor.Activities;
 
 import static com.ambitious.fghdoctor.Utils.AppConfig.amountOfPercentage;
+import static com.ambitious.fghdoctor.Utils.AppConfig.tax;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.PagerAdapter;
@@ -339,7 +340,7 @@ public class VehicleProfileActivity extends AppCompatActivity implements View.On
                         if (Integer.parseInt(fee) <= Integer.parseInt(wallet)) {
                            // Amnt = "" + (Integer.parseInt(fee));
                              percentage = ((amountOfPercentage * Integer.parseInt(fee)) / 100);
-                            int finalAmount = Integer.parseInt(fee) +percentage;
+                            int finalAmount = Integer.parseInt(fee) +percentage+tax;
                             Amnt = String.valueOf(finalAmount);
 
                             Log.d("TAG", "onClick: "+Amnt);
@@ -395,15 +396,15 @@ public class VehicleProfileActivity extends AppCompatActivity implements View.On
         Button btnContinue = dialogView.findViewById(R.id.btnContinue);
         Button btnCancel = dialogView.findViewById(R.id.btnCancel);
 
-        // add 1Rupee to total amount
-        Amnt = String.valueOf(Integer.parseInt(Amnt) + 1);
+       /* // add 1Rupee to total amount
+        Amnt = String.valueOf(Integer.parseInt(Amnt) + 1);*/
         txtTitle.setText(tv_Name.getText().toString());
         txtPrice.setText("\u20b9 "+Amnt);
 
         btnContinue.setOnClickListener(v1 -> {
             alertDialog.dismiss();
             // pay to vendor
-            int vendorAmount = Integer.parseInt(Amnt) - percentage;
+            int vendorAmount = (Integer.parseInt(Amnt) - percentage) - tax;
 
             Log.d("TAG", "confirmationDialog: "+vendorAmount);
             makePayment(uid, user_id, String.valueOf(vendorAmount), n_Wallet, "wallet", v);

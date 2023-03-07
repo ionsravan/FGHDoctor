@@ -1,6 +1,7 @@
 package com.ambitious.fghdoctor.Activities;
 
 import static com.ambitious.fghdoctor.Utils.AppConfig.amountOfPercentage;
+import static com.ambitious.fghdoctor.Utils.AppConfig.tax;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.PagerAdapter;
@@ -107,16 +108,17 @@ public class WithDrawActivity extends AppCompatActivity implements View.OnClickL
                 }
 
 
-                if (wallet.equalsIgnoreCase("0") || wallet.equalsIgnoreCase("")) {
+                if (wallet.equalsIgnoreCase("0") || wallet.equalsIgnoreCase("") || Integer.parseInt(wallet) <= 0) {
                     wallet = "0";
                     // chk_Wallet.setVisibility(View.GONE);
-                } else if (donated.equalsIgnoreCase("0")) {
+                }
+                else if (donated.equalsIgnoreCase("0") || Integer.parseInt(wallet) <= 0) {
                     wallet = "0";
                     chk_Wallet.setVisibility(View.GONE);
-                } else if (donated.equalsIgnoreCase("1") && wallet.equalsIgnoreCase("")) {
+                } else if (donated.equalsIgnoreCase("1") && (wallet.equalsIgnoreCase("") || Integer.parseInt(wallet) <= 0)) {
                     wallet = "0";
                     chk_Wallet.setVisibility(View.GONE);
-                } else if (donated.equalsIgnoreCase("1") && wallet.equalsIgnoreCase("0")) {
+                } else if (donated.equalsIgnoreCase("1") && (wallet.equalsIgnoreCase("0")|| Integer.parseInt(wallet) <= 0)) {
                     wallet = "0";
                     chk_Wallet.setVisibility(View.GONE);
                 } else {
@@ -204,7 +206,7 @@ public class WithDrawActivity extends AppCompatActivity implements View.OnClickL
                             if (Integer.parseInt(fee) <= Integer.parseInt(wallet)) {
                                 // Amnt = "" + (Integer.parseInt(fee));
                                 percentage = ((amountOfPercentage * Integer.parseInt(fee)) / 100);
-                                int finalAmount = Integer.parseInt(fee) + percentage;
+                                int finalAmount = Integer.parseInt(fee) + percentage+tax;
                                 Amnt = String.valueOf(finalAmount);
 
                                 Log.d("TAG", "onClick: " + Amnt);
@@ -224,12 +226,21 @@ public class WithDrawActivity extends AppCompatActivity implements View.OnClickL
 //                            startPayment(name, Amnt, email, number);
                             }
                         } else {
-                            Amnt = "" + (Integer.parseInt(fee));
-                            n_Wallet = "";
-                            // getOrderId(v, name, Amnt, email, number);
-                            CustomSnakbar.showDarkSnakabar(mContext, v, "Please use Wallet Amount");
+
+                            if (Integer.parseInt(wallet) <= 0) {
+                                n_Wallet = "0";
+                                // getOrderId(v, name, Amnt, email, number);
+                                CustomSnakbar.showDarkSnakabar(mContext, v, "Your wallet haven't sufficient amount");
+
+                            } else {
+
+                                Amnt = "" + (Integer.parseInt(fee));
+                                n_Wallet = "";
+                                // getOrderId(v, name, Amnt, email, number);
+                                CustomSnakbar.showDarkSnakabar(mContext, v, "Please use Wallet Amount");
 
 //                        startPayment(name, Amnt, email, number);
+                            }
                         }
 //                    Toast.makeText(mContext, "Amnt=>" + Amnt + "\nWallet=>" + n_Wallet, Toast.LENGTH_SHORT).show();
                     }
@@ -278,6 +289,8 @@ public class WithDrawActivity extends AppCompatActivity implements View.OnClickL
         Button btnContinue = dialogView.findViewById(R.id.btnContinue);
         Button btnCancel = dialogView.findViewById(R.id.btnCancel);
 
+       /* // add 1Rupee to total amount
+        Amnt = String.valueOf(Integer.parseInt(Amnt) + 1);*/
         txtTitle.setText(et_Pname.getText().toString());
         txtPrice.setText("\u20b9 " + Amnt);
 
@@ -287,7 +300,7 @@ public class WithDrawActivity extends AppCompatActivity implements View.OnClickL
             //  makePayment(uid, user_id, Amnt, n_Wallet, "wallet", v);
 
             // pay to vendor
-            int vendorAmount = Integer.parseInt(Amnt) - percentage;
+            int vendorAmount = (Integer.parseInt(Amnt) - percentage) - tax;
 
             Log.d("TAG", "confirmationDialog: " + vendorAmount);
             makePayment(uid, user_id, String.valueOf(vendorAmount), n_Wallet, "wallet", v);
