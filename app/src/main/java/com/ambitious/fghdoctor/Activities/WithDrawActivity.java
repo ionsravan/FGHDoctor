@@ -199,6 +199,9 @@ public class WithDrawActivity extends AppCompatActivity implements View.OnClickL
                     } else if (fee.equalsIgnoreCase("")) {
                         et_Amount.setError("Can't be empty!");
                         et_Amount.requestFocus();
+                    } else if (Integer.parseInt(fee) < 150) {
+                        et_Amount.setError("minimum withdrawal amount is 150 Rupees");
+                        et_Amount.requestFocus();
                     } else {
                         Amnt = "";
                         n_Wallet = "";
