@@ -41,9 +41,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="n">
         <activity
+            android:name=".Activities.HealthActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activities.RechargeActivity"
             android:exported="false"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".Activities.WithDrawActivity"
             android:exported="false"
@@ -427,8 +430,7 @@
         -->
         <service
             android:name=".Services.MyFirebaseMessagingService"
-            android:exported="false"
-            >
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
@@ -444,7 +446,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
-
         <receiver
             android:name="com.razorpay.RzpTokenReceiver"
             android:exported="false">
@@ -460,6 +461,7 @@
             android:theme="@style/CheckoutTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <data
                     android:host="rzp.io"
                     android:scheme="io.rzp" />

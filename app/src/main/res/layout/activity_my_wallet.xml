@@ -63,12 +63,34 @@
                 android:textSize="@dimen/_15sdp"
                 android:textStyle="bold" />
 
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/etAmount"
+                android:paddingStart="10dp"
+                android:textStyle="bold"
+                android:inputType="number"
+                android:hint="@string/enter_amount"
+                android:background="@drawable/rounded_blue_border"
+                android:layout_margin="15dp"
+                />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnAdd"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/colorBase"
+                android:textColor="@color/colorWhite"
+                android:text="@string/add_wallet"/>
+
             <TextView
                 android:id="@+id/txtReferralCount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:text="Your referral Count  : ₹0"
                 android:textColor="@color/colorGray"

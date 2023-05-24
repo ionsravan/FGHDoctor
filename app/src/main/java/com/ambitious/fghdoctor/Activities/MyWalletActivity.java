@@ -1,5 +1,7 @@
 package com.ambitious.fghdoctor.Activities;
 
+import static com.ambitious.fghdoctor.Utils.AppConfig.cookieId;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -10,9 +12,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -24,7 +25,7 @@ import com.ambitious.fghdoctor.Utils.AppConfig;
 import com.ambitious.fghdoctor.Utils.CustomSnakbar;
 import com.ambitious.fghdoctor.Utils.Utility;
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
-import com.bumptech.glide.Glide;
+import com.google.android.material.snackbar.Snackbar;
 import com.razorpay.Checkout;
 import com.razorpay.PaymentResultListener;
 
@@ -41,12 +42,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 
 public class MyWalletActivity extends AppCompatActivity implements View.OnClickListener, PaymentResultListener {
-
+    private static final String TAG = "MyWalletActivity";
     private Context mContext = this;
     private ImageView iv_Bck, iv_Play;
+    private EditText etAmount;
+    private Button btnAddWallet;
     private TextView tv_Withdraw, tv_Balance, tv_Pay, tv_Membershipmsg, txtReferralCount;
     private RelativeLayout rl_Loader;
-    private String name = "", email = "", mobile = "", donated = "", wallet = "", account_first_name = "", account_last_name = "", account_no = "", ifsc_code = "", upi_id = "", payment_mobile = "", activation_date = "", expiry_date = "", txn_id = "";
+    private String uid, name = "", email = "", mobile = "", addWallet = "",orderId="", donated = "", wallet = "", account_first_name = "", account_last_name = "", account_no = "", ifsc_code = "", upi_id = "", payment_mobile = "", activation_date = "", expiry_date = "", txn_id = "";
     private boolean is_paid = false;
 
     @Override
@@ -56,8 +59,9 @@ public class MyWalletActivity extends AppCompatActivity implements View.OnClickL
         finds();
 
         if (Utility.isNetworkConnected(mContext)) {
-            String uid = Utility.getSharedPreferences(mContext, "u_id");
+            uid = Utility.getSharedPreferences(mContext, "u_id");
             getProfile(uid, iv_Bck);
+
         } else {
             AlertConnection.showAlertDialog(mContext, "No Internet Connection",
                     "You don't have internet connection.", false);
@@ -75,11 +79,14 @@ public class MyWalletActivity extends AppCompatActivity implements View.OnClickL
         txtReferralCount = findViewById(R.id.txtReferralCount);
         tv_Membershipmsg = findViewById(R.id.tv_Membershipmsg);
         rl_Loader = findViewById(R.id.rl_Loader);
+        etAmount = findViewById(R.id.etAmount);
+        btnAddWallet = findViewById(R.id.btnAdd);
 
         iv_Bck.setOnClickListener(this);
         iv_Play.setOnClickListener(this);
         tv_Withdraw.setOnClickListener(this);
         tv_Pay.setOnClickListener(this);
+        btnAddWallet.setOnClickListener(this);
 
     }
 
@@ -90,6 +97,14 @@ public class MyWalletActivity extends AppCompatActivity implements View.OnClickL
 
             case R.id.iv_Bck:
                 onBackPressed();
+                break;
+
+            case R.id.btnAdd:
+                if (!etAmount.getText().toString().isEmpty()) {
+                    createOrderId(v, uid, etAmount.getText().toString());
+                }else {
+                    Toast.makeText(mContext, "Please Enter Amount", Toast.LENGTH_SHORT).show();
+                }
                 break;
 
             case R.id.iv_Play:
@@ -189,7 +204,7 @@ public class MyWalletActivity extends AppCompatActivity implements View.OnClickL
                                 tv_Withdraw.setVisibility(View.GONE);
                             }
 
-                            Log.d("TAG", "onResponse: "+donated);
+                            Log.d("TAG", "onResponse: " + donated);
                             if (donated.equalsIgnoreCase("1")) {
                                 tv_Membershipmsg.setVisibility(View.GONE);
                                 tv_Pay.setVisibility(View.GONE);
@@ -235,8 +250,54 @@ public class MyWalletActivity extends AppCompatActivity implements View.OnClickL
                         String resultmessage = object.getString("result");
                         System.out.println("Genrate Order ID =>" + object);
 
+                        addWallet = "";
                         if (status.equalsIgnoreCase("1")) {
                             startPayment(resultmessage, name, amnt, email, number);
+                        } else {
+                            CustomSnakbar.showDarkSnakabar(mContext, view, "" + resultmessage);
+                        }
+
+
+                    } else ;
+
+                } catch (IOException | JSONException e) {
+                    e.printStackTrace();
+                    CustomSnakbar.showDarkSnakabar(mContext, view, "Order ID " + e.getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                t.printStackTrace();
+                rl_Loader.setVisibility(View.GONE);
+                Toast.makeText(mContext, "Failed server or network connection, please try again", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    //create orderId for wallet amount
+    private void createOrderId(View view, String uid, String amnt) {
+        rl_Loader.setVisibility(View.VISIBLE);
+        int amount = Integer.parseInt(amnt) * 100;
+        Call<ResponseBody> call = AppConfig.loadInterface().createOrderID(cookieId, uid, amount);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
+                rl_Loader.setVisibility(View.GONE);
+                try {
+                    if (response.isSuccessful()) {
+                        String responseData = response.body().string();
+                        JSONObject object = new JSONObject(responseData);
+                        String status = object.getString("status");
+                        String message = object.getString("message");
+                        String resultmessage = object.getString("result");
+                        System.out.println("Genrate Order IDD =>" + object);
+
+                        addWallet = "addWallet";
+                        orderId = resultmessage;
+                        if (status.equalsIgnoreCase("1")) {
+                            startPayment(resultmessage, name, amnt, email, mobile);
                         } else {
                             CustomSnakbar.showDarkSnakabar(mContext, view, "" + resultmessage);
                         }
@@ -316,7 +377,87 @@ public class MyWalletActivity extends AppCompatActivity implements View.OnClickL
         String output = sdf1.format(c.getTime());
         Log.e("Date1=>", "" + dt);
         Log.e("Date2=>", "" + output);
-        addPaymentDetail(uid, "1", dt, output, tv_Pay);
+
+        if (addWallet.equalsIgnoreCase("addWallet")) {
+           addMoneytoWallet(btnAddWallet);
+        } else if (addWallet.equalsIgnoreCase("")){
+            addPaymentDetail(uid, "1", dt, output, tv_Pay);
+        }
+    }
+
+    @Override
+    public void onPaymentError(int i, String s) {
+        Log.e("onPaymentError", i + "----->" + s);
+        txn_id = "";
+        is_paid = false;
+//        if (cdialog != null) {
+//            cdialog.dismiss();
+//        }
+        CustomSnakbar.showDarkSnakabar(mContext, iv_Bck, "Payment Failed\nGet Health ID Card Failed.");
+    }
+
+    private void addMoneytoWallet(Button view) {
+        rl_Loader.setVisibility(View.VISIBLE);
+        Call<ResponseBody> call = AppConfig.loadInterface().addWalletAmount(cookieId, uid, etAmount.getText().toString(), orderId);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
+                rl_Loader.setVisibility(View.GONE);
+                try {
+                    if (response.isSuccessful()) {
+                        String responseData = response.body().string();
+                        JSONObject object = new JSONObject(responseData);
+                        String status = object.getString("status");
+                        String message = object.getString("message");
+                        String resultmessage = object.getString("result");
+                        System.out.println("AddWalletMoney=>" + object);
+
+                        if (status.equalsIgnoreCase("1")) {
+//                            CustomSnakbar.showSnakabar(mContext, view, "Membership Successfull.");
+
+                            JSONObject result = object.optJSONObject("result");
+                            String user_id = result.optString("user_id");
+                            String name = result.optString("name");
+                            String user_image = result.optString("user_image");
+                            String email = result.optString("email");
+                            String address = result.optString("address");
+                            String password = result.optString("password");
+                            String mobile = result.optString("mobile");
+                            String user_type = result.optString("user_type");
+
+                            CustomSnakbar.showSnakabar(mContext, view, "Money added to Wallet Successfully.");
+
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Intent intent = new Intent(mContext, HomeActivity.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    Animatoo.animateSlideLeft(mContext);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }, 1500);
+
+                        } else {
+                            CustomSnakbar.showSnakabar(mContext, view, "" + resultmessage);
+                        }
+
+
+                    } else ;
+
+                } catch (IOException | JSONException e) {
+                    e.printStackTrace();
+                    CustomSnakbar.showDarkSnakabar(mContext, view, "" + e.getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                t.printStackTrace();
+                rl_Loader.setVisibility(View.GONE);
+                Toast.makeText(mContext, "Failed server or network connection, please try again", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void addPaymentDetail(String uid, String donated, String date1, String date2, TextView view) {
@@ -326,7 +467,7 @@ public class MyWalletActivity extends AppCompatActivity implements View.OnClickL
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
-//                rl_Loader.setVisibility(View.GONE);
+                rl_Loader.setVisibility(View.GONE);
                 try {
                     if (response.isSuccessful()) {
                         String responseData = response.body().string();
@@ -385,14 +526,5 @@ public class MyWalletActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
-    @Override
-    public void onPaymentError(int i, String s) {
-        Log.e("onPaymentError", i + "----->" + s);
-        txn_id = "";
-        is_paid = false;
-//        if (cdialog != null) {
-//            cdialog.dismiss();
-//        }
-        CustomSnakbar.showDarkSnakabar(mContext, iv_Bck, "Payment Failed\nGet Health ID Card Failed.");
-    }
+
 }

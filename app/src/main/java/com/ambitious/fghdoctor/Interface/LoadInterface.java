@@ -9,6 +9,8 @@ import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -716,6 +718,8 @@ public interface LoadInterface {
     @GET("generate_order_id")
     Call<ResponseBody> getOrderID(@Query("amount") int amount);
 
+
+
     //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Book Appointment %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     @POST("book_appointment")
@@ -1061,5 +1065,23 @@ public interface LoadInterface {
             // @Query("user_type") String user_type,
             @Query("mobile") String mobile,
             @Query("otp") String otp
+    );
+
+
+    @FormUrlEncoded
+    @POST("create_order_id")
+    Call<ResponseBody> createOrderID(
+            @Header("Cookie") String sessionIdAndToken,
+            @Field("user_id") String user_id,
+            @Field("amount") int amount
+    );
+
+    @FormUrlEncoded
+    @POST("add_wallet_amount")
+    Call<ResponseBody> addWalletAmount(
+            @Header("Cookie") String sessionIdAndToken,
+            @Field("user_id") String user_id,
+            @Field("amount") String amount,
+            @Field("order_id") String order_id
     );
 }

@@ -17,6 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class AppConfig {
     public static int amountOfPercentage =2;
     public static int tax =1;
+    public static String cookieId ="cefe82730a98ecdd68a07ea03e34449f23bc1a8d";
     private static Retrofit retrofit = null;
     private static LoadInterface loadInterface = null;
 

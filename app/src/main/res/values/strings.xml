@@ -132,8 +132,10 @@
     <string name="fgh_support">FGH support</string>
     <string name="rate_remind_later">remind me later</string>
     <string name="rate_positive">yes</string>
-    <string name="rate_never" >Never</string>
+    <string name="rate_never">Never</string>
     <string name="rate_title">Rate it</string>
     <string name="rate_message">please rate the app at playstore</string>
     <string name="including_all_charges">Including All Charges</string>
+    <string name="enter_amount">\u20B9 Enter Amount</string>
+    <string name="add_wallet">Add Wallet</string>
 </resources>
